@@ -16,7 +16,7 @@
     "react-scripts": "3.3.1",
     "reactstrap": "^8.4.1"
   },
-  "homepage": "https://github.com/smiro35/music-hall",
+  "homepage": "https://smiro35.github.io/music-hall-booking",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
