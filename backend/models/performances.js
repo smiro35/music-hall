@@ -1,8 +1,7 @@
-const bcrypt = require('bcryptjs');
 // Creating our User model
 module.exports = function (sequelize, DataTypes) {
   const Performances = sequelize.define('Performances', {
-    // The email cannot be null, and must be a proper email before creation
+    // Table for Performances Data Entry
     performance: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -18,7 +17,6 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       unique: true,
     },
-    // The password cannot be null
     spotify_reach: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -93,11 +91,17 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: true,
       unique: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      unique: false,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      unique: false,
     }
-
-
-
-
   });
   return Performances;
 };
