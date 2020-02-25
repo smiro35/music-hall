@@ -8,7 +8,8 @@ const db = require('./models');
 const routes = require('./routes');
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
+
 
 // Serve static files from the React app build directory
 app.use(express.static(path.join(__dirname, 'client/build')));

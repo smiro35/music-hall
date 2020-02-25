@@ -8,6 +8,7 @@ import MyNavbar from "./components/Navbar/Navbar.js";
 //  import YouTubeCounter from './components/Youtube/YouTubeCounter';
 // import Cards from './components/Cards/Cards.js';
 // import Search from './components/Search/Search.js';
+import TablePage from "./pages/TablePage/TablePage.js";
 
 
 // import Cards from './components/Cards'
@@ -26,6 +27,7 @@ const App = () => (
         <Route exact path="/" component={Home} />
         <Route exact path="/Dashboard" component={Dashboard} />
         <Route exact path="/Dashboard/:someparam" component={Dashboard} />
+        <Route exact path="/Table" component={TablePage} />
         <Route component={NoMatch} />
       </Switch>
     </div>
