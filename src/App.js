@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import NoMatch from "./pages/NoMatch";
+import MyData from "./pages/Data"
 
 // import ArtistSearch from './components/Search/ArtistSearch';
 //  import YouTubeCounter from './components/Youtube/YouTubeCounter';
@@ -20,6 +21,7 @@ const App = () => (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/Dashboard" component={Dashboard} />
+      <Route exact path="/Data" component={MyData} />
       <Route exact path="/Dashboard/:someparam" component={Dashboard} />
       <Route component={NoMatch} />
     </Switch>
