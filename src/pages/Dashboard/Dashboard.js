@@ -20,9 +20,11 @@ const Dashboard= (props) => {
                 </Row> */}
                 <Row>
                     <Col>
-                     <YouTubeCounter/>
+                     <YouTubeCounter
+                     
+                     />
                     </Col>
-                    <Col>Pandora</Col>
+                    <Col></Col>
                     <Col>Spotify</Col>
                     <Col>Itunes</Col>
 

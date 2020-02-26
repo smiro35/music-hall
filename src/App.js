@@ -15,28 +15,15 @@ import Sidenav from './components/Sidenav/Sidenav.js'
 
 const App = () => (
   <Router>
-    
-      
-      
-    
-      
 
-      
-      
-     
 
-    
-      
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/Dashboard" component={Dashboard} />
+      <Route exact path="/Dashboard/:someparam" component={Dashboard} />
+      <Route component={NoMatch} />
+    </Switch>
 
-      
-
-      <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route exact path="/Dashboard" component={Dashboard}/>
-        <Route exact path="/Dashboard/:someparam" component={Dashboard}/>
-        <Route component={NoMatch} />
-      </Switch>
-   
   </Router>
 );
 

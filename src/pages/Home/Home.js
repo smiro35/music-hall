@@ -2,7 +2,10 @@ import React from 'react';
 import { form, span } from 'react-bootstrap/Form';
 import './css/main.css'
 import './css/util.css'
-import './images/img-01.png';
+import pic from'./images/img-01.png';
+import './vendor/animate/animate.css'
+
+
 
 
 
@@ -15,7 +18,7 @@ function home() {
         <div className="container-login100">
           <div className="wrap-login100">
             <div className="login100-pic js-tilt" data-tilt>
-              <img src="images/img-01.png" alt="IMG" />
+              <img src={pic} alt="not working" />
             </div>
           </div>
         </div>

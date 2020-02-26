@@ -5,7 +5,7 @@ import numeral from 'numeral';
 // import Cards from '../Cards/Cards.js'
 
 
-const YouTubeCounter = ()=>{
+const YouTubeCounter = (props)=>{
 
     const [subscriberCount, setSubscriberCount] = useState()
     const [viewCount, setViewCount] = useState()
