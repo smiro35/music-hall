@@ -30,13 +30,13 @@ CREATE TABLE performances (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE `musicAPIs` (
-    `id` Int( 11 ) AUTO_INCREMENT NOT NULL,
-    `artistName` VARCHAR(255) NOT NULL,
-    `spotify` INTEGER NOT NULL,
-    `youtube` INTEGER NOT NULL,
-    'instagram' INTEGER NOT NULL,
+CREATE TABLE musicAPIs (
+    id Int( 11 ) AUTO_INCREMENT NOT NULL,
+    performanceID INT NOT NULL,
+    spotify INTEGER NOT NULL,
+    youtube INTEGER NOT NULL,
+    instagram INTEGER NOT NULL,
     /* Set ID as primary key */
-    PRIMARY KEY ( `id` )
-    FOREIGN KEY ('artistName') references PERFORMANCES('performance');
+    PRIMARY KEY ( id ),
+    FOREIGN KEY (performanceID) references performances(id)
 );
