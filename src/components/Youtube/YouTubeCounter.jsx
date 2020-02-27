@@ -1,11 +1,11 @@
-import React, {useState, useEffect, Fragment} from 'react';
+import React, {useState, useEffect,} from 'react';
 import { Card, Button, CardTitle, CardText } from 'reactstrap';
 import config from './config.js'
 import numeral from 'numeral';
 // import Cards from '../Cards/Cards.js'
 
 
-const YouTubeCounter = ()=>{
+const YouTubeCounter = (props)=>{
 
     const [subscriberCount, setSubscriberCount] = useState()
     const [viewCount, setViewCount] = useState()

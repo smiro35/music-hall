@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
+import { Nav, NavItem, NavLink } from 'reactstrap';
 
 const MyNavbar = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const toggle = () => setDropdownOpen(!dropdownOpen);
+  // const toggle = () => setDropdownOpen(!dropdownOpen);
 
   return (
     <div>
-      <Nav pills>
+      <Nav style={{marginLeft:"7rem"}}>
         <NavItem>
           <NavLink href="/" active>Home</NavLink>
         </NavItem>
@@ -19,6 +19,9 @@ const MyNavbar = (props) => {
         <NavItem>
           <NavLink href="/Table">Table</NavLink>
         </NavItem>
+        <NavItem>
+          <NavLink href="MyData">Data-Entry</NavLink>
+        </NavItem>
         
       </Nav>
     </div>
@@ -28,6 +31,33 @@ const MyNavbar = (props) => {
 
 export default MyNavbar
 
+
+// import { Nav, NavItem, NavLink } from 'reactstrap';
+
+// const Sidenav = (props) => {
+//   return (
+//     <div>
+//       <p>List Based</p>
+//       <Nav vertical>
+//         <NavItem>
+//           <NavLink href="#">Link</NavLink>
+//         </NavItem>
+//         <NavItem>
+//           <NavLink href="#">Link</NavLink>
+//         </NavItem>
+//         <NavItem>
+//           <NavLink href="#">Another Link</NavLink>
+//         </NavItem>
+//         <NavItem>
+//           <NavLink disabled href="#">Disabled Link</NavLink>
+//         </NavItem>
+//       </Nav>
+     
+//     </div>
+//   );
+// }
+
+// export default Sidenav;
 
 
 
