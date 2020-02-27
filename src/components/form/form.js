@@ -1,6 +1,6 @@
 import React from 'react';
-import SimpleContainer from '../Container/Container'
-import{Form,Col,Button} from "react-bootstrap";
+// import SimpleContainer from '../Container/Container'
+import{Form,Col,Button, Container} from "react-bootstrap";
 
 
 function MyForm(){
@@ -8,31 +8,31 @@ function MyForm(){
 
     return(
 
-<SimpleContainer>
+
 
  
-
+<Container>
 <Form>
   <Form.Row>
     <Form.Group as={Col} controlId="formGridEmail">
       <Form.Label>Artist</Form.Label>
-      <Form.Control type="email" placeholder="Enter email" />
+      <Form.Control type="email" placeholder="Enter artistname" />
     </Form.Group>
 
     <Form.Group as={Col} controlId="formGridPassword">
       <Form.Label>Tickest sold</Form.Label>
-      <Form.Control type="password" placeholder="Password" />
+      <Form.Control type="Amount#" placeholder="amount#" />
     </Form.Group>
   </Form.Row>
 
   <Form.Group controlId="formGridAddress1">
     <Form.Label>Last date</Form.Label>
-    <Form.Control placeholder="1234 Main St" />
+    <Form.Control placeholder="MM/DD/YYYY" />
   </Form.Group>
 
   <Form.Group controlId="formGridAddress2">
     <Form.Label>Appearances</Form.Label>
-    <Form.Control placeholder="Apartment, studio, or floor" />
+    <Form.Control placeholder="Amount#" />
   </Form.Group>
 
   <Form.Row>
@@ -60,7 +60,8 @@ function MyForm(){
     Submit
   </Button>
 </Form>
-</SimpleContainer>
+</Container>
+
 
 )
 };

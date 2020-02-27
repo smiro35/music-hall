@@ -1,20 +1,10 @@
 import React from 'react';
-
-export default class Artist extends React.Component{
-
-    render(){
-        return(
-            <div>
-                {
-                    this.props.artist.followers && 
-                    <div>
-                           Followers: {this.props.artist.followers.total}
-                        </div>
-                }
-            </div>
-            
-            );
-    
-        }
-    
+export default ({ artist }) => <div>
+    {
+        artist &&
+        <>
+            <h3>{artist.name}</h3>
+            <h5>Followers: {artist.followers.total}</h5>
+        </>
     }
+</div>

@@ -1,6 +1,6 @@
 import React from 'react';
-import ArtistSearch from './ArtistSearch';
-import SearchBar from './SearchBar'
+// import ArtistSearch from './ArtistSearch';
+// import SearchBar from './SearchBar'
 export default class ArtistList extends React.Component{
 
 

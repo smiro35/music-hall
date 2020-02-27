@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
+import { Nav, NavItem, NavLink } from 'reactstrap';
 
 const MyNavbar = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const toggle = () => setDropdownOpen(!dropdownOpen);
+  // const toggle = () => setDropdownOpen(!dropdownOpen);
 
   return (
     <div>
@@ -17,7 +17,10 @@ const MyNavbar = (props) => {
           <NavLink href="/Dashboard">Dashboard</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#">Table</NavLink>
+          <NavLink href="/Table">Table</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="MyData">Data-Entry</NavLink>
         </NavItem>
         
       </Nav>

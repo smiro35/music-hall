@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import SimpleCard from '../Cards/Cards.js'
 import JustifyContent from '../Box/Box.js';
 import SearchBar from '../Search/SearchBar.js'
+import MyNavbar from '../Navbar/Navbar'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,8 +26,9 @@ export default function CenteredGrid() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Paper className={classes.paper} style={{height:'20rem', marginTop:'-3rem', backgroundColor:"#5603ad"}}>
+          <Paper className={classes.paper} style={{height:'20rem', marginTop:'5rem', backgroundColor:"#5603ad"}}>
             <div xs={8}/>
+            <MyNavbar/>
             <SearchBar xs={4} />
             <JustifyContent/>
 

@@ -1,16 +1,26 @@
 import React from 'react';
 import MyForm from '../../components/form/form';
-
-function MyData(){
-
+import MyNavbar from "../../components/Navbar/Navbar.js";
 
 
-return(
-  <MyForm>
+function MyData() {
 
-  </MyForm>
 
-)
+
+    return (
+
+        
+
+        <div>
+            <MyNavbar />
+
+            <MyForm/>
+
+        </div>
+
+  
+
+    );
 
 }
 

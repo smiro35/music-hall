@@ -8,8 +8,8 @@ export default function SimpleContainer() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="lg" style={{marginTop:"-4rem",marginRight:"-7rem"}}>
-      
+      <Container maxWidth="lg" style={{marginTop:"1rem",marginRight:"3rem", width:"100vw"}}>
+       
         <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }}>
         <CenteredGrid/>
         </Typography>

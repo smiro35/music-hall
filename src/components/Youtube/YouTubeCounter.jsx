@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Fragment} from 'react';
+import React, {useState, useEffect,} from 'react';
 import { Card, Button, CardTitle, CardText } from 'reactstrap';
 import config from './config.js'
 import numeral from 'numeral';
