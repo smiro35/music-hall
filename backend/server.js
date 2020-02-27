@@ -27,6 +27,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+// Cross-orgin reference middleware
+const cors = require('cors');
+
+app.use(cors());
+
 // Routing
 // =============================================
 app.use('/api', routes);

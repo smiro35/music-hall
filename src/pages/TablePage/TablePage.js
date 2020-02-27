@@ -8,7 +8,7 @@ import API from "../../utils/API.js";
 function TablePage() {
 
     const [performances, setPerformances] = useState([])
-    const [formObject, setFormObject] = useState({})
+    // const [formObject, setFormObject] = useState({})
 
     //Load all performances within setPerformances
     useEffect(() => {
@@ -33,8 +33,16 @@ function TablePage() {
                     {performances.map(performance => {
                         return (
                             <TableItem key={performance.id}>
-                                {performance.performance}
-                                {console.log(performance)}
+                                <td>{performance.performance}</td>
+                                <td>{performance.date}</td>
+                                <td>{performance.total_sold}</td>
+                                <td>{performance.total_money}</td>
+                                <td>{performance.total_attendance}</td>
+                                <td>{performance.average_ticket_price}</td>
+                                <td>{performance.percent_sold}</td>
+                                <td>{performance.show_success}</td>
+                                <td>{performance.fiscal_year}</td>
+                                <td>{performance.genre}</td>
                             </TableItem>
                         )
                     })}
