@@ -9,6 +9,7 @@ import MyData from "./pages/Data"
 //  import YouTubeCounter from './components/Youtube/YouTubeCounter';
 // import Cards from './components/Cards/Cards.js';
 // import Search from './components/Search/Search.js';
+import TablePage from "./pages/TablePage/TablePage.js";
 
 
 
@@ -24,6 +25,7 @@ const App = () => (
       <Route exact path="/Dashboard" component={Dashboard} />
       <Route exact path="/MyData" component={MyData} />
       <Route exact path="/Dashboard/:someparam" component={Dashboard} />
+      <Route exact path="/Table" component={TablePage} />
       <Route component={NoMatch} />
     </Switch>
 
