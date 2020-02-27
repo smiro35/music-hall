@@ -5,7 +5,10 @@ import Grid from '@material-ui/core/Grid';
 import SimpleCard from '../Cards/Cards.js'
 import JustifyContent from '../Box/Box.js';
 import SearchBar from '../Search/SearchBar.js'
-import MyNavbar from '../Navbar/Navbar'
+import MyNavbar from '../Navbar/Navbar';
+import YouTubeCounter  from '../Youtube/YouTubeCounter'
+import Spotify from '../Spotify/Spotify'
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,7 +31,7 @@ export default function CenteredGrid() {
         <Grid item xs={12}>
           <Paper className={classes.paper} style={{height:'20rem', marginTop:'5rem', backgroundColor:"#5603ad"}}>
             <div xs={8}/>
-            <MyNavbar/>
+            
             <SearchBar xs={4} />
             <JustifyContent/>
 
@@ -37,7 +40,7 @@ export default function CenteredGrid() {
         <Grid item xs={6}>
           <Paper className={classes.paper}>
 
-              <SimpleCard/>
+              <YouTubeCounter/>
 
             
 
@@ -45,7 +48,7 @@ export default function CenteredGrid() {
         </Grid>
         <Grid item xs={6}>
           <Paper className={classes.paper}>
-              <SimpleCard/>
+              <Spotify/>
           </Paper>
         </Grid>
         <Grid item xs={6}>
