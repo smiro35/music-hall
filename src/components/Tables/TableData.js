@@ -6,6 +6,7 @@ export function TableData({ children }) {
     <Table dark>
       <thead>
         <tr>
+          <th>I.D</th>
           <th>Performance</th>
           <th>Date</th>
           <th>Total Sold</th>

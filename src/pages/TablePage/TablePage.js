@@ -4,6 +4,7 @@ import { TableData, TableItem } from "../../components/Tables/TableData.js";
 
 import TableDataEntry from "../../components/Tables/TableDataEntry.js"
 import API from "../../utils/API.js";
+import MyNavbar from "../../components/Navbar/Navbar.js";
 
 function TablePage() {
 
@@ -26,13 +27,15 @@ function TablePage() {
 
     return (
         <div>
-            <TableHeader />
-            <TableDataEntry />
+            <MyNavbar/>
+            {/* <TableHeader />
+            <TableDataEntry /> */}
             {performances.length ? (
                 <TableData>
                     {performances.map(performance => {
                         return (
                             <TableItem key={performance.id}>
+                                <td>{performance.id}</td>
                                 <td>{performance.performance}</td>
                                 <td>{performance.date}</td>
                                 <td>{performance.total_sold}</td>

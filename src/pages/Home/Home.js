@@ -13,7 +13,6 @@ function home() {
       <div className="limiter">
         <div className="container-login100">
           <div className="wrap-login100">
-            <div className="login100-pic js-tilt" data-tilt>
               <img src={pic} alt="not working" />
               <form className="login100-form validate-form">
                 <span className="login100-form-title"> Member Login </span>
@@ -51,7 +50,6 @@ function home() {
                   </a>
                 </div>
               </form>
-            </div>
           </div>
         </div>
       </div>
