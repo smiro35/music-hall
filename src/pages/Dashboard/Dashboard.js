@@ -12,8 +12,10 @@ import MyNavbar from "../../components/Navbar/Navbar.js";
 
 const Dashboard= (props) => {
     return (
+        <>
+        <MyNavbar/>
         <Simplecontainer>
-            <MyNavbar/>
+            
             <ArtistSearch/>
            {/* <Row>
                     <Col>SearchBox</Col>
@@ -34,6 +36,7 @@ const Dashboard= (props) => {
 
             
         </Simplecontainer>
+        </>
     );
 }
 

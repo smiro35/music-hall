@@ -2,6 +2,7 @@ import React from 'react';
 // import ArtistList from './ArtistList';
 // import ArtistSearch from './ArtistSearch'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import Spotify from '../Spotify/Spotify'
 
 export default class SearchBar extends React.Component {
 
