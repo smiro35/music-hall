@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TableHeader from "../../components/Tables/TableHeader.js";
 import { TableData, TableItem } from "../../components/Tables/TableData.js";
-
 import TableDataEntry from "../../components/Tables/TableDataEntry.js"
 import API from "../../utils/API.js";
 
@@ -33,6 +32,7 @@ function TablePage() {
                     {performances.map(performance => {
                         return (
                             <TableItem key={performance.id}>
+                                <td>{performance.id}</td>
                                 <td>{performance.performance}</td>
                                 <td>{performance.date}</td>
                                 <td>{performance.total_sold}</td>

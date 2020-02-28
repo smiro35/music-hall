@@ -1,12 +1,6 @@
 // Creating our User model
 module.exports = function (sequelize, DataTypes) {
   const Performances = sequelize.define('Performances', {
-    // Table for Performances Data Entry
-    performance: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: false,
-    },
     date: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -101,7 +95,18 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: false,
       unique: false,
-    }
+    },
   });
+  Performances.associate = function (models) {
+    // We're saying that a Performance should belong to an Artist
+    // A Performance can't be created without an Artist due to the foreign key constraint
+    Performances.belongsTo(models.Artists, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
+  };
+
+
   return Performances;
 };
