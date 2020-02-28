@@ -29,7 +29,7 @@ export default function CenteredGrid() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Paper className={classes.paper} style={{height:'20rem', marginTop:'5rem', backgroundColor:"#5603ad"}}>
+          <Paper className={classes.paper} style={{height:'20rem', marginTop:'-1rem', backgroundColor:"#5603ad"}}>
             <div xs={8}/>
             
             <SearchBar xs={4} />

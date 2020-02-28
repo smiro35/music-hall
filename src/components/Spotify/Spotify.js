@@ -17,7 +17,8 @@ export default class Spotify extends React.Component {
     }
     handleSubmit = (event) => {
         event.preventDefault();
-        const token = "BQAvTaCepqieh3zPAp-4KAznXU1kTe2yZJ8ecMLNeHus1y2NOhZAec1ZSedm4gJIh9JmcQfxbGkfQZeY0wyNZ1haZ_tHcSYWrAj1NL5s2m7T3p1bMW6StMOh0YEk9I-7rlfV4Y0S13uKFRLUp0Spw3nzeXtPfw1Lp1_nr4I0HSmC_xvaITTb-7vKt4Mt35jtge6NflERs1V8MrU-PZtbXQkZdZ1mOTHUAa0_W-dI8A8UYPig2L2Hco0M-s_5_6nFdvx__Pjwe588cyyW__JqoydYCsVtVg"
+        const token = "BQCs5t7vr5g5JHPeg06hddFIDGiFZCoR4R59WbigcoZEH6k9Q0WBJr7OvCBjUPzapmmD51ygJ090jx1C4RgrT3k5cVVtkQBOVB7G-rk_uh-aNE9y9kuY_VOMPm65SW2EEQsbdldk2zyiW9KmCi1js2KyoHd4tHwInnrv4geWmsDINBeTPqjMzQeb8S9odidarx19Jdss-xNlTnM-FeXN7AW4nro3H0NJXzDmwy64R6bkN-oymqR0DncqVjweFABzypklLrutFdya_4X_MzNsfIl-ElaBFA";
+        // "BQAvTaCepqieh3zPAp-4KAznXU1kTe2yZJ8ecMLNeHus1y2NOhZAec1ZSedm4gJIh9JmcQfxbGkfQZeY0wyNZ1haZ_tHcSYWrAj1NL5s2m7T3p1bMW6StMOh0YEk9I-7rlfV4Y0S13uKFRLUp0Spw3nzeXtPfw1Lp1_nr4I0HSmC_xvaITTb-7vKt4Mt35jtge6NflERs1V8MrU-PZtbXQkZdZ1mOTHUAa0_W-dI8A8UYPig2L2Hco0M-s_5_6nFdvx__Pjwe588cyyW__JqoydYCsVtVg"
         // 'BQBCE1-fUqVPfHgGMCMZv7RJbnomGCbQPG8B9tddyGv1bDngxvhxj519ymRobMtskS-iv-vss6y-TZprt0ShSFUKggqj4LHtu6TzM0O36CNkRx70PY-3te1knb2KUBaJ60rtjHSLMOT8Z-VwizqJGjYCJcrhvJQbVjVBTU99wmns5CwZSVAKIq3FHNAT1i6lDWDsMVLzQ5beizvkVEqK_QcS9cAicV0ALIp8Bm5s720p_uqf2XvSo0LRunkX52QEBoFEKVlb7NIbvYY';
         
         

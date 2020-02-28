@@ -14,7 +14,10 @@ const YouTubeCounter = (props)=>{
 
 
         const {api_key, channel_id} = config;
-        const apiCall =`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channel_id}&key=${api_key}`
+        const apiCall = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channel_id}&key=${api_key}`;
+        
+        // `https://www.googleapis.com/youtube/v3/search?part=snippet&q=kanye&key=${api_key}`;
+                     
         fetch(apiCall)
         .then(result => result.json())
         .then(data =>{
