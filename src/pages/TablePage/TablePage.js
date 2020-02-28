@@ -35,7 +35,7 @@ function TablePage() {
                         return (
                             <TableItem key={performance.id}>
                                 <td>{performance.id}</td>
-                                <td>{performance.performance}</td>
+                                <td>{performance.Artist.artist_name}</td>
                                 <td>{performance.date}</td>
                                 <td>{performance.total_sold}</td>
                                 <td>{performance.total_money}</td>

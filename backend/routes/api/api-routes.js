@@ -9,11 +9,12 @@ const db = require('../../models');
 // GET index, all performances
 router.get('/performances', (req, res) => {
   const query = {};
-  if (req.query.artists_id) {
-    query.artistID = req.query.artists_id;
+  if (req.query.artistID) {
+    query.artistid = req.artistID;
   }
   db.Performances.findAll({
     where: query,
+    include: [db.Artists],
   }).then((Performances) => {
     console.log(Performances);
     res.json(Performances);
