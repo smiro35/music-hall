@@ -32,6 +32,7 @@ function MyForm() {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
+    console.log("this the event" + event.target);
     setformObject({
       [name]: value
     });
@@ -58,25 +59,36 @@ function MyForm() {
   // }
   function handleFormSubmit(event) {
     console.log("button was pressed")
+    
     event.preventDefault();
     // if (formObject.title && formObject.author) {
+    
       fetch("http://localhost:3001/api/performances", {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          artist:formObject.artist,
-          date:formObject.date,
-          ticketsSold:formObject.ticketsSold
+          'Content-Type': 'application/json'}
+        }).then((response) => {
+          setformObject({
+            ...formObject,
+            artist:formObject.artist,
+            date:formObject.date,
+            ticketsSold:formObject.ticketsSold
+          })
         })
-      })
-        .then(res => res.json())
+        // .then(res => res.json())
         .then(data => console.log(data))
         .catch(err => console.log(err))
+        // body: JSON.stringify({
+        //   artist:formObject.artist,
+        //   date:formObject.date,
+        //   ticketsSold:formObject.ticketsSold
+        // })
+      }
+      
+
     // }
-  }
+  
       // API.saveBook({
       //   artist: formObject.artist,
       //   author: formObject.author,
@@ -153,5 +165,6 @@ return (
     </Form>
   </Container>
 );
-  };
+  }
+
 export default MyForm;
