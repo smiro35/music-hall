@@ -1,17 +1,19 @@
 import React from 'react';
-export default class SearchBar extends React.Component{
-    render(){
+
+function SearchBar(props){
+    
         return(
             <div>
                 <form>
                    <input
                 name= "search"
-                onChange={this.props.handleInputChange}
-                value={this.props.search}
+                onChange={props.handleInputChange}
+                value={props.search}
                 
                 ></input>
                 <button
-                onClick={this.props.handleSubmit} 
+                onClick={props.handleSubmit} 
+                className="btn btn-primary"
                 >artist</button>
  
                 </form>
@@ -19,6 +21,8 @@ export default class SearchBar extends React.Component{
             </div>
             );
     
-        }
+    
     
     }
+
+    export default SearchBar;

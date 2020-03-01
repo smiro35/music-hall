@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from '../Search/SearchBar';
+import SearchBar from './SearchBar';
 import Artist from './Artist';
 import axios from 'axios';
 export default class Spotify extends React.Component {
@@ -47,10 +47,10 @@ export default class Spotify extends React.Component {
     render() {
         return (
             <div>
-                <SearchBar
+                {/* <SearchBar
                     search={this.state.search}
                     handleInputChange={this.handleInputChange}
-                    handleSubmit={this.handleSubmit} />
+                    handleSubmit={this.handleSubmit} /> */}
                 <Artist
                     artist={this.state.artist} />
             </div>
