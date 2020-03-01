@@ -4,45 +4,30 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Spotify from '../Spotify/Spotify'
 
-export default class SearchBar extends React.Component {
+// export default class SearchBar extends React.Component {
 
 
-   render() {
-
+//    render() {
+function SearchBar({ handleSearchChange }){
       return (
-
-
-
-
-
          <Form inline>
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">         <Label for="Artisit" className="mr-sm-2"></Label>
+            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">         
+            <Label for="Artisit" className="mr-sm-2"></Label>
                <Input
                   name="search"
-                  onChange={this.props.handleInputChange}
-                  value={this.props.search}
+                  // onChange={this.props.handleInputChange}
+                  // value={this.props.search}
                   id="artisitName"
                   placeholder="Enter name of performer"
-
-
+                  onChange={e => handleSearchChange(e)}
                />
             </FormGroup>
             <Button
-               onClick={this.props.handleSubmit}
+               // onClick={this.props.handleSubmit}
 
             >Submit</Button>
          </Form>
-
-
-
-
-
       )
-
-
-
-   }
-
-
-
 }
+
+export default SearchBar;

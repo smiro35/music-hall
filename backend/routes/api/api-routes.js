@@ -36,8 +36,11 @@ router.get('/performances/:id', (req, res) => {
 // POST create, create a new performance
 router.post('/performances', (req, res) => {
   const performance = req.body;
+  //findone db.Artist.artist_name where req.artist_name
+  //.then(.artist_id) =>
   db.Performances.create(performance)
     .then((results) => {
+      //ArtistID: artist_id
       res.json({
         success: true,
       });

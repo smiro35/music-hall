@@ -1,7 +1,18 @@
 import React from 'react';
-import SearchBar from './SearchBar';
+import SearchBar from './SearchBar.js';
 import ArtistList from './ArtistList';
 // import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+
+
+function ArtistSearch({ handleSearchChange }) {
+    return (
+        <SearchBar
+        handleSearchChange={handleSearchChange}/>
+    );
+}
+
+export default ArtistSearch;
+
 
 // const Search = (props) => {
 //   return (
@@ -17,34 +28,34 @@ import ArtistList from './ArtistList';
 
 // export default Search;
 
-export default class ArtistSearch extends React.Component{
+// export default class ArtistSearch extends React.Component{
 
-    state ={
+//     state ={
 
-        searched :'',
-        artists :[]
-    }
+//         searched :'',
+//         artists :[]
+//     }
     
-    handleInput = (event)=>{
+//     handleInput = (event)=>{
 
-        const{name,value} = event.target.value
+//         const{name,value} = event.target.value
 
-        this.setState(
+//         this.setState(
 
-            {
-                [name]:value
+//             {
+//                 [name]:value
 
-            }
+//             }
 
-        )
+//         )
 
     
 
-    }
+    // }
 
 
-    handleSubmit = (event)=>{
-        event.preventDefault();
+    // handleSubmit = (event)=>{
+    //     event.preventDefault();
         // now we make an axios call to the api, or we can fetch
         // const key ="your key here"
         
@@ -69,40 +80,42 @@ export default class ArtistSearch extends React.Component{
         //     console.error(err);
             
         // })
-    }
+//     }
 
 
-render(){
+// render(){
 
- return (
+//  return (
 
 
-    <div>
+//     <div>
+
 
          
-<ArtistList
-        artists = {this.state.artists}
-        />
+// <ArtistList
+//         artists = {this.state.artists}
+//         />
 
-        <SearchBar
-         searched = {this.state.searched}
+//         <SearchBar
+//          searched = {this.state.searched}
 
-         handleInput={this.handleInput}
+//          handleInput={this.handleInput}
 
-         handleSubmit={this.handleSubmit}
+//          handleSubmit={this.handleSubmit}
+
         
-        />
+//         />
         
 
 
-    </div>
+//     </div>
 
- )
-
-
-
-}
+//  )
 
 
 
-}
+// }
+
+
+
+// } 
