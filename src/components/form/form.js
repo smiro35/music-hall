@@ -82,7 +82,7 @@ function MyForm() {
         total_attendance: formObject.attendance,
         average_ticket_price: formObject.avgTicketPrice,
         percent_sold: formObject.percentSold,
-        ArtistId: 3
+        ArtistId: null
       })
       .then(data => console.log("This is it"+ data))
       .catch(err => console.log(err))
