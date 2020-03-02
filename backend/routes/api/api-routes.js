@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const axios = require('axios');
+// const axios = require('axios');
 
 // **look in path**
-const path = require('path');
+// const path = require('path');
 const db = require('../../models');
 
 // Performances data-entry
@@ -36,11 +36,14 @@ router.get('/performances/:id', (req, res) => {
 // POST create, create a new performance
 router.post('/performances', (req, res) => {
   const performance = req.body;
-  //findone db.Artist.artist_name where req.artist_name
-  //.then(.artist_id) =>
+  // console.log(performance);
+  // findone db.Artist.artist_name where req.artist_name
+  // .then(.artist_id) =>
   db.Performances.create(performance)
+    .then((data) => console.log(data))
     .then((results) => {
-      //ArtistID: artist_id
+      console.log(results);
+      // ArtistID: artist_id
       res.json({
         success: true,
       });

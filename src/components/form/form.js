@@ -32,9 +32,13 @@ function MyForm() {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-    console.log("this the event" + event.target);
+    console.log("this the event" + event.target.name);
     setformObject({
-      [name]: value
+      ...formObject,
+      artist:formObject.artist,
+      date:formObject.date,
+      ticketsSold:formObject.ticketsSold,
+      [name]:value
     });
   }
   // code to post
@@ -59,36 +63,50 @@ function MyForm() {
   // }
   function handleFormSubmit(event) {
     console.log("button was pressed")
-    
+    console.log(formObject);
     event.preventDefault();
     // if (formObject.title && formObject.author) {
-    
-      fetch("http://localhost:3001/api/performances", {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'}
-        }).then((response) => {
-          setformObject({
-            ...formObject,
-            artist:formObject.artist,
-            date:formObject.date,
-            ticketsSold:formObject.ticketsSold
-          })
-        })
+      // fetch("http://localhost:3001/api/performances", {
+      //   method: 'POST',
+      //   headers: {
+      //     'Accept': 'application/json',
+      //     'Content-Type': 'application/json'}
+      //   })
+      if (formObject.artist && formObject.date){
+
+        API.postPerformance({
+        performance: formObject.artist,
+        date: formObject.date,
+        total_sold: formObject.ticketsSold,
+        total_money: formObject.total$,
+        total_attendance: formObject.attendance,
+        average_ticket_price: formObject.avgTicketPrice,
+        percent_sold: formObject.percentSold,
+        ArtistId: 3
+      })
+      .then(data => console.log("This is it"+ data))
+      .catch(err => console.log(err))
+      };
+
+
+      // .then((data) => {
+      //     setformObject({
+      //       ...formObject,
+      //       artist:formObject.artist,
+      //       date:formObject.date,
+      //       ticketsSold:formObject.ticketsSold
+      //     })
+      //   })
         // .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(err => console.log(err))
+        
+        
         // body: JSON.stringify({
         //   artist:formObject.artist,
         //   date:formObject.date,
         //   ticketsSold:formObject.ticketsSold
         // })
       }
-      
-
     // }
-  
       // API.saveBook({
       //   artist: formObject.artist,
       //   author: formObject.author,
@@ -166,5 +184,4 @@ return (
   </Container>
 );
   }
-
 export default MyForm;
