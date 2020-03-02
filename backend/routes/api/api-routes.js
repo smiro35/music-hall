@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const axios = require('axios');
+// const axios = require('axios');
 
 // **look in path**
-const path = require('path');
+// const path = require('path');
 const db = require('../../models');
 
 // Performances data-entry
@@ -36,21 +36,53 @@ router.get('/performances/:id', (req, res) => {
 // POST create, create a new performance
 router.post('/performances', (req, res) => {
   const performance = req.body;
-  //findone db.Artist.artist_name where req.artist_name
-  //.then(.artist_id) =>
-  db.Performances.create(performance)
-    .then((results) => {
-      //ArtistID: artist_id
-      res.json({
-        success: true,
-      });
-    })
-    .catch((err) => {
-      res.status(500).json({
-        success: false,
-        errors: err.errors,
-      });
-    });
+  db.Artists.findOne({
+    where: {
+      artist_name: performance.performance,
+    },
+  }).then((dbArtist) => {
+    // assign artist ID if artist exists
+    if (dbArtist) {
+      req.body.ArtistId = dbArtist.id;
+      db.Performances.create(performance)
+        .then((results) => {
+          res.json({
+            success: results,
+          });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            success: false,
+            errors: err.errors,
+          });
+        });
+
+      // create artist and assign new ID if no artsist exist
+    } else {
+      const newArtist = {
+        artist_name: performance.performance,
+      };
+      db.Artists.create(newArtist)
+        .then((results) => {
+          console.log(results);
+          req.body.ArtistId = results.id;
+        }).then(() => {
+          console.log(performance);
+          db.Performances.create(performance)
+            .then((results) => {
+              res.json({
+                success: results,
+              });
+            });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            success: false,
+            errors: err.errors,
+          });
+        });
+    }
+  });
 });
 
 // PUT update, update an existing performance by id

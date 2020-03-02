@@ -1,6 +1,11 @@
 // Creating our User model
 module.exports = function (sequelize, DataTypes) {
   const Performances = sequelize.define('Performances', {
+    // artist: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    //   unique: true,
+    // },
     date: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -102,7 +107,7 @@ module.exports = function (sequelize, DataTypes) {
     // A Performance can't be created without an Artist due to the foreign key constraint
     Performances.belongsTo(models.Artists, {
       foreignKey: {
-        allowNull: false,
+        allowNull: true,
       },
     });
   };
