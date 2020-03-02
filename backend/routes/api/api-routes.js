@@ -36,8 +36,6 @@ router.get('/performances/:id', (req, res) => {
 // POST create, create a new performance
 router.post('/performances', (req, res) => {
   const performance = req.body;
-  console.log(performance);
-  // findone db.Artist.artist_name where req.artist_name
   db.Artists.findOne({
     where: {
       artist_name: performance.performance,
@@ -46,51 +44,46 @@ router.post('/performances', (req, res) => {
     // assign artist ID if artist exists
     if (dbArtist) {
       req.body.ArtistId = dbArtist.id;
-      // console.log(performance);
+      db.Performances.create(performance)
+        .then((results) => {
+          res.json({
+            success: results,
+          });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            success: false,
+            errors: err.errors,
+          });
+        });
 
-    // create artist and assign new ID if no artsist exist
+      // create artist and assign new ID if no artsist exist
     } else {
       const newArtist = {
         artist_name: performance.performance,
       };
       db.Artists.create(newArtist)
-        .then((newDbArtist) => {
-          console.log(newDbArtist);
-          req.body.ArtistId = newDbArtist.id;
-        });
-    }
-    console.log(performance);
-  })
-    .then(() => {
-      db.Performances.create(performance)
-        .then((data) => console.log(data))
         .then((results) => {
-          res.json({
-            success: true,
+          console.log(results);
+          req.body.ArtistId = results.id;
+        }).then(() => {
+          console.log(performance);
+          db.Performances.create(performance)
+            .then((results) => {
+              res.json({
+                success: results,
+              });
+            });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            success: false,
+            errors: err.errors,
           });
         });
-    })
-    .catch((err) => {
-      res.status(500).json({
-        success: false,
-        errors: err.errors,
-      });
-    });
+    }
+  });
 });
-//   db.Performances.create(performance)
-//     .then((data) => console.log(data))
-//     .then((results) => {
-//       res.json({
-//         success: true,
-//       });
-//     })
-//     .catch((err) => {
-//       res.status(500).json({
-//         success: false,
-//         errors: err.errors,
-//       });
-//     });
-// });
 
 // PUT update, update an existing performance by id
 router.put('/performances/:id', (req, res) => {
