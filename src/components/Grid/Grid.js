@@ -8,9 +8,10 @@ import SimpleCard from '../Cards/Cards.js'
 import JustifyContent from '../Box/Box.js';
 import SearchBar from '../Api/SearchBar';
 import MyNavbar from '../Navbar/Navbar';
-import YouTubeCounter from '../Api/YouTubeCounter'
+import YouTube from '../Api/YouTube'
 import Spotify from '../Api/Spotify';
 import Artist from '../Api/Artist'
+import { Card, CardDeck,Button } from 'react-bootstrap';
 
 function Gridcall() {
   const [state, setState] = useState({
@@ -117,67 +118,94 @@ function Gridcall() {
 
   }));
 
- 
-    const classes = useStyles();
 
-    return (
-      <div className={classes.root}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Paper className={classes.paper} style={{ height: '20rem', marginTop: '-1rem', backgroundColor: "#5603ad" }}>
-              <div xs={8} />
+  const classes = useStyles();
 
-              
-              <SearchBar
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Paper className={classes.paper} style={{ height: '20rem', marginTop: '-1rem', backgroundColor: "#5603ad" }}>
+            <div xs={8} />
+
+
+        
+
+
+            <SearchBar
               name="search"
               search={state.search}
               handleInputChange={handleInputChange}
-              handleSubmit={handleSubmit} 
-              
+              handleSubmit={handleSubmit}
+              style={{
+                margin: '0 auto',
+                maxWidth: 800
+              }}
+
               xs={4} />
-          <Artist
+            <Artist
               artist={state.artist} />
-              
-              <YouTubeCounter/>
+
+            <CardDeck>
+            <Card style={{ width: '18rem' }}>
+  <Card.Img variant="top" src="holder.js/100px180" />
+  <Card.Body>
+    <Card.Title>Card Title</Card.Title>
+    <Card.Text>
+  Artist Image
+    </Card.Text>
+   
+  </Card.Body>
+</Card>
+             <YouTube/>
               <Spotify/>
+              <Card>
+                <Card.Img variant="top" src="holder.js/100px160" />
+                <Card.Body>
+                  <Card.Title>Card title</Card.Title>
+                  <Card.Text>
+                   Another API here
+      </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  <small className="text-muted">Last updated 3 mins ago</small>
+                </Card.Footer>
+              </Card>
+            </CardDeck>
 
 
-                
-              <JustifyContent />
-
-
-            </Paper>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper className={classes.paper}>
-
-              <YouTubeCounter />
-
-
-
-            </Paper>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper className={classes.paper}>
-              <Spotify />
-            </Paper>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper className={classes.paper}><SimpleCard /></Paper>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper className={classes.paper}><SimpleCard /></Paper>
-          </Grid>
-          <Grid item xs={2}>
-            <Paper className={classes.paper}>footer</Paper>
-          </Grid>
-          <Grid item xs={2}>
-            <Paper className={classes.paper}>footer</Paper>
-          </Grid>
+          </Paper>
         </Grid>
-      </div>
-    );
-  
+        <Grid item xs={6}>
+          <Paper className={classes.paper}>
+
+           
+
+
+
+          </Paper>
+        </Grid>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}>
+        
+          </Paper>
+        </Grid>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}><SimpleCard /></Paper>
+        </Grid>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}><SimpleCard /></Paper>
+        </Grid>
+        <Grid item xs={2}>
+          <Paper className={classes.paper}>footer</Paper>
+        </Grid>
+        <Grid item xs={2}>
+          <Paper className={classes.paper}>footer</Paper>
+        </Grid>
+      </Grid>
+    </div>
+  );
+
 
 }
 

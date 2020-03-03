@@ -20,31 +20,32 @@ function MyForm() {
       marketingBudget: 0
     }
   )
-
   // const [formObject, setFormObject] = useformObject({})
-
   // console.log("checking" + formObject);
-
   console.log(formObject);
   function handleInputChange() { handleInputChange.bind() };
-
   // function handleInputChange(event) {
   //   const { name, value } = event.target;
   //   setFormObject({...formObject, [name]: value})
   // };
-
-
   function handleInputChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
+    console.log("this the event" + event.target.name);
     setformObject({
+
+      ...formObject,
+
+      artist: formObject.artist,
+      date: formObject.date,
+      ticketsSold: formObject.ticketsSold,
+
+
       [name]: value
     });
   }
-
   // code to post
-
   // handleSubmit (event) {
   //   //alert('A list was submitted: ' + thisformObject.formvalue);
   //   event.preventDefault();
@@ -64,51 +65,66 @@ function MyForm() {
   //   .then(data => console.log(data))
   //   .catch(err => console.log(err);
   // }
-
-
-
   function handleFormSubmit(event) {
     console.log("button was pressed")
+
     event.preventDefault();
     // if (formObject.title && formObject.author) {
-      fetch("http://localhost:3001/api/performances", {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          artist:formObject.artist,
-          date:formObject.date,
-          ticketsSold:formObject.ticketsSold
-        })
-      })
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(err => console.log(err))
-    // }
 
-  }
+    const result = fetch("http://localhost:3001/api/performances", {
+      method: 'post',
+      mode: 'no-cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
 
+      body: JSON.stringify({
+        artist: formObject.artist,
+        date: formObject.date,
+        ticketsSold: formObject.ticketsSold
+      }),
+
+    });
+    console.log(result)
 
 
+    .then(res => res.json())
+    .then(data =>  console.log("This is it" + data))
+    
+  
+   .catch (err => console.log(err.message))
+
+    
+
+  
+  // .then((response) => {
+  //   setformObject({
+  //     ...formObject,
+  //     artist:formObject.artist,
+  //     date:formObject.date,
+  //     ticketsSold:formObject.ticketsSold
+  //   })
+
+  // body: JSON.stringify({
+  //   artist:formObject.artist,
+  //   date:formObject.date,
+  //   ticketsSold:formObject.ticketsSold
+  // })
+}
 
 
+// }
 
-      // API.saveBook({
-      //   artist: formObject.artist,
-      //   author: formObject.author,
-      //   synopsis: formObject.synopsis
-      // })
-        // .then(res => loadBooks())
+// API.saveBook({
+//   artist: formObject.artist,
+//   author: formObject.author,
+//   synopsis: formObject.synopsis
+// })
+// .then(res => loadBooks())
 //         .catch (err => console.log(err));
 // }
 //   };
-
-
-
-
-
 return (
   <Container>
     <Form onSubmit={handleFormSubmit}>
@@ -176,5 +192,6 @@ return (
     </Form>
   </Container>
 );
-  };
+}
+
 export default MyForm;

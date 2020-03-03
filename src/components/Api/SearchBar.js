@@ -9,6 +9,10 @@ function SearchBar(props){
                 name= "search"
                 onChange={props.handleInputChange}
                 value={props.search}
+                style={{
+                    margin: '0 auto',
+                    maxWidth: 800
+                  }}
                 
                 ></input>
                 <button
@@ -26,3 +30,14 @@ function SearchBar(props){
     }
 
     export default SearchBar;
+
+
+//     <SearchBar
+//     dataSource={state.dataSource}
+//     onChange={(value) => setState({dataSource: [ value, value+value, value+value+value]})}
+//     onRequestSearch={() => console.log('onRequestSearch')}
+//     style={{
+//       margin: '0 auto',
+//       maxWidth: 800
+//     }}
+//   />

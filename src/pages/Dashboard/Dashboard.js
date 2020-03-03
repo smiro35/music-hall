@@ -1,7 +1,7 @@
 
 import React,{useState} from 'react';
 import { Row, Col } from 'reactstrap';
-import YouTubeCounter,{artist} from '../../components/Api/YouTubeCounter';
+import YouTube,{artist} from '../../components/Api/YouTube';
 import Simplecontainer from '../../components/Container/Container.js';
 import MyNavbar from "../../components/Navbar/Navbar.js";
 import Api from "../../components/Api/Api"
@@ -28,8 +28,7 @@ function Dashboard () {
           
                 <Row>
                     <Col>
-                     <YouTubeCounter
-                     />
+                     
                     </Col>
                     <Col></Col>
                     <Col>Spotify</Col>
