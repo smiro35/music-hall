@@ -4,11 +4,12 @@ import { TableData, TableItem } from "../../components/Tables/TableData.js";
 import API from "../../utils/API.js";
 import MyNavbar from "../../components/Navbar/Navbar.js";
 import ArtistSearch from "../../components/Search/ArtistSearch.js"
+let oldInputLength = ''
+let allPerformances = ''
 
 function TablePage() {
 
     const [performances, setPerformances] = useState([])
-    // const [newperformances, setNewperformances] = useState([])
 
     //Load all performances within setPerformances
     useEffect(() => {
@@ -20,26 +21,42 @@ function TablePage() {
         API.getPerformances()
             .then(res =>
                 setPerformances(res.data)
+                (allPerformances = res.data)
             )
             .catch(error => console.log(error));
     }
-
+ 
     //Reactively handle search as user types in searchbar
-    function handleSearchChange(event) {
+    function handleSearchChange(event) {      
         const input = event.target.value
-        console.log(performances)
-        const newArray = performances.filter(performance => {
-            return performance.Artist.artist_name.slice(0, input.length) === input
+
+        //if input deleted, refilter allperformances 
+        if(input.length < oldInputLength){
+            console.log(allPerformances)
+           const newArray = allPerformances.filter(performance => {
+               return performance.Artist.artist_name.slice(0, input.length) === input
+           }) 
+           setPerformances(newArray)
+        }
+
+        //else continue filtering current list
+        else{
+            const newArray = performances.filter(performance => {        
+            oldInputLength = input.length
+            return performance.Artist.artist_name.slice(0, input.length) === input 
         })
         setPerformances(newArray)
-    }
+        }
+
+    }      
+
     return (
         <div>
             <MyNavbar />
             {/* <TableHeader />
             <TableDataEntry /> */}
             <ArtistSearch handleSearchChange={handleSearchChange} />
-            <TableHeader/>
+            <TableHeader />
 
             {performances.length ? (
                 <TableData>
