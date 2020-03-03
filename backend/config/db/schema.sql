@@ -1,7 +1,5 @@
 DROP DATABASE IF EXISTS music_hall_db;
-
 CREATE DATABASE music_hall_db;
-
 USE music_hall_db;
 
 CREATE TABLE artists(

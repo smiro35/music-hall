@@ -1,29 +1,34 @@
 
-import React from 'react';
+import React,{useState} from 'react';
 import { Row, Col } from 'reactstrap';
-import ArtistSearch from '../../components/Search/ArtistSearch';
-import YouTubeCounter from '../../components/Youtube/YouTubeCounter';
-// import Cards from '../../components/Cards/Cards.js';
-// import Search from './components/Search/Search.js';
-
+import YouTube,{artist} from '../../components/Api/YouTube';
 import Simplecontainer from '../../components/Container/Container.js';
 import MyNavbar from "../../components/Navbar/Navbar.js";
+import Api from "../../components/Api/Api"
+import SearchBar from '../../components/Api/SearchBar';
 
 
-const Dashboard= (props) => {
+function Dashboard () {
+
+  
+    
     return (
         <>
         <MyNavbar/>
+        
         <Simplecontainer>
+
+        {/* <SearchBar/> */}
+        
+         
+        
+            <Api/>
             
-            <ArtistSearch/>
-           {/* <Row>
-                    <Col>SearchBox</Col>
-                </Row> */}
+            
+          
                 <Row>
                     <Col>
-                     <YouTubeCounter
-                     />
+                     
                     </Col>
                     <Col></Col>
                     <Col>Spotify</Col>
@@ -38,8 +43,11 @@ const Dashboard= (props) => {
         </Simplecontainer>
         </>
     );
+           
 }
 
-export default Dashboard;
+export default Dashboard
+
+
 
 
