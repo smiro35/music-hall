@@ -14,11 +14,13 @@ function Dashboard () {
     
     return (
         <>
+         
         <MyNavbar/>
+       
         
         <Simplecontainer>
 
-        {/* <SearchBar/> */}
+       
         
          
         

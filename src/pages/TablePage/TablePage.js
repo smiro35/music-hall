@@ -3,7 +3,8 @@ import TableHeader from "../../components/Tables/TableHeader.js";
 import { TableData, TableItem } from "../../components/Tables/TableData.js";
 import API from "../../utils/API.js";
 import MyNavbar from "../../components/Navbar/Navbar.js";
-import ArtistSearch from "../../components/Search/ArtistSearch.js"
+import ArtistSearch from '../TablePage/ArtistSearch'
+// import ArtistSearch from "../../components/Search/ArtistSearch.js"
 let oldInputLength = ''
 let allPerformances = ''
 
@@ -56,7 +57,7 @@ function TablePage() {
             {/* <TableHeader />
             <TableDataEntry /> */}
             <ArtistSearch handleSearchChange={handleSearchChange} />
-            <TableHeader />
+            {/* <TableHeader /> */}
 
             {performances.length ? (
                 <TableData>

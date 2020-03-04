@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Gridcall from '../Grid/Grid'
 import { Card,CardDeck} from 'react-bootstrap';
 import numeral from 'numeral';
 
@@ -64,11 +65,11 @@ function YouTube (props)  {
         <Card.Img variant="top" src="https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwiB7J2E8f3nAhWBiOAKHdCdBZMQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.youtube.com%2Fabout%2Fbrand-resources%2F&psig=AOvVaw0vV4RgRkfRLSO_5ipqkcNr&ust=1583310394819661" />
         <Card.Body>
           <Card.Title>YouTube</Card.Title>
-          <Card.Text>
-           <h2>Subscription:</h2> 
+          
+    <h2>Subscription:{props.count}</h2> 
 
            <h2>Views:</h2> 
-           </Card.Text>
+          
           
         </Card.Body>
         <Card.Footer>

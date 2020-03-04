@@ -1,14 +1,44 @@
 import React, { useState } from 'react';
-import { Nav, NavItem, NavLink } from 'reactstrap';
+import { Nav, NavItem, NavLink, Navbar, Form,Button,FormControl } from 'react-bootstrap';
+import SearchBar from '../Api/SearchBar'
 
-const MyNavbar = (props) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  // const toggle = () => setDropdownOpen(!dropdownOpen);
+function MyNavbar(props){
+ 
 
   return (
     <div>
-      <Nav style={{marginLeft:"7rem"}}>
+
+<Navbar bg="light" expand="lg">
+  <Navbar.Brand href="#home">Music Hall Logo</Navbar.Brand>
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="mr-auto">
+      <Nav.Link href="/">Home</Nav.Link>
+      <Nav.Link href="/Dashboard">Dashboard</Nav.Link>
+      <Nav.Link href="/Table">Table</Nav.Link>
+      <Nav.Link href="/MyData">Data-Entry</Nav.Link>
+   </Nav>
+    {/* <SearchBar/> */}
+  </Navbar.Collapse>
+</Navbar>
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+      {/* <Nav style={{marginLeft:"7rem"}}>
         <NavItem>
           <NavLink href="/" active>Home</NavLink>
         </NavItem>
@@ -22,14 +52,33 @@ const MyNavbar = (props) => {
         <NavItem>
           <NavLink href="MyData">Data-Entry</NavLink>
         </NavItem>
-        
-      </Nav>
+        <SearchBar/>
+      </Nav> */}
     </div>
   );
 }
 
 
 export default MyNavbar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // import { Nav, NavItem, NavLink } from 'reactstrap';
