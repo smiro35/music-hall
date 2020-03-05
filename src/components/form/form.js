@@ -64,7 +64,7 @@ function MyForm() {
   function handleFormSubmit(event) {
     console.log("button was pressed")
     console.log(formObject);
-    event.preventDefault();
+    // event.preventDefault();
     // if (formObject.title && formObject.author) {
       // fetch("http://localhost:3001/api/performances", {
       //   method: 'POST',
