@@ -28,13 +28,14 @@ function SearchBar(props) {
 
 
         <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-md-2" />
+      <FormControl type="text" placeholder="Search" className="mr-md-2" onChange={props.handleInputChange} name={props.name}/>
       <Button 
       variant="outline-success"
       onClick={props.handleSubmit} 
       >Search</Button>
     </Form>
 
+    
 
 
 

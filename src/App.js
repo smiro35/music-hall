@@ -3,17 +3,14 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import NoMatch from "./pages/NoMatch";
-import MyData from "./pages/Data"
+import MyData from "./pages/Data";
 
-// import ArtistSearch from './components/Search/ArtistSearch';
-//  import YouTubeCounter from './components/Youtube/YouTubeCounter';
-// import Cards from './components/Cards/Cards.js';
-// import Search from './components/Search/Search.js';
+
+
 import TablePage from "./pages/TablePage/TablePage.js";
 
 
 
-// import Cards from './components/Cards'
 
 const App = () => (
   <Router>
