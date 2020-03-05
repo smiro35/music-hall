@@ -42,14 +42,14 @@ function TablePage() {
 
         //else continue filtering current list
         else{
-            const newArray = performances.filter(performance => {        
             oldInputLength = input.length
+            const newArray = performances.filter(performance => {        
             return performance.Artist.artist_name.slice(0, input.length) === input 
         })
         setPerformances(newArray)
         }
 
-    }      
+    } 
 
     return (
         <div>
