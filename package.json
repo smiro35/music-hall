@@ -1,54 +1,52 @@
 {
-  "name": "music-hall",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.9.3",
-    "@material-ui/icons": "^4.9.1",
-    "@syncfusion/ej2-react-grids": "^17.4.51",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
-    "@testing-library/user-event": "^7.2.1",
-    "axios": "^0.19.2",
-    "bootstrap": "^4.4.1",
-    "gh-pages": "^2.2.0",
-    "material-ui-search-bar": "^0.4.2",
-    "nodemon": "^2.0.2",
-    "numeral": "^2.0.6",
-    "react": "^16.12.0",
-    "react-bootstrap": "^1.0.0-beta.16",
-    "react-data-grid": "^7.0.0-alpha.29",
-    "react-data-grid-addons": "^7.0.0-alpha.24",
-    "react-dom": "^16.12.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.1",
-    "reactstrap": "^8.4.1"
-  },
-  "homepage": "https://smiro35.github.io/music-hall-booking",
+  "name": "react-sequelize-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -b master -d build"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "seed": "cd config/db node seed.sql"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kylewhittemore/react-sequelize-template.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kylewhittemore/react-sequelize-template/issues"
+  },
+  "homepage": "https://github.com/kylewhittemore/react-sequelize-template#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.4.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "env": "0.0.2",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "fs": "0.0.1-security",
+    "morgan": "^1.9.1",
+    "mysql2": "^2.1.0",
+    "nodemon": "^2.0.2",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "react-bootstrap": "^1.0.0-beta.16",
+    "seed": "^0.4.4",
+    "sequelize": "^5.21.5"
   },
   "devDependencies": {
-    "css-loader": "^3.4.2"
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^1.7.0"
   }
 }
