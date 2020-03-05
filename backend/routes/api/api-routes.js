@@ -45,16 +45,72 @@ let headers = {
      Authorization:""
    }
 }
-
+// Code for our Bearer token
 Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
 headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
 
 
-
+// Code for our ID
 id = await axios.get(`https://api.chartmetric.com/api/search?q=${req.params.artistsearch}`,headers)
 id = id.data.obj.artists[0].id;
 console.log("id", id); 
 
+// API CALLS BELOW ORGANIZED BY ALPHABETICAL ORDER
+
+// //1. Api call for bandsintown
+Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+
+Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/bandsintown`,headers)
+searched.bandsintown = Apiresult.data;
+
+// // 2.Api call for deezer
+Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+
+Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/deezer`,headers)
+searched.deezer = Apiresult.data;
+
+// // //3. Api call for Facebook
+Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+
+Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/facebook`,headers)
+ console.log("facebook", Apiresult.data);
+ 
+searched.facebook = Apiresult.data;
+
+
+// // //4. Api call for facebook_fans_by_country
+Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+
+Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/facebook_fans_by_country`,headers)
+searched.facebookFansByCountry = Apiresult.data;
+
+
+// // //5. Api call for facebook_storytellers_by_country
+Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+
+Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/facebook_storytellers_by_country`,headers)
+searched.facebookStorytellersByCountry = Apiresult.data;
+
+// // //6. Api call for instagram`
+Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+
+Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/instagram`,headers)
+searched.instagram = Apiresult.data;
+
+// // //7. Api call for soundcloud
+Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+
+Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/soundcloud`,headers)
+searched.soundcloud = Apiresult.data;
+
+// // 8.Api call for spotify
 Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
 headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
 
@@ -62,225 +118,52 @@ Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/
 searched.spotify = Apiresult.data;
 
 
+// // //9. Api call for twitter
 Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
 headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
 
-Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/deezer`,headers)
-searched.deezer = Apiresult.data;
+Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/twitter`,headers)
+searched.twitter = Apiresult.data;
+
+// // //10. Api call for wikipedia
+Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+
+Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/wikipedia`,headers)
+searched.wikipedia = Apiresult.data;
 
 
+// // //11. Api call for youtube_channel
+Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+
+Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/youtube_channel`,headers)
+searched.youtube_channel = Apiresult.data;
+
+// // //12. Api call for youtube_artist
+Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+
+Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/youtube_artist`,headers)
+searched.youtube_artist = Apiresult.data;
+
+// 13. APi call for Shazam
+// Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+// headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+
+// Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/shazam/US/city${Boston}`,headers)
+// searched.shazam = Apiresult.data;
+// console.log(Apiresult.data);
+
+// //14. Api call for Chartmetrics score
+// Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+// headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+
+// Apiresult = await  axios.get(`https://api.chartmetric.com/api/charts/${id}/cm-score`,headers)
+// searched.CM_score = Apiresult.data;
 
 
-
-
-  
-
-
-//   axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
-//     .then((response) => {
-//       const id = response.data.obj.artists[0].id;
-//       console.log("id", id);
-
-//       axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/spotify`)
-//         .then((response) => {
-//           console.log(response);
-//           searched.spotify = response;
-//         })
-
-//     })
-//     .catch((err) => {
-//       console.error(err)
-
-//     })
-
-  //   axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
-  // .then((response) => {
-  //   const id = response.data.obj.artists[0].id;
-  //   console.log("id", id);
-
-  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/deezer`)
-  //     .then((response) => {
-  //       console.log(response);
-  //       searched.deezer = response;
-  //     })
-
-  // })
-  // .catch((err) => {
-  //   console.error(err)
-
-  // })
-
-  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
-  // .then((response) => {
-  //   const id = response.data.obj.artists[0].id;
-  //   console.log("id", id);
-
-  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/facebook`)
-  //     .then((response) => {
-  //       console.log(response);
-  //       searched.facebook= response;
-  //     })
-
-  // })
-  // .catch((err) => {
-  //   console.error(err)
-
-  // })
-  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
-  // .then((response) => {
-  //   const id = response.data.obj.artists[0].id;
-  //   console.log("id", id);
-
-  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/twitter`)
-  //     .then((response) => {
-  //       console.log(response);
-  //       searched.twitter= response;
-  //     })
-
-  // })
-  // .catch((err) => {
-  //   console.error(err)
-
-  // })
-  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
-  // .then((response) => {
-  //   const id = response.data.obj.artists[0].id;
-  //   console.log("id", id);
-
-  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/youtube_channel`)
-  //     .then((response) => {
-  //       console.log(response);
-  //       searched.youtubeChannel= response;
-  //     })
-
-  // })
-  // .catch((err) => {
-  //   console.error(err)
-
-  // })
-
-  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
-  // .then((response) => {
-  //   const id = response.data.obj.artists[0].id;
-  //   console.log("id", id);
-
-  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/youtube_artist`)
-  //     .then((response) => {
-  //       console.log(response);
-  //       searched.youtubeStats = response;
-  //     })
-
-  // })
-  // .catch((err) => {
-  //   console.error(err)
-
-  // })
-
-  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
-  // .then((response) => {
-  //   const id = response.data.obj.artists[0].id;
-  //   console.log("id", id);
-
-  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/wikipedia`)
-  //     .then((response) => {
-  //       console.log(response);
-  //       searched.wikipedia= response;
-  //     })
-
-  // })
-  // .catch((err) => {
-  //   console.error(err)
-
-  // })
-
-  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
-  // .then((response) => {
-  //   const id = response.data.obj.artists[0].id;
-  //   console.log("id", id);
-
-  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/bandsintown`)
-  //     .then((response) => {
-  //       console.log(response);
-  //       searched.bandsintown= response;
-  //     })
-
-  // })
-  // .catch((err) => {
-  //   console.error(err)
-
-  // })
-
-  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
-  // .then((response) => {
-  //   const id = response.data.obj.artists[0].id;
-  //   console.log("id", id);
-
-  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/soundcloud`)
-  //     .then((response) => {
-  //       console.log(response);
-  //       searched.soundcloud = response;
-  //     })
-
-  // })
-  // .catch((err) => {
-  //   console.error(err)
-
-  // })
-
-  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
-  // .then((response) => {
-  //   const id = response.data.obj.artists[0].id;
-  //   console.log("id", id);
-
-  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/facebook_fans_by_country`)
-  //     .then((response) => {
-  //       console.log(response);
-  //       searched.facebookFanByCountry = response;
-  //     })
-
-  // })
-  // .catch((err) => {
-  //   console.error(err)
-
-  // })
-
-  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
-  // .then((response) => {
-  //   const id = response.data.obj.artists[0].id;
-  //   console.log("id", id);
-
-  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/facebook_storytellers_by_country`)
-  //     .then((response) => {
-  //       console.log(response);
-  //       searched.FBStoryTellers = response;
-  //     })
-
-  // })
-  // .catch((err) => {
-  //   console.error(err)
-
-  // })
-
-  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
-  // .then((response) => {
-  //   const id = response.data.obj.artists[0].id;
-  //   console.log("id", id);
-
-  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/instagram`)
-  //     .then((response) => {
-  //       console.log(response);
-  //       searched.instagram = response;
-  //     })
-
-  // })
-  // .catch((err) => {
-  //   console.error(err)
-
-  // })
- 
-    // console.log(searched);
-    
-    res.json(searched);
+ res.json(searched);
   });
 
 
