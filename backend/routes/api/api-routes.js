@@ -1,5 +1,5 @@
 const router = require('express').Router();
-// const axios = require('axios');
+const axios = require('axios');
 
 // **look in path**
 // const path = require('path');
@@ -32,6 +32,257 @@ router.get('/performances/:id', (req, res) => {
     res.json(dbPerformances);
   });
 });
+
+// GET Route for Chartmetrics API 
+router.get('/dashboard/:artistsearch', async (req, res) => {
+ const searched={}
+ let id = 0;
+ let Apiresult = ""
+ const refreshtoken ={"refreshtoken": "JpmNnpIa9QDCuwwGymLSRQfmKtgCe7iyqr8oNs2nIN1xTTUtqrm6NGUVlUVmASbz"};
+ let Bearer = ""
+let headers = {
+   headers:{
+     Authorization:""
+   }
+}
+
+Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+
+
+
+id = await axios.get(`https://api.chartmetric.com/api/search?q=${req.params.artistsearch}`,headers)
+id = id.data.obj.artists[0].id;
+console.log("id", id); 
+
+Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+
+Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/spotify`,headers)
+searched.spotify = Apiresult.data;
+
+
+Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+
+Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/deezer`,headers)
+searched.deezer = Apiresult.data;
+
+
+
+
+
+
+  
+
+
+//   axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
+//     .then((response) => {
+//       const id = response.data.obj.artists[0].id;
+//       console.log("id", id);
+
+//       axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/spotify`)
+//         .then((response) => {
+//           console.log(response);
+//           searched.spotify = response;
+//         })
+
+//     })
+//     .catch((err) => {
+//       console.error(err)
+
+//     })
+
+  //   axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
+  // .then((response) => {
+  //   const id = response.data.obj.artists[0].id;
+  //   console.log("id", id);
+
+  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/deezer`)
+  //     .then((response) => {
+  //       console.log(response);
+  //       searched.deezer = response;
+  //     })
+
+  // })
+  // .catch((err) => {
+  //   console.error(err)
+
+  // })
+
+  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
+  // .then((response) => {
+  //   const id = response.data.obj.artists[0].id;
+  //   console.log("id", id);
+
+  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/facebook`)
+  //     .then((response) => {
+  //       console.log(response);
+  //       searched.facebook= response;
+  //     })
+
+  // })
+  // .catch((err) => {
+  //   console.error(err)
+
+  // })
+  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
+  // .then((response) => {
+  //   const id = response.data.obj.artists[0].id;
+  //   console.log("id", id);
+
+  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/twitter`)
+  //     .then((response) => {
+  //       console.log(response);
+  //       searched.twitter= response;
+  //     })
+
+  // })
+  // .catch((err) => {
+  //   console.error(err)
+
+  // })
+  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
+  // .then((response) => {
+  //   const id = response.data.obj.artists[0].id;
+  //   console.log("id", id);
+
+  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/youtube_channel`)
+  //     .then((response) => {
+  //       console.log(response);
+  //       searched.youtubeChannel= response;
+  //     })
+
+  // })
+  // .catch((err) => {
+  //   console.error(err)
+
+  // })
+
+  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
+  // .then((response) => {
+  //   const id = response.data.obj.artists[0].id;
+  //   console.log("id", id);
+
+  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/youtube_artist`)
+  //     .then((response) => {
+  //       console.log(response);
+  //       searched.youtubeStats = response;
+  //     })
+
+  // })
+  // .catch((err) => {
+  //   console.error(err)
+
+  // })
+
+  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
+  // .then((response) => {
+  //   const id = response.data.obj.artists[0].id;
+  //   console.log("id", id);
+
+  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/wikipedia`)
+  //     .then((response) => {
+  //       console.log(response);
+  //       searched.wikipedia= response;
+  //     })
+
+  // })
+  // .catch((err) => {
+  //   console.error(err)
+
+  // })
+
+  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
+  // .then((response) => {
+  //   const id = response.data.obj.artists[0].id;
+  //   console.log("id", id);
+
+  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/bandsintown`)
+  //     .then((response) => {
+  //       console.log(response);
+  //       searched.bandsintown= response;
+  //     })
+
+  // })
+  // .catch((err) => {
+  //   console.error(err)
+
+  // })
+
+  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
+  // .then((response) => {
+  //   const id = response.data.obj.artists[0].id;
+  //   console.log("id", id);
+
+  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/soundcloud`)
+  //     .then((response) => {
+  //       console.log(response);
+  //       searched.soundcloud = response;
+  //     })
+
+  // })
+  // .catch((err) => {
+  //   console.error(err)
+
+  // })
+
+  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
+  // .then((response) => {
+  //   const id = response.data.obj.artists[0].id;
+  //   console.log("id", id);
+
+  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/facebook_fans_by_country`)
+  //     .then((response) => {
+  //       console.log(response);
+  //       searched.facebookFanByCountry = response;
+  //     })
+
+  // })
+  // .catch((err) => {
+  //   console.error(err)
+
+  // })
+
+  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
+  // .then((response) => {
+  //   const id = response.data.obj.artists[0].id;
+  //   console.log("id", id);
+
+  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/facebook_storytellers_by_country`)
+  //     .then((response) => {
+  //       console.log(response);
+  //       searched.FBStoryTellers = response;
+  //     })
+
+  // })
+  // .catch((err) => {
+  //   console.error(err)
+
+  // })
+
+  // axios.get(`https://api.chartmetric.com/apitsearch?q=${req.params.artistsearch}`)
+  // .then((response) => {
+  //   const id = response.data.obj.artists[0].id;
+  //   console.log("id", id);
+
+  //   axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/instagram`)
+  //     .then((response) => {
+  //       console.log(response);
+  //       searched.instagram = response;
+  //     })
+
+  // })
+  // .catch((err) => {
+  //   console.error(err)
+
+  // })
+ 
+    // console.log(searched);
+    
+    res.json(searched);
+  });
+
 
 // POST create, create a new performance
 router.post('/performances', (req, res) => {

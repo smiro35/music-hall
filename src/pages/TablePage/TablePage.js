@@ -53,10 +53,14 @@ function TablePage() {
 
     return (
         <div>
-            <MyNavbar />
+            <MyNavbar>
+
+            <ArtistSearch handleSearchChange={handleSearchChange} />
+
+            </MyNavbar>
             {/* <TableHeader />
             <TableDataEntry /> */}
-            <ArtistSearch handleSearchChange={handleSearchChange} />
+            
             {/* <TableHeader /> */}
 
             {performances.length ? (

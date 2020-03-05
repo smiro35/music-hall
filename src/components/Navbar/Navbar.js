@@ -18,7 +18,7 @@ function MyNavbar(props){
       <Nav.Link href="/Table">Table</Nav.Link>
       <Nav.Link href="/MyData">Data-Entry</Nav.Link>
    </Nav>
-    {/* <SearchBar/> */}
+  <div>{props.children}</div>
   </Navbar.Collapse>
 </Navbar>
      
