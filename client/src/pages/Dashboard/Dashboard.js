@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AuthContext } from '../../AuthContext'
 import { Row, Col } from 'reactstrap';
 import YouTube, { artist } from '../../components/Api/YouTube';
 import Simplecontainer from '../../components/Container/Container.js';
