@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
                     setIsAuth(false)
                 }
             })
+            .catch(err => console.log("Error"))
     }
 
     const logout = async () => {
