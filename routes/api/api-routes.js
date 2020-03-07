@@ -248,6 +248,7 @@ router.put('/performances/:id', (req, res) => {
 
 // posts new artist if artist does not exist in database
 router.post('/artists', (req, res) => {
+  console.log(req.body);
   db.Artists.findOne({
     where: {
       artist_name: req.body.artist,

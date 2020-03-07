@@ -1,11 +1,15 @@
 import React from 'react';
 import { Form, Button, FormControl } from 'react-bootstrap';
+import API from '../../utils/API'
 // import './SearchBar.css'
 
 
 
 function SearchBar(props) {
-
+  function addArtist(){
+    console.log(props.search)
+    API.postArtist({artist: props.search})
+  }
     return (
 
         // <form>
@@ -33,6 +37,11 @@ function SearchBar(props) {
       variant="outline-success"
       onClick={props.handleSubmit} 
       >Search</Button>
+      <Button variant="primary"
+      variant="outline-primary"
+      onClick={addArtist}
+      >Add Artist
+      </Button>
     </Form>
 
     
