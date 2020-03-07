@@ -7,6 +7,9 @@ export default {
     postPerformance: function(performanceData) {
         console.log(performanceData);
         return axios.post("http://localhost:3001/api/performances", performanceData);
+    },
+    postArtist: function(artists) {
+        return axios.post("http://localhost:3001/api/artists", artists);
     }
 }
 
