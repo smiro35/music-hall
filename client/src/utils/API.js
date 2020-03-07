@@ -11,6 +11,10 @@ export default {
     postArtist: function(artistData){
         console.log(artistData);
         return axios.post("http://localhost:3001/api/artists", artistData)
+    },
+    postMusicAPI: function(apiData){
+        console.log(apiData);
+        return axios.post("http://localhost:3001/api/musicapi", apiData)
     }
 }
 

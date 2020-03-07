@@ -31,9 +31,17 @@ function Dashboard() {
         channel_id: false,
     });
 
-    const [data, setData] = useState([]);
+    const [data, setData] = useState([
+        // bandsintown: {
+        //     key:value
 
-    let oldData = {};
+        // },
+        // spotify: {
+        //     key: value
+        // }
+
+    ]);
+
 
     // const [subscriberCount, setSubscriberCount] = useState();
     // const [viewCount, setViewCount] = useState();
@@ -64,8 +72,13 @@ function Dashboard() {
         console.log("submitted");
         let url = `http://localhost:3001/api/dashboard/${state.search}`
         console.log("State here:", state.search);
-        
         console.log(url);
+        setState(
+            {  ...state,
+                [myvalue]:value
+            }
+        )
+    }
 
        
 
@@ -76,7 +89,7 @@ function Dashboard() {
              .then(response => {
             //   const newData = data.data
                 // console.log("this is rout",newData.push(data.data));
-                const newData= response.data.bandsintown.obj.followers[19];
+                const newData= response.data;
                 console.log("this is newData",newData);
                 
                 setData([
@@ -92,7 +105,7 @@ function Dashboard() {
             
 
 
-    };
+    // };
 
     return(
       <>
@@ -100,6 +113,7 @@ function Dashboard() {
         <MyNavbar>
             <SearchBar 
             name="search"
+            myvalue="value"
             value={state.value}
             search={state.search}
             handleInputChange={handleInputChange}
@@ -125,9 +139,9 @@ function Dashboard() {
     
     >
       <ColumnsDirective>
-         <ColumnDirective field='value' headerText='ID' textAlign='Center' width='100' />
-         <ColumnDirective field='timestp' headerText='Date' textAlign='Center'  width='100' />
-         <ColumnDirective field='performance' headerText='Rating' textAlign='Center' format='c2' width='100' />
+      <ColumnDirective field='artist' headerText='Artist' textAlign='Center' width='100' />
+                    <ColumnDirective field='timestp' headerText='Date' textAlign='Center' width='100' />
+                    <ColumnDirective field='value' headerText='Bandsintown' textAlign='Center' width='100' />
          </ColumnsDirective >
       <Inject services ={[Page,Filter, Group]}/>
 

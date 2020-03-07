@@ -6,9 +6,11 @@ import API from '../../utils/API'
 
 
 function SearchBar(props) {
+  console.log(props.value)
   function addArtist(){
     console.log(props.search)
-    API.postArtist({artist: props.search})
+    // API.postArtist({artist: props.search},{anything: props.value})
+    API.postMusicAPI(props)
   }
     return (
 
