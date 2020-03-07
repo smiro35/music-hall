@@ -117,6 +117,7 @@ function Dashboard() {
 
         <GridComponent style={{margin:'5%'}} dataSource={data}
         allowPaging={true}
+        th class="rotate"
         height={268}
         // pageSettings={pageOptions}
         pageSize={true}

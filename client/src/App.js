@@ -39,12 +39,12 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/Signup" component={Signup} />
+          <Route exact path="/signup" component={Signup} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute exact path="/members" component={Members} />
           <Route exact path="/MyData" component={MyData} />
           {/* <Route exact path="/Dashboard/:someparam" component={Dashboard} /> */}
-          <Route exact path="/Table" component={TablePage} />
+          <Route exact path="/table" component={TablePage} />
           <Route component={NoMatch} />
         </Switch>
       </Router>
