@@ -24,7 +24,7 @@ import {
  import './Table.css';
 
 
-function Dashboard() {
+function Dashboard(props) {
     const [state, setState] = useState({
         search: "",
         value:"",
@@ -137,10 +137,10 @@ function Dashboard() {
     </GridComponent>
 
 
-
-
-
-            
+    <Button className='m-1' onClick={e => {
+                e.preventDefault();
+                props.history.push('/table')
+            }}>Table</Button>
 
 
 

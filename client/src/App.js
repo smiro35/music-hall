@@ -38,14 +38,14 @@ function App(){
     // <AuthProvider>
       <Router>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <PrivateRoute exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute exact path="/members" component={Members} />
-          <Route exact path="/MyData" component={MyData} />
+          <PrivateRoute exact path="/MyData" component={MyData} />
           {/* <Route exact path="/Dashboard/:someparam" component={Dashboard} /> */}
-          <Route exact path="/table" component={TablePage} />
+          <PrivateRoute exact path="/table" component={TablePage} />
           <Route component={NoMatch} />
         </Switch>
       </Router>
