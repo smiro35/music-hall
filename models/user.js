@@ -43,5 +43,11 @@ module.exports = function (sequelize, DataTypes) {
   User.addHook('beforeCreate', (user) => {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
   });
+
+  User.associate = function (models) {
+    // Associating Artists with Performances
+    User.hasMany(models.Token, {
+    });
+  };
   return User;
 };
