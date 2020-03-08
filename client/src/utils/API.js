@@ -17,8 +17,3 @@ export default {
         return axios.post("http://localhost:3001/api/musicapi", apiData)
     }
 }
-
-
-// saveBook: function(bookData) {
-//     return axios.post("/api/books", bookData);
-//   }

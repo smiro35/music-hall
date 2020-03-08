@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AuthContext } from '../../AuthContext'
 import { Row, Col } from 'reactstrap';
 import YouTube, { artist } from '../../components/Api/YouTube';
 import Simplecontainer from '../../components/Container/Container.js';
@@ -24,7 +25,7 @@ import API from '../../utils/API';
 
 const newData = '';
 
-function Dashboard() {
+function Dashboard(props) {
     const [state, setState] = useState({
         search: "",
         value: "",
@@ -127,6 +128,10 @@ function Dashboard() {
 
             </GridComponent>
 
+    <Button className='m-1' onClick={e => {
+                e.preventDefault();
+                props.history.push('/table')
+            }}>Table</Button>
 
             <Button variant="primary"
                 variant="outline-primary"

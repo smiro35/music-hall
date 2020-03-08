@@ -17,6 +17,10 @@ function MyNavbar(props){
       <Nav.Link href="/Dashboard">Dashboard</Nav.Link>
       <Nav.Link href="/Table">Table</Nav.Link>
       <Nav.Link href="/MyData">Data-Entry</Nav.Link>
+      <Button className='m-1' onClick={e => {
+                e.preventDefault();
+                props.history.push('/table')
+            }}>Table</Button>
    </Nav>
   <div>{props.children}</div>
   </Navbar.Collapse>
