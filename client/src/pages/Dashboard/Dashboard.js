@@ -11,37 +11,40 @@ import Spotify from '../../components/Api/Spotify';
 import Artist from '../../components/Api/Artist';
 import { Card, CardDeck, Button } from 'react-bootstrap';
 import {
-      GridComponent, 
-      ColumnDirective, 
-      ColumnsDirective,
-      Page,
-      PageSettingsModel,
-      Inject,
-      Filter,
-      Group
-    } from '@syncfusion/ej2-react-grids';
-    
- import './Table.css';
+    GridComponent,
+    ColumnDirective,
+    ColumnsDirective,
+    Page,
+    PageSettingsModel,
+    Inject,
+    Filter,
+    Group
+} from '@syncfusion/ej2-react-grids';
+import './Table.css';
+import API from '../../utils/API';
 
+const newData = '';
 
 function Dashboard(props) {
     const [state, setState] = useState({
         search: "",
-        value:"",
+        value: "",
         artist: false,
         channel_id: false,
     });
 
     const [data, setData] = useState([]);
 
-    let oldData = {};
+
+
+   
 
     // const [subscriberCount, setSubscriberCount] = useState();
     // const [viewCount, setViewCount] = useState();
 
     // let count = "";
 
- 
+
 
 
 
@@ -51,115 +54,110 @@ function Dashboard(props) {
     function handleInputChange(event) {
         const { name, value } = event.target;
         console.log("this value", value)
-        console.log("stated", state);
-        
+        console.log("state", state);
+
         setState(
-            {  ...state,
-                [name]:value
+            {
+                ...state,
+                [name]: value
             }
         )
     }
+
 
     function handleSubmit(event) {
         event.preventDefault();
         console.log("submitted");
         let url = `http://localhost:3001/api/dashboard/${state.search}`
-        console.log("State here:", state.search);
-        
-        console.log(url);
-
-       
-
-        
-        
-       
         axios.get(url)
-             .then(response => {
-            //   const newData = data.data
+            .then(response => {
+                //   const newData = data.data
                 // console.log("this is rout",newData.push(data.data));
-                const newData= response.data.bandsintown.obj.followers[19];
-                console.log("this is newData",newData);
-                
-                setData([
-                    ...data,
-                    newData
-                ])
-                console.log("new state", state);
-                
-
-                
+                console.log(state.search)
+                const newData = response.data.bandsintown.obj.followers[19];
+                newData['artist']=state.search;
+                console.log("this is newData", newData)
             })
-           
-            
-
-
     };
 
-    return(
-      <>
 
-        <MyNavbar>
-            <SearchBar 
-            name="search"
-            value={state.value}
-            search={state.search}
-            handleInputChange={handleInputChange}
-            handleSubmit={handleSubmit}/> 
-       
-         </MyNavbar>
-        
+    function handlePostArtist(event) {
+        console.log('posting data')
+       let url= `http://localhost:3001/api/dashboard/${state.search}`
+        API.postMusicAPI()
+          console.log("this is bandintown", url)
+    }
+
+    return (
+        <>
+
+            <MyNavbar>
+                <SearchBar
+                    name="search"
+                    value={state.value}
+                    search={state.search}
+                    handleInputChange={handleInputChange}
+                    handleSubmit={handleSubmit} />
+
+            </MyNavbar>
 
 
 
 
-        
 
 
 
-        <GridComponent style={{margin:'5%'}} dataSource={data}
-        allowPaging={true}
-        th class="rotate"
-        height={268}
-        // pageSettings={pageOptions}
-        pageSize={true}
-        allowFiltering={true}
-        allowGroupin={true}
-    
-    >
-      <ColumnsDirective>
-         <ColumnDirective field='value' headerText='ID' textAlign='Center' width='100' />
-         <ColumnDirective field='timestp' headerText='Date' textAlign='Center'  width='100' />
-         <ColumnDirective field='performance' headerText='Rating' textAlign='Center' format='c2' width='100' />
-         </ColumnsDirective >
-      <Inject services ={[Page,Filter, Group]}/>
 
-    
-    </GridComponent>
 
+            <GridComponent style={{ margin: '5%' }} dataSource={data}
+                allowPaging={true}
+                height={268}
+                // pageSettings={pageOptions}
+                pageSize={true}
+                allowFiltering={true}
+                allowGroupin={true}
+
+            >
+                <ColumnsDirective>
+                    <ColumnDirective field='value' headerText='ID' textAlign='Center' width='100' />
+                    <ColumnDirective field='timestp' headerText='Date' textAlign='Center' width='100' />
+                    <ColumnDirective field='performance' headerText='Rating' textAlign='Center' format='c2' width='100' />
+                </ColumnsDirective >
+                <Inject services={[Page, Filter, Group]} />
+
+
+            </GridComponent>
 
     <Button className='m-1' onClick={e => {
                 e.preventDefault();
                 props.history.push('/table')
             }}>Table</Button>
 
+            <Button variant="primary"
+                variant="outline-primary"
+                onClick={handlePostArtist}
+            >Add Artist
+      </Button>
+
+
+
+
 
 
             {/* <Row>
                 <Col>
-
                 </Col>
                 <Col></Col>
                 <Col>Spotify</Col>
                 <Col>Itunes</Col>
-
             </Row> */}
 
 
 
 
 
-       
-      </>
+
+        </>
     );
 }
 export default Dashboard;
@@ -197,10 +195,10 @@ export default Dashboard;
 
 //     pageSize:8, pageSizes:true
 //   };
-  
-  
+
+
 //   render(){
-   
+
 //     return<GridComponent dataSource={data}
 //         allowPaging={true}
 //         height={268}
@@ -208,21 +206,21 @@ export default Dashboard;
 //         pageSize={true}
 //         allowFiltering={true}
 //         allowGroupin={true}
-    
+
 //     >
 //       <ColumnsDirective>
 //          <ColumnDirective field='ID' headerText='ID' textAlign='Right' width='100' />
 //          <ColumnDirective field='Customer' headerText='Customer' width='150' />
 //          <ColumnDirective field='Performance' headerText='Performance' />
 //          <ColumnDirective field='Date' headerText='Date' textAlign='Right' format='c2' width='100' />
-        
-        
+
+
 //       </ColumnsDirective >
 //       <Inject services ={[Page,Filter, Group]}/>
 
-    
+
 //     </GridComponent>
-   
+
 //   }
 
 
