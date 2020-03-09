@@ -1,5 +1,7 @@
 DROP DATABASE IF EXISTS music_hall_db;
+
 CREATE DATABASE music_hall_db;
+
 USE music_hall_db;
 
 CREATE TABLE artists(
@@ -14,9 +16,12 @@ CREATE TABLE artists(
 CREATE TABLE musicAPIs (
     id Int AUTO_INCREMENT NOT NULL,
     artistID INT NOT NULL,
-    spotify INTEGER NOT NULL,
-    youtube INTEGER NOT NULL,
-    instagram INTEGER NOT NULL,
+    spotify INTEGER,
+    youtube INTEGER,
+    instagram INTEGER,
+    bandsintown INTEGER,
+    timestp VARCHAR(255),
+    daily_diff INTEGER,
 	createdAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
     updatedAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
     /* Set ID as primary key */
@@ -26,7 +31,7 @@ CREATE TABLE musicAPIs (
 
 CREATE TABLE performances (
 	id INT NOT NULL AUTO_INCREMENT,
-    artistID INT NOT NULL,
+    ArtistId INT NOT NULL,
     date DATE NOT NULL, 
     total_sold INT NOT NULL,
     spotify_reach VARCHAR(30),
@@ -47,7 +52,7 @@ CREATE TABLE performances (
     createdAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
     updatedAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
     PRIMARY KEY (id),  
-    FOREIGN KEY (artistID) references artists(id)
+    FOREIGN KEY (ArtistId) references artists(id)
 );  
 
 
