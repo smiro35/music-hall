@@ -3,7 +3,7 @@ const db = require('../../models');
 const passport = require('../../config/passport');
 
 // Using the passport.authenticate middleware with our local strategy.
-router.post('/login', passport.authenticate('local'), (req, res) => {
+router.post('/home', passport.authenticate('local'), (req, res) => {
   res.json(req.user);
 });
 

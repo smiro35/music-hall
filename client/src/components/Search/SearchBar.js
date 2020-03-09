@@ -7,27 +7,7 @@ import { Form, Button, FormControl } from 'react-bootstrap';
 function SearchBar(props) {
 
     return (
-
-        // <form>
-        //    <input
-        // name= "search"
-        // onChange={props.handleInputChange}
-        // input={props.search}
-        // style={{
-        //     margin: '0 auto',
-        //     maxWidth: 800
-        //   }}
-
-        // ></input>
-        // <button
-        // onClick={props.handleSubmit} 
-        // className="btn btn-primary"
-        // >artist</button>
-
-        // </form>
-
-
-        <Form inline>
+      <Form inline>
       <FormControl type="text" placeholder="Search" className="mr-md-2" onChange={props.handleInputChange} name={props.name}/>
       <Button 
       variant="outline-success"

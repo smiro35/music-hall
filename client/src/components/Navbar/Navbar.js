@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Nav, NavItem, NavLink, Navbar, Form,Button,FormControl } from 'react-bootstrap';
-import SearchBar from '../Api/SearchBar'
+import React from 'react';
+import { Nav, Navbar,} from 'react-bootstrap';
+
 
 function MyNavbar(props){
  
 
   return (
-    <div>
+ 
 
 <Navbar bg="light" expand="lg">
   <Navbar.Brand href="#home">Music Hall Logo</Navbar.Brand>
@@ -22,39 +22,7 @@ function MyNavbar(props){
   </Navbar.Collapse>
 </Navbar>
      
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-      {/* <Nav style={{marginLeft:"7rem"}}>
-        <NavItem>
-          <NavLink href="/" active>Home</NavLink>
-        </NavItem>
-       
-        <NavItem>
-          <NavLink href="/Dashboard">Dashboard</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="/Table">Table</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="MyData">Data-Entry</NavLink>
-        </NavItem>
-        <SearchBar/>
-      </Nav> */}
-    </div>
+ 
   );
 }
 

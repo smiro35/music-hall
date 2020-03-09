@@ -1,35 +1,67 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React,{useContext} from "react";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import NoMatch from "./pages/NoMatch";
 import MyData from "./pages/Data";
-import Login from "./components/LoginForm";
 import Signup from "./components/SingupForm";
-
-import { AuthProvider } from './AuthContext'
-
-
+import{AuthProvider,AuthContext} from "./AuthContext"
 import TablePage from "./pages/TablePage/TablePage.js";
+import Axios from "axios";
 
 
 
 
-const App = () => (
+function App (){
+  
+  const{isAuth, setIsAuth}= useContext(AuthContext);
+  console.log("App auth: ", isAuth);
+
+
+
+  const PrivateRoute = ({component: Component,  ...rest}) => (
+
+    <Route
+     {...rest}
+     render={props =>
+       isAuth ? <Component{...props} /> :  <Redirect to ="/home" />
+    }
+    
+    
+    
+    />
+
+
+  )
+  
+  return (
   <Router>
-    <AuthProvider>
+    
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/" 
+        render={props => <Home {...props} />}
+        />
         <Route exact path="/Signup" component={Signup} />
         <Route exact path="/Dashboard" component={Dashboard} />
         <Route exact path="/MyData" component={MyData} />
         <Route exact path="/Dashboard/:someparam" component={Dashboard} />
         <Route exact path="/Table" component={TablePage} />
+        {/* <PrivateRoute path="/members" component={Dashboard} /> */}
         <Route component={NoMatch} />
       </Switch>
-    </AuthProvider>
+    
   </Router>
 );
+  }
 
-export default App;
+export default () => {
+
+  return(
+
+    <AuthProvider>
+
+    <App/>
+    </AuthProvider>
+
+  )
+}
