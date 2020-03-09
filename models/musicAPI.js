@@ -18,6 +18,21 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
       unique: false,
     },
+    bandsintown: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      unique: false,
+    },
+    timestp: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: false,
+    },
+    daily_diff: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      unique: false,
+    },
   });
   MusicAPI.associate = function (models) {
     // We're saying that a musicAPI call should belong to an Artist

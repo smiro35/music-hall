@@ -64,9 +64,10 @@ function Dashboard(props) {
         )
     }
 
-
+        let newData = '';
     function handleSubmit(event) {
         event.preventDefault();
+
         console.log("submitted");
         let url = `http://localhost:3001/api/dashboard/${state.search}`
         axios.get(url)
@@ -74,18 +75,21 @@ function Dashboard(props) {
                 //   const newData = data.data
                 // console.log("this is rout",newData.push(data.data));
                 console.log(state.search)
-                const newData = response.data.bandsintown.obj.followers[19];
-                newData['artist']=state.search;
+                newData = response.data.bandsintown.obj.followers[19];
+                newData['artist']=state.search;        
+                newData['bandsintown']=newData['value']
+                delete newData.value 
+                delete newData.channel_id
+                delete newData.interpolation
+                // ;
                 console.log("this is newData", newData)
             })
     };
 
 
+
     function handlePostArtist(event) {
-        console.log('posting data')
-       let url= `http://localhost:3001/api/dashboard/${state.search}`
-        API.postMusicAPI()
-          console.log("this is bandintown", url)
+        API.postMusicAPI(newData)
     }
 
     return (
