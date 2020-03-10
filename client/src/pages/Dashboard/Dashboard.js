@@ -133,9 +133,16 @@ function Dashboard(props) {
             </GridComponent>
 
     <Button className='m-1' onClick={e => {
+                console.log(props.history)
                 e.preventDefault();
                 props.history.push('/table')
             }}>Table</Button>
+
+<Button className='m-1' onClick={e => {
+                console.log(props.history)
+                e.preventDefault();
+                props.history.push('/MyData')
+            }}>Data Entry</Button>
 
             <Button variant="primary"
                 variant="outline-primary"
