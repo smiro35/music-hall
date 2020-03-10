@@ -37,7 +37,7 @@ function Dashboard(props) {
 
 
 
-   
+
 
     // const [subscriberCount, setSubscriberCount] = useState();
     // const [viewCount, setViewCount] = useState();
@@ -64,7 +64,7 @@ function Dashboard(props) {
         )
     }
 
-        let newData = '';
+    let newData = '';
     function handleSubmit(event) {
         event.preventDefault();
 
@@ -76,9 +76,9 @@ function Dashboard(props) {
                 // console.log("this is rout",newData.push(data.data));
                 console.log(state.search)
                 newData = response.data.bandsintown.obj.followers[19];
-                newData['artist']=state.search;        
-                newData['bandsintown']=newData['value']
-                delete newData.value 
+                newData['artist'] = state.search;
+                newData['bandsintown'] = newData['value']
+                delete newData.value
                 delete newData.channel_id
                 delete newData.interpolation
                 // ;
@@ -106,6 +106,19 @@ function Dashboard(props) {
             </MyNavbar>
 
 
+            <Button variant="primary"
+                variant="outline-primary"
+                onClick={handlePostArtist}
+            >Add Artist
+            </Button>
+
+            <SearchBar
+                name="search"
+                value={state.value}
+                search={state.search}
+                handleInputChange={handleInputChange}
+                handleSubmit={handleSubmit} />
+
 
 
 
@@ -132,23 +145,17 @@ function Dashboard(props) {
 
             </GridComponent>
 
-    <Button className='m-1' onClick={e => {
+            <Button className='m-1' onClick={e => {
                 console.log(props.history)
                 e.preventDefault();
                 props.history.push('/table')
             }}>Table</Button>
 
-<Button className='m-1' onClick={e => {
+            {/* <Button className='m-1' onClick={e => {
                 console.log(props.history)
                 e.preventDefault();
                 props.history.push('/MyData')
-            }}>Data Entry</Button>
-
-            <Button variant="primary"
-                variant="outline-primary"
-                onClick={handlePostArtist}
-            >Add Artist
-      </Button>
+            }}>Data Entry</Button> */}
 
 
 

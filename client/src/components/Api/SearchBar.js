@@ -35,11 +35,11 @@ function SearchBar(props) {
       variant="outline-success"
       onClick={props.handleSubmit} 
       >Search</Button>
-      <Button variant="primary"
+      {/* <Button variant="primary"
       variant="outline-primary"
       onClick={addArtist}
       >Add Artist
-      </Button>
+      </Button> */}
     </Form>
 
     
