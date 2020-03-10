@@ -23,7 +23,7 @@ import {
 import './Table.css';
 import API from '../../utils/API';
 
-const newData = '';
+let apiData = '';
 
 function Dashboard(props) {
     const [state, setState] = useState({
@@ -75,21 +75,31 @@ function Dashboard(props) {
                 //   const newData = data.data
                 // console.log("this is rout",newData.push(data.data));
                 console.log(state.search)
+                console.log(response.data)
+                
                 newData = response.data.bandsintown.obj.followers[19];
                 newData['artist'] = state.search;
                 newData['bandsintown'] = newData['value']
                 delete newData.value
                 delete newData.channel_id
                 delete newData.interpolation
-                // ;
-                console.log("this is newData", newData)
+                const spotifyPopularity = response.data.spotify.obj.popularity.reverse()[0]
+                spotifyPopularity['spotify_timestp'] = spotifyPopularity['timestp']
+                spotifyPopularity['spotify_popularity'] = spotifyPopularity['value']
+                delete spotifyPopularity.timestp
+                delete spotifyPopularity.value
+                console.log(response.data.spotify.obj.popularity)
+                console.log(spotifyPopularity)
+                apiData = {...newData, ...spotifyPopularity};
+                console.log(apiData);
             })
     };
 
 
-
+    // Pass apiData to API util
     function handlePostArtist(event) {
-        API.postMusicAPI(newData)
+        console.log(apiData)
+        API.postMusicAPI(apiData)
     }
 
     return (

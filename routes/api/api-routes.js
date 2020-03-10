@@ -117,10 +117,10 @@ router.get('/dashboard/:artistsearch', async (req, res) => {
   // searched.soundcloud = Apiresult.data;
 
   // // 8.Api call for spotify
-  Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
-  headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+  Bearer = await axios.post('https://api.chartmetric.com/api/token', refreshtoken);
+  headers.headers.Authorization = `Bearer ${Bearer.data.token}`;
 
-  Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/spotify`,headers)
+  Apiresult = await axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/spotify`, headers);
   searched.spotify = Apiresult.data;
 
 
