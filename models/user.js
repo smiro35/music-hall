@@ -26,6 +26,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    role: {
+      type: DataTypes.ENUM(['Admin', 'User', 'Disabled']),
+      defaultValue: 'User'
+    }
     // isAdmin: {
     //     type: DataTypes.BOOLEAN,
     //     default: FALSE

@@ -57,3 +57,4 @@ db.sequelize.sync({ force: false })
       console.log('*************************************\n');
     });
   });
+

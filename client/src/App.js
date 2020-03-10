@@ -13,43 +13,47 @@ import MyNavbar from "./components/Navbar/Navbar";
 
 // import { AuthProvider } from './AuthContext'
 
-function App(){
-  
-    // Here we subscribe the authentication context using the useContext hook
-    // we use isAuth to determine whether the user is logged in, and setIsAuth
-    // to change their status on logout.
-    const { isAuth, setIsAuth } = useContext(AuthContext);
-    console.log("App auth: ", isAuth)
-  
+function App() {
+
+  // Here we subscribe the authentication context using the useContext hook
+  // we use isAuth to determine whether the user is logged in, and setIsAuth
+  // to change their status on logout.
+  const { isAuth, user } = useContext(AuthContext);
+  console.log("App auth: ", isAuth, user)
+
   // here we are ceating a private route wrapper to prevent front end routing to 
   // restricted pages.  The ({ component: Component, ...rest })  argument that is
   // passed to this functional component is essentially the same as just passing 
   // props, but using object destucturing.  the ...rest is literally the rest of 
   // the props that were not destructured. 
-  const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route
-      {...rest}
-      render={props =>
-        isAuth ? <Component {...props} /> : <Redirect to='/login' />
-        // isAuth ? <Component {...props} /> : <Redirect to="/login" />
-      }
-    />
-  );
+  const PrivateRoute = ({ component: Component, roles, ...rest }) => {
+    const authorization = roles.includes(user.role)
+
+    return (
+      <Route
+        {...rest}
+        render={props =>
+          !isAuth ? <Redirect to='/login' /> : authorization ? <Component {...props} /> : <Redirect to='/' />
+          // isAuth ? <Component {...props} /> : <Redirect to="/login" />
+        }
+      />
+    )
+  };
   return (
     // <AuthProvider>    
-      <Router>
-        <Switch>
-          <PrivateRoute exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
-          <PrivateRoute exact path="/dashboard" component={Dashboard} />
-          <PrivateRoute exact path="/members" component={Members} />
-          <PrivateRoute exact path="/MyData" component={MyData} />
-          {/* <Route exact path="/Dashboard/:someparam" component={Dashboard} /> */}
-          <PrivateRoute exact path="/table" component={TablePage} />
-          <Route component={NoMatch} />
-        </Switch>
-      </Router>
+    <Router>
+      <Switch>
+        <PrivateRoute exact path="/" roles={['Admin', 'User']} component={Home} />
+        <Route exact path="/login" roles={["Admin", "User"]} component={Login} />
+        <Route exact path="/signup" roles={["Admin", "User"]} component={Signup} />
+        <PrivateRoute exact path="/dashboard" roles={["Admin", "User"]} component={Dashboard} />
+        <PrivateRoute exact path="/members" roles={["Admin", "User"]} component={Members} />
+        <PrivateRoute exact path="/MyData" roles={["Admin", "User"]} component={MyData} />
+        {/* <Route exact path="/Dashboard/:someparam" component={Dashboard} /> */}
+        <PrivateRoute exact path="/table" roles={["Admin", "User"]} component={TablePage} />
+        <Route component={NoMatch} />
+      </Switch>
+    </Router>
     // </AuthProvider>
 
 
@@ -58,6 +62,6 @@ function App(){
 
 export default () => (
   <AuthProvider>
-    <App/>
+    <App />
   </AuthProvider>
 );

@@ -4,7 +4,8 @@ const passport = require('../../config/passport');
 
 // Using the passport.authenticate middleware with our local strategy.
 router.post('/login', passport.authenticate('local'), (req, res) => {
-  res.json(req.user);
+  const { email, id, role } = req.user
+  res.json({ email, id, role });
 });
 
 // Route for signing up a user. The user's password is automatically
@@ -13,12 +14,7 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 //  to log the user in, otherwise send back an error
 router.post('/signup', (req, res) => {
   console.log("HERE!!!")
-  db.User.create({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    password: req.body.password,
-  })
+  db.User.create(req.body)
     .then((dbResponse) => {
       console.log(dbResponse)
       res.json(dbResponse);
@@ -45,6 +41,7 @@ router.get('/user_data', (req, res) => {
     res.json({
       email: req.user.email,
       id: req.user.id,
+      role: req.user.role
     });
   }
 });
