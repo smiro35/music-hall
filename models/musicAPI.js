@@ -1,7 +1,8 @@
 // Creating our musicAPI model
 
 module.exports = function (sequelize, DataTypes) {
-  const musicAPI = sequelize.define('musicAPI', {
+  const MusicAPI = sequelize.define('musicAPI', {
+
     spotify: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -17,17 +18,32 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
       unique: false,
     },
+    bandsintown: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      unique: false,
+    },
+    timestp: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: false,
+    },
+    daily_diff: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      unique: false,
+    },
   });
-  musicAPI.associate = function (models) {
+  MusicAPI.associate = function (models) {
     // We're saying that a musicAPI call should belong to an Artist
     // A musicAPI entry can't be created without an Artist due to the foreign key constraint
-    musicAPI.belongsTo(models.Artists, {
+    MusicAPI.belongsTo(models.Artists, {
       foreignKey: {
         allowNull: false,
       },
     });
   };
-  return musicAPI;
+  return MusicAPI;
 };
 
 
