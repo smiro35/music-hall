@@ -7,17 +7,7 @@ import { NavLink } from 'react-router-dom';
 
 
 function MyNavbar(props){
-  // const { isAuth, setIsAuth } = useContext(AuthContext);
-  // console.log("App auth: ", isAuth)
-  // const Navbar = ({ component: Component, ...rest }) => (
-  //   <Route
-  //     {...rest}
-  //     render={props =>
-  //       isAuth ? <Component {...props} /> : <Redirect to='/login' />
-  //       // isAuth ? <Component {...props} /> : <Redirect to="/login" />
-  //     }
-  //   />
-  // );
+
   return (
     <div>
 
@@ -30,10 +20,6 @@ function MyNavbar(props){
       <NavLink to="/Dashboard">Dashboard</NavLink>
       <NavLink to="/Table">Table</NavLink>
       <NavLink to="/MyData">Data-Entry</NavLink>
-      <Button className='m-1' onClick={e => {
-                e.preventDefault();
-                props.history.push('/table')
-            }}>Table</Button>
    </Nav>
   </Navbar.Collapse>
 </Navbar>
