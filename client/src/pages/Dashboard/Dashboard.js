@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../AuthContext'
 import { Row, Col } from 'reactstrap';
 // import YouTube, { artist } from '../../components/Api/YouTube';
@@ -20,7 +20,7 @@ import {
     Filter,
     Group
 } from '@syncfusion/ej2-react-grids';
-import './Table.css';
+
 import API from '../../utils/API';
 let apiData = '';
 function Dashboard(props) {
@@ -31,6 +31,13 @@ function Dashboard(props) {
         channel_id: false,
     });
     const [data, setData] = useState([]);
+
+    const { isAuth, logout } = useContext(AuthContext);
+    console.log("dashboard user: ", isAuth)
+
+
+
+
     // const [subscriberCount, setSubscriberCount] = useState();
     // const [viewCount, setViewCount] = useState();
     // let count = "";

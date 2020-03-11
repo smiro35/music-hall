@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/music-hall-booking/static/css/main.713ac26f.chunk.css",
+    "main.js": "/music-hall-booking/static/js/main.e776428b.chunk.js",
+    "main.js.map": "/music-hall-booking/static/js/main.e776428b.chunk.js.map",
+    "runtime-main.js": "/music-hall-booking/static/js/runtime-main.bd5d8d25.js",
+    "runtime-main.js.map": "/music-hall-booking/static/js/runtime-main.bd5d8d25.js.map",
+    "static/css/2.47e06e2e.chunk.css": "/music-hall-booking/static/css/2.47e06e2e.chunk.css",
+    "static/js/2.a365a241.chunk.js": "/music-hall-booking/static/js/2.a365a241.chunk.js",
+    "static/js/2.a365a241.chunk.js.map": "/music-hall-booking/static/js/2.a365a241.chunk.js.map",
+    "index.html": "/music-hall-booking/index.html",
+    "precache-manifest.40bf56f3724835a04549c7e7021a4446.js": "/music-hall-booking/precache-manifest.40bf56f3724835a04549c7e7021a4446.js",
+    "service-worker.js": "/music-hall-booking/service-worker.js",
+    "static/css/2.47e06e2e.chunk.css.map": "/music-hall-booking/static/css/2.47e06e2e.chunk.css.map",
+    "static/css/main.713ac26f.chunk.css.map": "/music-hall-booking/static/css/main.713ac26f.chunk.css.map",
+    "static/js/2.a365a241.chunk.js.LICENSE.txt": "/music-hall-booking/static/js/2.a365a241.chunk.js.LICENSE.txt",
+    "static/media/main.css": "/music-hall-booking/static/media/Poppins-Regular.731a28a4.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bd5d8d25.js",
+    "static/css/2.47e06e2e.chunk.css",
+    "static/js/2.a365a241.chunk.js",
+    "static/css/main.713ac26f.chunk.css",
+    "static/js/main.e776428b.chunk.js"
+  ]
+}
