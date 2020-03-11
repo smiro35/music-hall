@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../AuthContext'
 import { Row, Col } from 'reactstrap';
 import YouTube, { artist } from '../../components/Api/YouTube';
@@ -35,6 +35,8 @@ function Dashboard(props) {
 
     const [data, setData] = useState([]);
 
+    const { isAuth, logout } = useContext(AuthContext);
+    console.log("dashboard user: ", isAuth)
 
 
 
