@@ -20,11 +20,9 @@ function MyNavbar(props){
       <NavLink to="/Dashboard">Dashboard</NavLink>
       <NavLink to="/Table">Table</NavLink>
       <NavLink to="/MyData">Data-Entry</NavLink>
-      
-
-
-   </Nav>
+       </Nav>
   </Navbar.Collapse>
+  <div>{props.children}</div>
 </Navbar>
      
  
