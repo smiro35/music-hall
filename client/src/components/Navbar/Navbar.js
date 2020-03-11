@@ -1,9 +1,12 @@
-import React from 'react';
-import { Nav, Navbar, Button} from 'react-bootstrap';
+import React, { useState, useContext } from 'react';
+import { Nav, NavItem, Navbar, Form,Button,FormControl } from 'react-bootstrap';
+import SearchBar from '../Search/SearchBar';
+import { AuthProvider, AuthContext } from '../../AuthContext.js'
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 
 function MyNavbar(props){
- 
 
   return (
  
@@ -13,16 +16,11 @@ function MyNavbar(props){
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
-      <Nav.Link href="/">Home</Nav.Link>
-      <Nav.Link href="/Dashboard">Dashboard</Nav.Link>
-      <Nav.Link href="/Table">Table</Nav.Link>
-      <Nav.Link href="/MyData">Data-Entry</Nav.Link>
-      <Button className='m-1' onClick={e => {
-                e.preventDefault();
-                props.history.push('/table')
-            }}>Table</Button>
+      <NavLink to="/">Home</NavLink>
+      <NavLink to="/Dashboard">Dashboard</NavLink>
+      <NavLink to="/Table">Table</NavLink>
+      <NavLink to="/MyData">Data-Entry</NavLink>
    </Nav>
-  <div>{props.children}</div>
   </Navbar.Collapse>
 </Navbar>
      

@@ -71,18 +71,18 @@ router.get('/dashboard/:artistsearch', async (req, res) => {
 
 
   // // 2.Api call for deezer
-  // Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
-  // headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+  Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+  headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
 
-  // Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/deezer`,headers)
-  // searched.deezer = Apiresult.data;
+  Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/deezer`,headers)
+  searched.deezer = Apiresult.data;
 
   // // // //3. Api call for Facebook
-  // Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
-  // headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+  Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+  headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
 
-  // Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/facebook`,headers)
-  //  console.log("facebook", Apiresult.data);
+  Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/facebook`,headers)
+   console.log("facebook", Apiresult.data);
 
   // searched.facebook = Apiresult.data;
 
@@ -117,10 +117,10 @@ router.get('/dashboard/:artistsearch', async (req, res) => {
   // searched.soundcloud = Apiresult.data;
 
   // // 8.Api call for spotify
-  Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
-  headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+  Bearer = await axios.post('https://api.chartmetric.com/api/token', refreshtoken);
+  headers.headers.Authorization = `Bearer ${Bearer.data.token}`;
 
-  Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/spotify`,headers)
+  Apiresult = await axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/spotify`, headers);
   searched.spotify = Apiresult.data;
 
 

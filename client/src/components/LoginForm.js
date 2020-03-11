@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Redirect } from 'react-router-dom'
 import { AuthContext } from '../AuthContext';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
@@ -6,7 +7,7 @@ import Axios from 'axios';
 
 const LoginForm = props => {
 
-    const { setIsAuth } = useContext(AuthContext)
+    const { setIsAuth, setUser, isAuth } = useContext(AuthContext)
     const emptyCreds = { emailInput: '', passwordInput: '' }
     const errorMessage = 'invalid credentials'
     const [formData, setFormData] = useState(emptyCreds)
@@ -30,8 +31,9 @@ const LoginForm = props => {
 
     const login = loginCreds => {
         Axios.post('/api/auth/login', loginCreds)
-            .then(user => {
-                console.log("login response ", user)
+            .then(response => {
+                console.log("login response ", response)
+                setUser(response.data)
                 setIsAuth(true)
             })
             .catch(err => {
@@ -41,32 +43,35 @@ const LoginForm = props => {
     }
 
     return (
-        <Form onSubmit={handleFormSubmit}>
-            <Form.Group controlId="emailInput">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control name="emailInput" type="email" placeholder="Enter email" value={formData.emailInput} onChange={handleInputChange} />
-            </Form.Group>
-            <Form.Group controlId="inputPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control name="passwordInput" type="password" placeholder="Password" value={formData.passwordInput} onChange={handleInputChange} />
-            </Form.Group>
-            <Form.Group>
-                <Form.Text className="text-danger">
-                    {credsAreInvalid}
-                </Form.Text>
-            </Form.Group>
-            <Button className='m-1' variant="primary" type="submit">
-                Submit
+        <>
+            {isAuth && <Redirect to="/dashboard" />}
+            <Form onSubmit={handleFormSubmit}>
+                <Form.Group controlId="emailInput">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control name="emailInput" type="email" placeholder="Enter email" value={formData.emailInput} onChange={handleInputChange} />
+                </Form.Group>
+                <Form.Group controlId="inputPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control name="passwordInput" type="password" placeholder="Password" value={formData.passwordInput} onChange={handleInputChange} />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Text className="text-danger">
+                        {credsAreInvalid}
+                    </Form.Text>
+                </Form.Group>
+                <Button className='m-1' variant="primary" type="submit">
+                    Submit
             </Button>
-            <Button className='m-1' onClick={e => {
-                e.preventDefault();
-                props.history.push('/signup')
-            }}>Signup</Button>
-            <Button className='m-1' onClick={e => {
-                e.preventDefault();
-                props.history.push('/dashboard')
-            }}>Dashboard</Button>
-        </Form>
+                <Button className='m-1' onClick={e => {
+                    e.preventDefault();
+                    props.history.push('/signup')
+                }}>Signup</Button>
+                <Button className='m-1' onClick={e => {
+                    e.preventDefault();
+                    props.history.push('/dashboard')
+                }}>Dashboard</Button>
+            </Form>
+        </>
     )
 }
 
