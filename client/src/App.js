@@ -33,8 +33,9 @@ function App() {
       <Route
         {...rest}
         render={props =>
+          // !isAuth ? <Redirect to='/login' /> : role === "User" ? <Component {...props} /> : <Redirect to='/' />
           !isAuth ? <Redirect to='/login' /> : authorization ? <Component {...props} /> : <Redirect to='/' />
-          // isAuth ? <Component {...props} /> : <Redirect to="/login" />
+          // isAuth && roles.includes(user.role) ? <Component {...props} /> : <Redirect to="/login" />
         }
       />
     )
@@ -47,6 +48,7 @@ function App() {
         <Route exact path="/login" roles={["Admin", "User"]} component={Login} />
         <Route exact path="/signup" roles={["Admin", "User"]} component={Signup} />
         <PrivateRoute exact path="/dashboard" roles={["Admin", "User"]} component={Dashboard} />
+        {/* <PrivateRoute exact path="/members" component={Members} /> */}
         <PrivateRoute exact path="/members" roles={["Admin", "User"]} component={Members} />
         <PrivateRoute exact path="/MyData" roles={["Admin", "User"]} component={MyData} />
         {/* <Route exact path="/Dashboard/:someparam" component={Dashboard} /> */}
