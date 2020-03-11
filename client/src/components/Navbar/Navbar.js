@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Nav, NavItem, Navbar, Form,Button,FormControl } from 'react-bootstrap';
-import SearchBar from '../Api/SearchBar';
+import SearchBar from '../Search/SearchBar';
 import { AuthProvider, AuthContext } from '../../AuthContext.js'
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 function MyNavbar(props){
 
   return (
-    <div>
+ 
 
 <Navbar bg="light" expand="lg">
   <Navbar.Brand href="#home">Music Hall Logo</Navbar.Brand>
@@ -27,39 +27,7 @@ function MyNavbar(props){
   </Navbar.Collapse>
 </Navbar>
      
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-      {/* <Nav style={{marginLeft:"7rem"}}>
-        <NavItem>
-          <NavLink href="/" active>Home</NavLink>
-        </NavItem>
-       
-        <NavItem>
-          <NavLink href="/Dashboard">Dashboard</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="/Table">Table</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="MyData">Data-Entry</NavLink>
-        </NavItem>
-        <SearchBar/>
-      </Nav> */}
-    </div>
+ 
   );
 }
 

@@ -1,14 +1,26 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from '../../AuthContext';
-// import "../App.css";
 import { Container, Row, Button, Col } from "react-bootstrap";
 import Axios from "axios";
+import { form, span } from 'react-bootstrap/Form';
+import './css/main.css'
+import './css/util.css'
+import pic from './images/img-01.png';
+import './vendor/animate/animate.css';
+import MyNavbar from "../../components/Navbar/Navbar.js";
 
 function Home(props) {
 
   const { isAuth, logout } = useContext(AuthContext);
 
-  const [secret, setSecret] = useState("");
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [secret, setSecret] = useState();
+
+
+
+
 
   // this function is duplicated in the Members page component
   // consider refactor 
@@ -18,76 +30,218 @@ function Home(props) {
     setSecret(secretResponse.data);
   };
 
+
+   function handleInput(e){
+     const name =e.target.value
+
+     console.log(name);
+    //  console.log(value);
+     
+     
+
+     setUsername(
+       ...username,
+       name
+     
+     )
+
+     setPassword(
+      ...password,
+      name
+    )
+
+
+   }
+
+  function handleSubmit (e){
+    e.preventDefault();
+    console.log("login btn");
+    
+    console.log("username is " + username);
+    console.log("password is " + password);
+  };
+
+
   return (
-    <Container className="signup">
-      <Row>
-        <Col md={{ span: 8, offset: 2 }}>
-          <h1>Home Page</h1>
-          {isAuth ? (
-            <>
-              <Button
-                className="m-1"
-                onClick={e => {
-                  e.preventDefault();
-                  setSecret('');
-                  logout();
-                }}
-              >
-                Logout
+    //  isAuth ? <Redirect to = '/' />
+    <>
+
+      <MyNavbar>
+        <Button
+          className="m-1"
+          onClick={e => {
+            e.preventDefault();
+            setSecret('');
+            logout();
+          }}
+        >
+          Logout
               </Button>
-              <Button
-                className="m-1"
-                onClick={e => {
-                  e.preventDefault();
-                  props.history.push("/members");
-                }}
-              >
-                Members
-              </Button>
-            </>
-          ) : (
-              <>
-                <Button
-                  className="m-1"
-                  onClick={e => {
-                    e.preventDefault();
-                    props.history.push("/login");
-                  }}
-                >
+
+      </MyNavbar>
+
+
+      <div className="limiter">
+        <div className="container-login100">
+          <div className="wrap-login100">
+            <img src={pic} alt="not working" />
+            <form className="login100-form validate-form">
+              <span className="login100-form-title"> Member Login </span>
+              <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                <input className="input100" type="text" name="email" placeholder="Email" name="username"
+                  onChange={handleInput}
+                />
+                <span className="focus-input100"></span>
+                <span className="symbol-input100">
+                  <i className="fa fa-envelope" aria-hidden="true"></i>
+                </span>
+              </div>
+              <div className="wrap-input100 validate-input" data-validate="Password is required">
+                <input className="input100" type="password" name="pass" placeholder="Password" name="password" 
+               onChange={handleInput} />
+                <span className="focus-input100"></span>
+                <span className="symbol-input100">
+                  <i className="fa fa-lock" aria-hidden="true"></i>
+                </span>
+              </div>
+              <div className="container-login100-form-btn">
+                <button className="login100-form-btn" className="m-1"
+                  onClick={handleSubmit}>
                   Login
-              </Button>
-                <Button
-                  className="m-1"
+                </button>
+              </div>
+              <div className="text-center p-t-12">
+                <span className="txt1">
+                  Forgot
+                </span>
+                <a className="txt2" href="#">
+                  Username / Password?
+                </a>
+              </div>
+              <div className="text-center p-t-136">
+                <a className="txt2" href="#" className="m-1"
                   onClick={e => {
                     e.preventDefault();
                     props.history.push("/signup");
-                  }}
-                >
-                  Signup
-              </Button>
-              </>
-            )}
-          <Button
-            className="m-1"
-            onClick={e => {
-              e.preventDefault();
-              getSecret();
-            }}
-          >
-            Show Secrets
-          </Button>
-        </Col>
-      </Row>
-      <Row>
-        <Col md={{ span: 8, offset: 2 }}>
-          <h1>{secret}</h1>
-        </Col>
-      </Row>
-    </Container>
+                  }}>
+                  Create your Account
+                  <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </>
+
+
   );
 }
 
 export default Home;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // <Container className="signup">
+    //   <Row>
+    //     <Col md={{ span: 8, offset: 2 }}>
+    //       <h1>Home Page</h1>
+    //       {isAuth ? (
+    //         <>
+    //           <Button
+    //             className="m-1"
+    //             onClick={e => {
+    //               e.preventDefault();
+    //               setSecret('');
+    //               logout();
+    //             }}
+    //           >
+    //             Logout
+    //           </Button>
+    //           <Button
+    //             className="m-1"
+    //             onClick={e => {
+    //               e.preventDefault();
+    //               props.history.push("/members");
+    //             }}
+    //           >
+    //             Members
+    //           </Button>
+    //         </>
+    //       ) : (
+    //           <>
+    //             <Button
+    //               className="m-1"
+    //               onClick={e => {
+    //                 e.preventDefault();
+    //                 props.history.push("/login");
+    //               }}
+    //             >
+    //               Login
+    //           </Button>
+    //             <Button
+    //               className="m-1"
+    //               onClick={e => {
+    //                 e.preventDefault();
+    //                 props.history.push("/signup");
+    //               }}
+    //             >
+    //               Signup
+    //           </Button>
+    //           </>
+    //         )}
+    //       <Button
+    //         className="m-1"
+    //         onClick={e => {
+    //           e.preventDefault();
+    //           getSecret();
+    //         }}
+    //       >
+    //         Show Secrets
+    //       </Button>
+    //     </Col>
+    //   </Row>
+    //   <Row>
+    //     <Col md={{ span: 8, offset: 2 }}>
+    //       <h1>{secret}</h1>
+    //     </Col>
+    //   </Row>
+    // </Container>
+
 
 
 

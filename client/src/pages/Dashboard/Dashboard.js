@@ -1,14 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../AuthContext'
 import { Row, Col } from 'reactstrap';
-import YouTube, { artist } from '../../components/Api/YouTube';
+// import YouTube, { artist } from '../../components/Api/YouTube';
 import Simplecontainer from '../../components/Container/Container.js';
 import numeral from 'numeral';
 import axios from 'axios';
-import SearchBar from '../../components/Api/SearchBar';
+import SearchBar from '../../components/Search/SearchBar';
 import MyNavbar from '../../components/Navbar/Navbar';
-import Spotify from '../../components/Api/Spotify';
-import Artist from '../../components/Api/Artist';
+// import Spotify from '../../components/Api/Spotify';
+// import Artist from '../../components/Api/Artist';
 import { Card, CardDeck, Button } from 'react-bootstrap';
 import {
     GridComponent,
@@ -20,11 +20,9 @@ import {
     Filter,
     Group
 } from '@syncfusion/ej2-react-grids';
-import './Table.css';
+
 import API from '../../utils/API';
-
 let apiData = '';
-
 function Dashboard(props) {
     const [state, setState] = useState({
         search: "",
@@ -32,7 +30,6 @@ function Dashboard(props) {
         artist: false,
         channel_id: false,
     });
-
     const [data, setData] = useState([]);
 
     const { isAuth, logout } = useContext(AuthContext);
@@ -43,21 +40,11 @@ function Dashboard(props) {
 
     // const [subscriberCount, setSubscriberCount] = useState();
     // const [viewCount, setViewCount] = useState();
-
     // let count = "";
-
-
-
-
-
-
-
-
     function handleInputChange(event) {
         const { name, value } = event.target;
         console.log("this value", value)
         console.log("state", state);
-
         setState(
             {
                 ...state,
@@ -65,11 +52,9 @@ function Dashboard(props) {
             }
         )
     }
-
     let newData = '';
     function handleSubmit(event) {
         event.preventDefault();
-
         console.log("submitted");
         let url = `http://localhost:3001/api/dashboard/${state.search}`
         axios.get(url)
@@ -77,7 +62,7 @@ function Dashboard(props) {
                 //   const newData = data.data
                 // console.log("this is rout",newData.push(data.data));
                 console.log(state.search)
-                console.log(response.data)
+                console.log("This is the data response ", response.data)
                 
                 newData = response.data.bandsintown.obj.followers[19];
                 newData['artist'] = state.search;
@@ -88,6 +73,8 @@ function Dashboard(props) {
                 const spotifyPopularity = response.data.spotify.obj.popularity.reverse()[0]
                 spotifyPopularity['spotify_timestp'] = spotifyPopularity['timestp']
                 spotifyPopularity['spotify_popularity'] = spotifyPopularity['value']
+                const deezer = response.data.deezer.obj.fans[20].value;
+                console.log("this is the deezer data", response.data.deezer.obj.fans[20])
                 delete spotifyPopularity.timestp
                 delete spotifyPopularity.value
                 console.log(response.data.spotify.obj.popularity)
@@ -96,17 +83,13 @@ function Dashboard(props) {
                 console.log(apiData);
             })
     };
-
-
     // Pass apiData to API util
     function handlePostArtist(event) {
         console.log(apiData)
         API.postMusicAPI(apiData)
     }
-
     return (
         <>
-
             <MyNavbar>
                 <SearchBar
                     name="search"
@@ -114,30 +97,18 @@ function Dashboard(props) {
                     search={state.search}
                     handleInputChange={handleInputChange}
                     handleSubmit={handleSubmit} />
-
             </MyNavbar>
-
-
             <Button variant="primary"
                 variant="outline-primary"
                 onClick={handlePostArtist}
             >Add Artist
             </Button>
-
             <SearchBar
                 name="search"
                 value={state.value}
                 search={state.search}
                 handleInputChange={handleInputChange}
                 handleSubmit={handleSubmit} />
-
-
-
-
-
-
-
-
             <GridComponent style={{ margin: '5%' }} dataSource={data}
                 allowPaging={true}
                 height={268}
@@ -145,7 +116,6 @@ function Dashboard(props) {
                 pageSize={true}
                 allowFiltering={true}
                 allowGroupin={true}
-
             >
                 <ColumnsDirective>
                     <ColumnDirective field='value' headerText='ID' textAlign='Center' width='100' />
@@ -153,27 +123,17 @@ function Dashboard(props) {
                     <ColumnDirective field='performance' headerText='Rating' textAlign='Center' format='c2' width='100' />
                 </ColumnsDirective >
                 <Inject services={[Page, Filter, Group]} />
-
-
             </GridComponent>
-
             <Button className='m-1' onClick={e => {
                 console.log(props.history)
                 e.preventDefault();
                 props.history.push('/table')
             }}>Table</Button>
-
             {/* <Button className='m-1' onClick={e => {
                 console.log(props.history)
                 e.preventDefault();
                 props.history.push('/MyData')
             }}>Data Entry</Button> */}
-
-
-
-
-
-
             {/* <Row>
                 <Col>
                 </Col>
@@ -181,27 +141,10 @@ function Dashboard(props) {
                 <Col>Spotify</Col>
                 <Col>Itunes</Col>
             </Row> */}
-
-
-
-
-
-
         </>
     );
 }
 export default Dashboard;
-
-
-
-
-
-
-
-
-
-
-
 // import React from "react";
 // import {
 //   GridComponent, 
@@ -215,20 +158,13 @@ export default Dashboard;
 // } from '@syncfusion/ej2-react-grids';
 // import data from './dataSource.json';
 // import './Table.css';
-
 // // css code url("https://cdn.syncfusion.com/ej2/material.css")
-
 // // the Json object keys are rendered as the header, and the values as rows. 
 // export default class MyGrid extends React.Component {
-
 //   pageOptions:PageSettingsModel={
-
 //     pageSize:8, pageSizes:true
 //   };
-
-
 //   render(){
-
 //     return<GridComponent dataSource={data}
 //         allowPaging={true}
 //         height={268}
@@ -236,129 +172,33 @@ export default Dashboard;
 //         pageSize={true}
 //         allowFiltering={true}
 //         allowGroupin={true}
-
 //     >
 //       <ColumnsDirective>
 //          <ColumnDirective field='ID' headerText='ID' textAlign='Right' width='100' />
 //          <ColumnDirective field='Customer' headerText='Customer' width='150' />
 //          <ColumnDirective field='Performance' headerText='Performance' />
 //          <ColumnDirective field='Date' headerText='Date' textAlign='Right' format='c2' width='100' />
-
-
 //       </ColumnsDirective >
 //       <Inject services ={[Page,Filter, Group]}/>
-
-
 //     </GridComponent>
-
 //   }
-
-
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // function Dashboard () {
-
-
-
 //     return (
 //         <>
-
 //         <MyNavbar>   
 //             <SearchBar/>
 //         </MyNavbar>
-
-
 //         <Simplecontainer>
-
-
-
-
-
 //             <Api/>
-
-
-
 //                 <Row>
 //                     <Col>
-
 //                     </Col>
 //                     <Col></Col>
 //                     <Col>Spotify</Col>
 //                     <Col>Itunes</Col>
-
 //                 </Row>
-
-
-
-
-
 //         </Simplecontainer>
 //         </>
 //     );
-
 // }
