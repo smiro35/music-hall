@@ -33,7 +33,7 @@ function App() {
       <Route
         {...rest}
         render={props =>
-          !isAuth ? <Redirect to='/login' /> : authorization ? <Component {...props} /> : <Redirect to='/' />
+          !isAuth ? <Redirect to='/login' /> : authorization ? <Component {...props} /> : <Redirect to='/dashboard' />
           // isAuth ? <Component {...props} /> : <Redirect to="/login" />
         }
       />
