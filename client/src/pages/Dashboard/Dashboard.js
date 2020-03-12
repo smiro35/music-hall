@@ -1,147 +1,305 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../../AuthContext'
 import { Row, Col } from 'reactstrap';
 // import YouTube, { artist } from '../../components/Api/YouTube';
-import Simplecontainer from '../../components/Container/Container.js';
+import container from '../../components/Container/Container';
 import numeral from 'numeral';
 import axios from 'axios';
 import SearchBar from '../../components/Search/SearchBar';
 import MyNavbar from '../../components/Navbar/Navbar';
 // import Spotify from '../../components/Api/Spotify';
 // import Artist from '../../components/Api/Artist';
-import { Card, CardDeck, Button } from 'react-bootstrap';
-import {
-    GridComponent,
-    ColumnDirective,
-    ColumnsDirective,
-    Page,
-    PageSettingsModel,
-    Inject,
-    Filter,
-    Group
-} from '@syncfusion/ej2-react-grids';
+import { Card, CardDeck, Button, Container, Table, Image, Figure, ListGroup,CardGroup } from 'react-bootstrap';
+import MyCard from '../../components/Card';
+import MyFigure from '../../components/Cardimage';
+
 
 import API from '../../utils/API';
 let apiData = '';
+
 function Dashboard(props) {
-    const [state, setState] = useState({
-        search: "",
-        value: "",
-        artist: false,
-        channel_id: false,
-    });
-    const [data, setData] = useState([]);
+  const [state, setState] = useState({
+    search: "",
+    value: "",
 
-    const { isAuth, logout } = useContext(AuthContext);
-    console.log("dashboard user: ", isAuth)
+  });
+
+  const [data, setData] = useState(null);
+
+  const [tableData, setTabledata] = useState()
+
+  const { isAuth, logout } = useContext(AuthContext);
+  console.log("dashboard user: ", isAuth)
+
+  // we need to create route to search the database for the artist
+  // make a query to API using the search term
+  // save the results to tableData
+  // then render the table conditionally, (if there is data-render table, if  no data (null, undefined) then dont render whats in data)
+  // if there is no artist: backened needs to 
 
 
+  // const [subscriberCount, setSubscriberCount] = useState();
+  // const [viewCount, setViewCount] = useState();
+  // let count = "";
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    console.log("this value", value)
+    console.log("state", state);
+    setState(
+      {
+        ...state,
+        [name]: value
+      }
+    )
+  }
+  let newData = '';
+  function handleSubmit(event) {
+    event.preventDefault();
+    // console.log("submitted");
+    let url = `http://localhost:3001/api/dashboard/${state.search}`
+    axios.get(url)
+      .then(response => {
+        //   const newData = data.data
+        // console.log("this is rout",newData.push(data.data));
+        // console.log(state.search)
+        let newVal = response.data
+        console.log("new value:", newVal);
 
 
-    // const [subscriberCount, setSubscriberCount] = useState();
-    // const [viewCount, setViewCount] = useState();
-    // let count = "";
-    function handleInputChange(event) {
-        const { name, value } = event.target;
-        console.log("this value", value)
-        console.log("state", state);
-        setState(
-            {
-                ...state,
-                [name]: value
-            }
+        newData = response.data.bandsintown.obj.followers[19];
+        newData['artist'] = state.search;
+        newData['bandsintown'] = newData['value']
+        delete newData.value
+        delete newData.channel_id
+        delete newData.interpolation
+        const spotifyPopularity = response.data.spotify.obj.popularity.reverse()[0]
+        spotifyPopularity['spotify_timestp'] = spotifyPopularity['timestp']
+        spotifyPopularity['spotify_popularity'] = spotifyPopularity['value']
+        const deezer = response.data.deezer.obj.fans[20].value;
+        console.log("this is the deezer data", response.data.deezer.obj.fans[20])
+        delete spotifyPopularity.timestp
+        delete spotifyPopularity.value
+        console.log(response.data.spotify.obj.popularity)
+        console.log(spotifyPopularity)
+        apiData = { ...newData, ...spotifyPopularity };
+        console.log(apiData);
+
+        setData(
+          newVal
         )
-    }
-    let newData = '';
-    function handleSubmit(event) {
-        event.preventDefault();
-        console.log("submitted");
-        let url = `http://localhost:3001/api/dashboard/${state.search}`
-        axios.get(url)
-            .then(response => {
-                //   const newData = data.data
-                // console.log("this is rout",newData.push(data.data));
-                console.log(state.search)
-                console.log("This is the data response ", response.data)
-                
-                newData = response.data.bandsintown.obj.followers[19];
-                newData['artist'] = state.search;
-                newData['bandsintown'] = newData['value']
-                delete newData.value
-                delete newData.channel_id
-                delete newData.interpolation
-                const spotifyPopularity = response.data.spotify.obj.popularity.reverse()[0]
-                spotifyPopularity['spotify_timestp'] = spotifyPopularity['timestp']
-                spotifyPopularity['spotify_popularity'] = spotifyPopularity['value']
-                const deezer = response.data.deezer.obj.fans[20].value;
-                console.log("this is the deezer data", response.data.deezer.obj.fans[20])
-                delete spotifyPopularity.timestp
-                delete spotifyPopularity.value
-                console.log(response.data.spotify.obj.popularity)
-                console.log(spotifyPopularity)
-                apiData = {...newData, ...spotifyPopularity};
-                console.log(apiData);
-            })
-    };
-    // Pass apiData to API util
-    function handlePostArtist(event) {
-        console.log(apiData)
-        API.postMusicAPI(apiData)
-    }
-    return (
-        <>
-            <MyNavbar>
-                <SearchBar
-                    name="search"
-                    value={state.value}
-                    search={state.search}
-                    handleInputChange={handleInputChange}
-                    handleSubmit={handleSubmit} />
-            </MyNavbar>
-            <Button variant="primary"
-                variant="outline-primary"
-                onClick={handlePostArtist}
-            >Add Artist
-            </Button>
-            <SearchBar
-                name="search"
-                value={state.value}
-                search={state.search}
-                handleInputChange={handleInputChange}
-                handleSubmit={handleSubmit} />
-            <GridComponent style={{ margin: '5%' }} dataSource={data}
-                allowPaging={true}
-                height={268}
-                // pageSettings={pageOptions}
-                pageSize={true}
-                allowFiltering={true}
-                allowGroupin={true}
-            >
-                <ColumnsDirective>
-                    <ColumnDirective field='value' headerText='ID' textAlign='Center' width='100' />
-                    <ColumnDirective field='timestp' headerText='Date' textAlign='Center' width='100' />
-                    <ColumnDirective field='performance' headerText='Rating' textAlign='Center' format='c2' width='100' />
-                </ColumnsDirective >
-                <Inject services={[Page, Filter, Group]} />
-            </GridComponent>
-            <Button className='m-1' onClick={e => {
-                console.log(props.history)
-                e.preventDefault();
-                props.history.push('/table')
-            }}>Table</Button>
-            {/* <Button className='m-1' onClick={e => {
-                console.log(props.history)
-                e.preventDefault();
-                props.history.push('/MyData')
-            }}>Data Entry</Button> */}
-            {/* <Row>
-                <Col>
-                </Col>
-                <Col></Col>
-                <Col>Spotify</Col>
-                <Col>Itunes</Col>
-            </Row> */}
-        </>
+
+      })
+
+
+
+
+
+  };
+  useEffect((e) => { console.log("this is our new data", data) }, [data])
+
+  // Pass apiData to API util
+  function handlePostArtist(event) {
+    console.log(apiData)
+    API.postMusicAPI(apiData)
+  }
+  return (
+    <>
+
+<MyNavbar>
+          <SearchBar
+            name="search"
+            value={state.value}
+            search={state.search}
+            handleInputChange={handleInputChange}
+            handleSubmit={handleSubmit} />
+  
+  
+  
+          
+        </MyNavbar>
+
+      {!data ? null :
+ <>
+        
+       
+        <Container fluid>
+        <Row>
+          <Col sm={2}>
+        
+          <MyFigure>
+              here
+            </MyFigure>
+        </Col>
+       
+       
+        <Col sm={10}>
+     
+        {/* we use the Object.key to get our data as an array of api keys(names) */}
+        {Object.keys(data).map((Api_name) => {
+          let time = ""
+          let text = ""
+          let image = ""
+          switch (Api_name) {
+            case "bandsintown":
+              time = data[Api_name].obj.followers[19].timestp
+          text = <h4>followers:{data[Api_name].obj.followers[18].value}</h4>
+              break;
+            case "instagram":
+              time = data[Api_name].obj.followers[0].timestp
+              text = <h4>Followers: {data[Api_name].obj.followers[0].value}</h4>
+              break;
+              // case "soundcloud":
+              // // time = data[Api_name].obj.followers[19].timestp
+              // text = <h4>waiting...</h4>
+              // break;
+              case "spotify":
+              time = data[Api_name].obj.followers[19].timestp
+              text = <div><h4>followers: {data[Api_name].obj.followers[19].value}</h4><h4>popularity:{data[Api_name].obj.popularity[5].value}</h4><h4>listeners:{data[Api_name].obj.listeners[19].value}</h4></div>
+              break;
+              // case "itunes":
+              // // time = data[Api_name].obj.followers[19].timestp
+              // text = <h4>waiting...</h4>
+              // break;
+              case "youtube":
+               
+                text = <div><h4>{data[Api_name].obj.subscribers[0].value}</h4><h4>Views:{data[Api_name].obj.views[0].value}</h4></div>
+              break;
+              // case "amazon":
+              // // time = data[Api_name].obj.followers[19].timestp
+              // text = <h4>waiting...</h4>
+              // break;
+              case "deezer":
+              time = data[Api_name].obj.fans[19].timestp
+              text = <h4>Followers: {data[Api_name].obj.fans[19].value}</h4>
+              break;
+              // case "facebook":
+              // // time = data[Api_name].obj.followers[19].timestp
+              // text = <h4>waiting...</h4>
+              // break;
+              // case "applemusic":
+              // // time = data[Api_name].obj.followers[19].timestp
+              // text = <h4>waiting...</h4>
+              // break;
+
+
+
+
+
+
+
+
+
+
+            default:
+              break;
+          }
+          return (
+          
+
+
+            <Row>
+            <Col sm={2}>
+            
+            
+          </Col>
+         
+         
+          <Col sm={10}>
+       
+       
+            <CardGroup vertical>
+            <MyCard title={Api_name} timestp={time} image={image}>
+
+              {text}
+            </MyCard>
+          </CardGroup>
+          </Col>
+          </Row>
+          )
+
+        })}
+        </Col>
+        </Row>
+        </Container>
+        
+        
+
+        
+  
+     
+ 
+
+
+
+
+
+        
+  <Card>
+    <Card.Img variant="top" src="holder.js/100px160" />
+    <Card.Body>
+      <Card.Title>Card title</Card.Title>
+      <Card.Text>
+        This is a wider card with supporting text below as a natural lead-in to
+        additional content. This card has even longer content than the first to
+        show that equal height action.
+      </Card.Text>
+    </Card.Body>
+    <Card.Footer>
+      <small className="text-muted">Last updated 3 mins ago</small>
+    </Card.Footer>
+  </Card> */}
+      
+
+    
+  
+
+  
+  <Row>
+    <Col md>
+
+      <Table fluid striped bordered hover variant="dark">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Bands in town</th>
+            <th>Instagram</th>
+            <th>Youtube</th>
+            <th>Deezer</th>
+            <th>Spotify</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+
+
+        </tbody>
+      </Table>
+
+
+
+    </Col>
+
+  </Row>
+  </>
+  
+  
+
+
+
+     
+       
+}
+
+</>
+      
     );
 }
 export default Dashboard;
@@ -202,3 +360,32 @@ export default Dashboard;
 //         </>
 //     );
 // }
+
+
+{/* <SearchBar
+                name="search"
+                value={state.value}
+                search={state.search}
+                handleInputChange={handleInputChange}
+                handleSubmit={handleSubmit} /> */}
+
+{/* <Button className='m-1' onClick={e => {
+                console.log(props.history)
+                e.preventDefault();
+                props.history.push('/table')
+            }}>Table</Button> */}
+
+
+{/* <Button className='m-1' onClick={e => {
+                console.log(props.history)
+                e.preventDefault();
+                props.history.push('/MyData')
+            }}>Data Entry</Button> */}
+{/* <Row>
+                <Col>
+                </Col>
+                <Col></Col>
+                <Col>Spotify</Col>
+                <Col>Itunes</Col>
+            </Row> */}
+            

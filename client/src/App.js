@@ -5,14 +5,12 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import NoMatch from "./pages/NoMatch";
 import MyData from "./pages/Data";
+import Login from "./components/LoginForm";
 import Signup from "./components/SingupForm";
 import TablePage from "./pages/TablePage/TablePage.js";
 import Members from './pages/Home/Members'
 import MyNavbar from "./components/Navbar/Navbar";
-import Login from './pages/Home/Login'
-
 // import { AuthProvider } from './AuthContext'
-
 function App(){
   
     // Here we subscribe the authentication context using the useContext hook
@@ -51,11 +49,8 @@ function App(){
         </Switch>
       </Router>
     // </AuthProvider>
-
-
   )
 };
-
 export default () => (
   <AuthProvider>
     <App/>
