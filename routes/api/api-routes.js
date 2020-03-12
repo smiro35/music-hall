@@ -53,7 +53,7 @@ router.get('/dashboard/:artistsearch', async (req, res) => {
   // Code for our ID
   id = await axios.get(`https://api.chartmetric.com/api/search?q=${req.params.artistsearch}`, headers);
   id = id.data.obj.artists[0].id;
-  console.log('id', id);
+  // console.log('id', id);
 
   // API CALLS BELOW ORGANIZED BY ALPHABETICAL ORDER
 
@@ -63,8 +63,8 @@ router.get('/dashboard/:artistsearch', async (req, res) => {
 
   Apiresult = await axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/bandsintown`, headers);
   searched.bandsintown = Apiresult.data;
-  console.log('this is Value', Apiresult.data.obj.followers[19].value);
-  console.log('this is Time', Apiresult.data.obj.followers[19].timestp);
+  // console.log('this is Value', Apiresult.data.obj.followers[19].value);
+  // console.log('this is Time', Apiresult.data.obj.followers[19].timestp);
 
 
   // console.log("this is the val", bandsintown);
@@ -82,7 +82,7 @@ router.get('/dashboard/:artistsearch', async (req, res) => {
   headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
 
   Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/facebook`,headers)
-   console.log("facebook", Apiresult.data);
+  //  console.log("facebook", Apiresult.data);
 
   // searched.facebook = Apiresult.data;
 
@@ -110,11 +110,11 @@ router.get('/dashboard/:artistsearch', async (req, res) => {
   // searched.instagram = Apiresult.data;
 
   // // // //7. Api call for soundcloud
-  // Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
-  // headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+  Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
+  headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
 
-  // Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/soundcloud`,headers)
-  // searched.soundcloud = Apiresult.data;
+  Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/soundcloud`,headers)
+  searched.soundcloud = Apiresult.data;
 
   // // 8.Api call for spotify
   Bearer = await axios.post('https://api.chartmetric.com/api/token', refreshtoken);

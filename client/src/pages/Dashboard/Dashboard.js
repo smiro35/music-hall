@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../../AuthContext'
 import { Row, Col } from 'reactstrap';
 // import YouTube, { artist } from '../../components/Api/YouTube';
@@ -10,19 +10,12 @@ import MyNavbar from '../../components/Navbar/Navbar';
 // import Spotify from '../../components/Api/Spotify';
 // import Artist from '../../components/Api/Artist';
 import { Card, CardDeck, Button, Container, Table, Image, Figure, ListGroup } from 'react-bootstrap';
-import {
-    GridComponent,
-    ColumnDirective,
-    ColumnsDirective,
-    Page,
-    PageSettingsModel,
-    Inject,
-    Filter,
-    Group
-} from '@syncfusion/ej2-react-grids';
+import MyCard from '../../components/Card';
+
 
 import API from '../../utils/API';
 let apiData = '';
+
 function Dashboard(props) {
     const [state, setState] = useState({
         search: "",
@@ -30,12 +23,19 @@ function Dashboard(props) {
         artist: false,
         channel_id: false,
     });
-    const [data, setData] = useState([]);
+
+    const [data, setData] = useState(null);
+
+    const [tableData, setTabledata] = useState()
 
     const { isAuth, logout } = useContext(AuthContext);
     console.log("dashboard user: ", isAuth)
 
-
+    // we need to create route to search the database for the artist
+    // make a query to API using the search term
+    // save the results to tableData
+    // then render the table conditionally, (if there is data-render table, if  no data (null, undefined) then dont render whats in data)
+    // if there is no artist: backened needs to 
 
 
     // const [subscriberCount, setSubscriberCount] = useState();
@@ -55,14 +55,16 @@ function Dashboard(props) {
     let newData = '';
     function handleSubmit(event) {
         event.preventDefault();
-        console.log("submitted");
+        // console.log("submitted");
         let url = `http://localhost:3001/api/dashboard/${state.search}`
         axios.get(url)
             .then(response => {
                 //   const newData = data.data
                 // console.log("this is rout",newData.push(data.data));
-                console.log(state.search)
+                // console.log(state.search)
                 let newVal = response.data
+                console.log("new value:", newVal);
+                
                 
                 newData = response.data.bandsintown.obj.followers[19];
                 newData['artist'] = state.search;
@@ -82,17 +84,19 @@ function Dashboard(props) {
                 apiData = {...newData, ...spotifyPopularity};
                 console.log(apiData);
 
-                setState({
-                    ...state,
-                    value:url
-                })
-                console.log("this is our new state", state);
+                setData(
+                  newVal
+                )
+                
             })
+
 
 
             
             
     };
+       useEffect((e)=>{console.log("this is our new data", data)},[data])
+
     // Pass apiData to API util
     function handlePostArtist(event) {
         console.log(apiData)
@@ -107,6 +111,8 @@ function Dashboard(props) {
                     search={state.search}
                     handleInputChange={handleInputChange}
                     handleSubmit={handleSubmit} />
+
+
             
             {/* <Button variant="primary"
                 variant="outline-primary"
@@ -115,7 +121,8 @@ function Dashboard(props) {
             </Button> */}
             </MyNavbar>
            
-   
+            { !data ?   null : 
+
             <Container>
                 {/* Below is a row for iamge and cards */}
   <Row style={{backgroundColor:"#462560"}}>
@@ -150,17 +157,45 @@ function Dashboard(props) {
     <Col md={10}>
 
     <CardDeck>
-  <Card>
+      {/* we use the Object.key to get our data as an array of api keys(names) */}
+    {Object.keys(data).map((Api_name)=>{
+      let time =""
+      let text =""
+      let image =""
+      switch (Api_name) {
+        case "bandsintown":
+          image = "https://images.squarespace-cdn.com/content/v1/5abaf6c9f93fd495aa7696c5/1556897789999-TFH6EK0JC9772TJ07PSV/ke17ZwdGBToddI8pDm48kBP-8YR0ZUo-llfNFvniHppZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIfJBZanVLSiTq882QYFZwU5lpazXutfxgGOU7y6dFHrQ/hand+logo.png"
+          time = data[Api_name].obj.followers[19].timestp
+          text = <h4>Followers:{data[Api_name].obj.followers[19].value}</h4>
+          break;
+          case "spotify":
+          // time = data[Api_name].obj.followers[19].timestp
+          text = <div><h4>one</h4><h4>two</h4></div>
+          break;
+      
+        default:
+          break;
+      }
+      return (
+        <MyCard title={Api_name} timestp={time} image={image}>
+
+          {text}
+        </MyCard>
+      )
+
+    })}
+  
+
+  {/* <Card>
     <Card.Img variant="top" src="holder.js/100px160" />
     <Card.Body>
-      <Card.Title>Card title</Card.Title>
+      <Card.Title>Band in Town</Card.Title>
       <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This content is a little bit longer.
+         <h4>Followers:</h4>
       </Card.Text>
     </Card.Body>
     <Card.Footer>
-      <small className="text-muted">Last updated 3 mins ago</small>
+      <small className="text-muted">Last updated:</small>
     </Card.Footer>
   </Card>
   <Card>
@@ -189,7 +224,7 @@ function Dashboard(props) {
     <Card.Footer>
       <small className="text-muted">Last updated 3 mins ago</small>
     </Card.Footer>
-  </Card>
+  </Card> */}
 </CardDeck>
 
 
@@ -231,7 +266,7 @@ function Dashboard(props) {
   </Row>
 </Container>
 
-
+}
 
      
         </>
