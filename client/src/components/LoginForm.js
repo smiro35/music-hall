@@ -4,21 +4,17 @@ import { AuthContext } from '../AuthContext';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import Axios from 'axios';
-
 const LoginForm = props => {
-
     const { setIsAuth, setUser, isAuth } = useContext(AuthContext)
     const emptyCreds = { emailInput: '', passwordInput: '' }
     const errorMessage = 'invalid credentials'
     const [formData, setFormData] = useState(emptyCreds)
     const [credsAreInvalid, setCredsAreInvalid] = useState('')
-
     const handleInputChange = event => {
         event.preventDefault()
         const { name, value } = event.target
         setFormData({ ...formData, [name]: value });
     }
-
     const handleFormSubmit = event => {
         event.preventDefault()
         const inputCreds = {
@@ -28,7 +24,6 @@ const LoginForm = props => {
         login(inputCreds)
         setFormData(emptyCreds)
     }
-
     const login = loginCreds => {
         Axios.post('/api/auth/login', loginCreds)
             .then(response => {
@@ -41,7 +36,6 @@ const LoginForm = props => {
                 console.log(err)
             })
     }
-
     return (
         <>
             {isAuth && <Redirect to="/dashboard" />}
@@ -74,5 +68,4 @@ const LoginForm = props => {
         </>
     )
 }
-
 export default LoginForm;
