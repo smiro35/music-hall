@@ -8,6 +8,7 @@ export function TableData({ children }) {
        <Table dark>
       <thead>
          <tr>
+           <th></th>
            <th>I.D</th>
            <th>Performance</th>
            <th>Date</th>
@@ -16,9 +17,12 @@ export function TableData({ children }) {
            <th>Total Attendance</th>
            <th>Average Ticket Price</th>
            <th>Percent Sold</th>
-           <th>Show Success</th>
+           <th>Predicted Success</th>
+           <th>Actual Success</th>
+           <th>Predictability</th>
+           <th>Marketing Budget</th>
            <th>Fiscal Year</th>
-          <th>Genre</th>
+           <th>Genre</th>
          </tr>
        </thead>
        <tbody>

@@ -14,10 +14,10 @@ function MyForm() {
       fiscalYear: 0,
       total$: 0,
       genre: "",
-      projectedSuccess: "",
-      actualSuccess: "",
+      projected_success: "",
+      actual_success: "",
       predictability: "",
-      marketingBudget: 0
+      marketing_budget: 0
     }
   )
   // const [formObject, setFormObject] = useformObject({})
@@ -81,6 +81,11 @@ function MyForm() {
         total_attendance: formObject.attendance,
         average_ticket_price: formObject.avgTicketPrice,
         percent_sold: formObject.percentSold,
+        projected_success: formObject.projected_success,
+        actual_success: formObject.actual_success,
+        predictability: formObject.predictability,
+        marketing_budget: formObject.marketing_budget,
+
         ArtistId: null
       })
       .then(data => console.log("This is it"+ data))

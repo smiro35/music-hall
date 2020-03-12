@@ -4,6 +4,9 @@ import SearchBar from '../Api/SearchBar';
 import { AuthProvider, AuthContext } from '../../AuthContext.js'
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
+import Logo from '../../music_hall.jpg'
+
+
 
 
 function MyNavbar(props){
@@ -12,13 +15,21 @@ function MyNavbar(props){
     <div>
 
 <Navbar bg="light" expand="lg">
-  <Navbar.Brand href="#home">Music Hall Logo</Navbar.Brand>
+  <Navbar.Brand href="#home">
+    <img
+        src={Logo}
+        width="161.25"
+        height="75"
+        className="d-inline-block align-top"
+        alt=" "></img>
+  </Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/Dashboard">Dashboard</NavLink>
-      <NavLink to="/Table">Table</NavLink>
+      <NavLink to="/">Home  </NavLink>
+
+      <NavLink to="/Dashboard">Dashboard  </NavLink>
+      <NavLink to="/Table">Table  </NavLink>
       <NavLink to="/MyData">Data-Entry</NavLink>
       
 

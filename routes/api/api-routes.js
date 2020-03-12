@@ -245,6 +245,13 @@ router.put('/performances/:id', (req, res) => {
     });
 });
 
+// router.delete('/performances/:id', (req, res) => {
+//   console.log(req.params.id);
+//   db.Performances.destroy({
+//     where: {
+//       id: req.params.id,
+//     }
+// });
 
 // posts new artist if artist does not exist in database
 router.post('/artists', (req, res) => {
