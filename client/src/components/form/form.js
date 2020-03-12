@@ -9,7 +9,7 @@ import { ArtistOptionsData, OptionItem } from './ArtistOptionsData.js';
 function MyForm() {
   
   const [artists, setArtists] = useState([])
-  
+  console.log(artists)
   const [formObject, setformObject] = useState(
     {
       artist: "",
@@ -54,7 +54,7 @@ function loadArtists() {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-    console.log("this the event" + event.target.name);
+    console.log(event.target.name);
     setformObject({
       ...formObject,
       artist:formObject.artist,
@@ -83,6 +83,8 @@ function loadArtists() {
   //   .then(data => console.log(data))
   //   .catch(err => console.log(err);
   // }
+
+
   function handleFormSubmit(event) {
     console.log("button was pressed")
     console.log(formObject);
@@ -144,7 +146,6 @@ return (
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Artist</Form.Label>
           {/* <Form.Control as="select" name="artist" onChange={handleInputChange} placeholder="Select an Artist"> */}
-            
               {artists.length ? (
                 <ArtistOptionsData>
                 {artists.map(artist => {
