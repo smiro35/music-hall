@@ -71,7 +71,7 @@ function Dashboard(props) {
         event.preventDefault();
 
         console.log("submitted");
-        let url = `http://localhost:3001/api/dashboard/${state.search}`
+        let url = `/api/dashboard/${state.search}`
         axios.get(url)
             .then(response => {
                 //   const newData = data.data

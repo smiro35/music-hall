@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import SimpleContainer from '../Container/Container'
 import { Form, Col, Button, Container } from "react-bootstrap";
 import API from "../../utils/API.js";
+import { ArtistOptionsData, OptionItem } from './ArtistOptionsData.js';
+
+
+
 function MyForm() {
+  
+  const [artists, setArtists] = useState([])
+  
   const [formObject, setformObject] = useState(
     {
       artist: "",
@@ -20,6 +27,21 @@ function MyForm() {
       marketingBudget: 0
     }
   )
+
+// Load all performances within setArtists
+useEffect(() => {
+  loadArtists()
+}, [])
+ 
+// Load all artists and set to artists
+function loadArtists() {
+    API.getArtists()
+        .then(res =>
+            setArtists(res.data)
+        )
+        .catch(error => console.log(error));
+}
+
   // const [formObject, setFormObject] = useformObject({})
   // console.log("checking" + formObject);
   console.log(formObject);
@@ -121,7 +143,23 @@ return (
       <Form.Row>
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Artist</Form.Label>
-          <Form.Control type="text" name="artist" value={formObject.artist} onChange={handleInputChange} placeholder="Enter artist name" />
+          {/* <Form.Control as="select" name="artist" onChange={handleInputChange} placeholder="Select an Artist"> */}
+            
+              {artists.length ? (
+                <ArtistOptionsData>
+                {artists.map(artist => {
+                    return (
+                    <OptionItem
+                    key={artist.id}>
+                            {artist.artist_name}
+                    </OptionItem>
+
+                    )
+                })}
+            </ArtistOptionsData>) : (
+                <option>No Results</option>
+            )} 
+          {/* </Form.Control> */}
         </Form.Group>
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Date of the Performance</Form.Label>

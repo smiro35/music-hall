@@ -33,6 +33,15 @@ router.get('/performances/:id', (req, res) => {
   });
 });
 
+// GET index, all artists
+router.get('/artists', (req, res) => {
+  db.Artists.findAll({
+  }).then((Artists) => {
+    console.log(Artists);
+    res.json(Artists);
+  });
+});
+
 // GET Route for Chartmetrics API
 router.get('/dashboard/:artistsearch', async (req, res) => {
   const searched = {};
