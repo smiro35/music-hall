@@ -12,6 +12,7 @@ import MyNavbar from '../../components/Navbar/Navbar';
 import { Card, CardDeck, Button, Container, Table, Image, Figure, ListGroup,CardGroup } from 'react-bootstrap';
 import MyCard from '../../components/Card';
 import MyFigure from '../../components/Cardimage';
+import ApiTable from '../../components/APiTable';
 
 
 
@@ -89,11 +90,25 @@ function Dashboard(props) {
   };
   useEffect((e) => { console.log("this is our new data", data) }, [data])
 
+  function tableDisplay(event){
+    console.log("table data:", data);
+    
+  }
+ 
+ 
+ 
   // Pass apiData to API util
   function handlePostArtist(event) {
+    console.log("click before");
+    
     console.log(apiData)
     API.postMusicAPI(apiData)
+    tableDisplay();
+    console.log("clicked after");
+    
   }
+
+  
   return (
     <>
 <MyNavbar>
@@ -149,8 +164,8 @@ function Dashboard(props) {
               // text = <h4>waiting...</h4>
               // break;
               case "spotify":
-              time = data[Api_name].obj.followers[19].timestp
-              text = <div><h4>followers: {data[Api_name].obj.followers[19].value}</h4><h4>popularity:{data[Api_name].obj.popularity[5].value}</h4><h4>listeners:{data[Api_name].obj.listeners[19].value}</h4></div>
+              time = data[Api_name].obj.followers[0].timestp
+              text = <div><h4>followers: {data[Api_name].obj.followers[0].value}</h4><h4>popularity:{data[Api_name].obj.popularity[5].value}</h4><h4>listeners:{data[Api_name].obj.listeners[19].value}</h4></div>
               break;
               case "youtube":
                
@@ -181,11 +196,13 @@ function Dashboard(props) {
           </Container>
        </Col>
 
-       
+        
         
         </Row>
         </Container>        
-  
+        <Container>
+          <ApiTable/>
+        </Container>
   <Row>
     
   </Row>

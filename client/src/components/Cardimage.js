@@ -3,6 +3,11 @@ import{Figure, ListGroup, Button} from 'react-bootstrap';
 
 function MyFigure(props){
 
+  // function handleThem(e){
+  //   props.handlePostArtist(); 
+  //   props.tableDisplay();
+  // }
+
 
  return(
 
