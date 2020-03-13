@@ -14,6 +14,7 @@ import MyCard from '../../components/Card';
 import MyFigure from '../../components/Cardimage';
 
 
+
 import API from '../../utils/API';
 let apiData = '';
 
@@ -118,7 +119,13 @@ function Dashboard(props) {
           
         </MyNavbar>
 
-      {!data ? null :
+      {!data ? <container> <img
+          src="https://www.nhpr.org/sites/nhpr/files/styles/x_large/public/201909/Telluride.jpg"
+          width="100%"
+          height="50%"
+          // margin="20%"
+          
+          alt=" "></img> </container> :
  <>
         
        
