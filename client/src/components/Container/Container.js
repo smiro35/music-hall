@@ -4,7 +4,7 @@ import{Container,Row,Col} from "react-bootstrap"
 
 function container(props) {
   return (
-    <Container>
+    <Container style={{mariginBottom:"100%"}}>
     {props.children}
 </Container>
   );
