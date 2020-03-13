@@ -8,7 +8,7 @@ function MyFigure(props){
 
     <Figure>
     <Figure.Image
-      roundedCircle
+      
       width={171}
       height={180}
       alt="171x180"
@@ -22,7 +22,7 @@ function MyFigure(props){
 
       </ListGroup>
     </Figure.Caption>
-    <Button variant="primary" size="lg" block onClick={props.handlePostArtist}>
+    <Button variant="primary" size="sm" onClick={props.handlePostArtist}>
       Add to database
 </Button>
   </Figure>
