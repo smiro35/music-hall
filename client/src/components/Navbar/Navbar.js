@@ -5,6 +5,10 @@ import { AuthProvider, AuthContext } from '../../AuthContext.js'
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 import Logo from '../../music_hall.jpg'
+import Home from "../../pages/Home/Home";
+import Dashboard from "../../pages/Dashboard/Dashboard";
+import MyData from "../../pages/Data/Data";
+import TablePage from "../../pages/TablePage/TablePage.js";
 
 
 function MyNavbar(props){
@@ -25,10 +29,10 @@ function MyNavbar(props){
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
-      <Nav.Link to="/">Home</Nav.Link>
-      <Nav.Link to="/Dashboard">Dashboard</Nav.Link>
-      <Nav.Link to="/Table">Table</Nav.Link>
-      <Nav.Link to="/MyData">Data-Entry</Nav.Link>
+      <Nav.Link href="/Home">Home</Nav.Link>
+      <Nav.Link href="/Dashboard">Dashboard</Nav.Link>
+      <Nav.Link href="/TablePage ">Table</Nav.Link>
+      <Nav.Link href="/MyData">Data-Entry</Nav.Link>
       </Nav>
       <div>{props.children}</div>
     </Navbar.Collapse>
