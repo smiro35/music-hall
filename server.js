@@ -4,6 +4,7 @@ const path = require('path');
 const logger = require('morgan');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const db = require('./models');
 const routes = require('./routes');
 
@@ -28,7 +29,6 @@ app.use(passport.session());
 
 
 // Cross-orgin reference middleware
-const cors = require('cors');
 
 app.use(cors());
 
@@ -57,4 +57,3 @@ db.sequelize.sync({ force: false })
       console.log('*************************************\n');
     });
   });
-

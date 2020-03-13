@@ -16,10 +16,10 @@ function MyNavbar(props){
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/Dashboard">Dashboard</NavLink>
-      <NavLink to="/Table">Table</NavLink>
-      <NavLink to="/MyData">Data-Entry</NavLink>
+      <Nav.Link> <NavLink to="/">Home</NavLink></Nav.Link>
+      <Nav.Link><NavLink to="/Dashboard">Dashboard</NavLink></Nav.Link>
+      <Nav.Link><NavLink to="/Table">Table</NavLink></Nav.Link>
+      <Nav.Link><NavLink to="/MyData">Data-Entry</NavLink></Nav.Link>
       
 
 

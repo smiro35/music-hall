@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 // import SimpleContainer from '../Container/Container'
 import { Form, Col, Button, Container } from "react-bootstrap";
 import API from "../../utils/API.js";
-import { ArtistOptionsData, OptionItem } from './ArtistOptionsData.js';
 
 
 
@@ -54,12 +53,12 @@ function loadArtists() {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-    console.log(event.target.name);
+    console.log(event.target.value);
     setformObject({
       ...formObject,
-      artist:formObject.artist,
-      date:formObject.date,
-      ticketsSold:formObject.ticketsSold,
+      // artist:formObject.artist,
+      // date:formObject.date,
+      // ticketsSold:formObject.ticketsSold,
       [name]:value
     });
   }
@@ -88,24 +87,17 @@ function loadArtists() {
   function handleFormSubmit(event) {
     console.log("button was pressed")
     console.log(formObject);
-    // if (formObject.title && formObject.author) {
-      // fetch("http://localhost:3001/api/performances", {
-      //   method: 'POST',
-      //   headers: {
-      //     'Accept': 'application/json',
-      //     'Content-Type': 'application/json'}
-      //   })
       if (formObject.artist && formObject.date){
 
         API.postPerformance({
-        performance: formObject.artist,
+        ArtistId: formObject.artist,
         date: formObject.date,
         total_sold: formObject.ticketsSold,
         total_money: formObject.total$,
         total_attendance: formObject.attendance,
         average_ticket_price: formObject.avgTicketPrice,
         percent_sold: formObject.percentSold,
-        ArtistId: null
+        actual_success: formObject.actualSuccess
       })
       .then(data => console.log("This is it"+ data))
       .catch(err => console.log(err))
@@ -145,22 +137,16 @@ return (
       <Form.Row>
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Artist</Form.Label>
-          {/* <Form.Control as="select" name="artist" onChange={handleInputChange} placeholder="Select an Artist"> */}
+          <Form.Control as="select" name="artist" onChange={handleInputChange} placeholder="Select an Artist">
               {artists.length ? (
-                <ArtistOptionsData>
-                {artists.map(artist => {
+                artists.map(artist => {
                     return (
-                    <OptionItem
-                    key={artist.id}>
-                            {artist.artist_name}
-                    </OptionItem>
-
+                      <option value={artist.id}>{artist.artist_name}</option>
                     )
-                })}
-            </ArtistOptionsData>) : (
+                })) : (
                 <option>No Results</option>
             )} 
-          {/* </Form.Control> */}
+          </Form.Control>
         </Form.Group>
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Date of the Performance</Form.Label>

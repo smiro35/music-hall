@@ -3,24 +3,25 @@ import { Form, Col, Button, Container } from "react-bootstrap";
 
 export function ArtistOptionsData({ children }) {
 
-  const [formObject, setformObject] = useState(
-    {
-      artist: "",
-    })
 
-  function inputData(event) {
-    console.log(event.target);
-    setformObject({
-      ...formObject,
-      artist: formObject.artist
+  // const [formObject, setformObject] = useState(
+  //   {
+  //     artist: "",
+  //   })
 
-    })
-  }
+  // function inputData(event) {
+  //   console.log(event.target);
+  //   setformObject({
+  //     ...formObject,
+  //     artist: formObject.artist
+
+  //   })
+  // }
 
   return (
 
 
-    <Form.Control as="select" placeholder="Select an Artist" onChange={inputData}>
+    <Form.Control as="select" placeholder="Select an Artist">
       {children}
     </Form.Control>
 

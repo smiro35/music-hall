@@ -14,7 +14,7 @@ module.exports = function (sequelize, DataTypes) {
     total_sold: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
+      unique: false,
     },
     spotify_reach: {
       type: DataTypes.STRING,

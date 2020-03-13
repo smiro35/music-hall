@@ -80,18 +80,18 @@ router.get('/dashboard/:artistsearch', async (req, res) => {
 
 
   // // 2.Api call for deezer
-  Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
-  headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+  Bearer = await axios.post('https://api.chartmetric.com/api/token', refreshtoken);
+  headers.headers.Authorization = `Bearer ${Bearer.data.token}`;
 
-  Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/deezer`,headers)
+  Apiresult = await axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/deezer`, headers);
   searched.deezer = Apiresult.data;
 
   // // // //3. Api call for Facebook
-  Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
-  headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
+  Bearer = await axios.post('https://api.chartmetric.com/api/token', refreshtoken);
+  headers.headers.Authorization = `Bearer ${Bearer.data.token}`;
 
-  Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/facebook`,headers)
-   console.log("facebook", Apiresult.data);
+  Apiresult = await axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/facebook`, headers);
+  console.log('facebook', Apiresult.data);
 
   // searched.facebook = Apiresult.data;
 
@@ -184,55 +184,71 @@ router.get('/dashboard/:artistsearch', async (req, res) => {
 
 // POST create, create a new performance
 router.post('/performances', (req, res) => {
-  const performance = req.body;
-  db.Artists.findOne({
-    where: {
-      artist_name: performance.performance,
-    },
-  }).then((dbArtist) => {
-    // assign artist ID if artist exists
-    if (dbArtist) {
-      req.body.ArtistId = dbArtist.id;
-      db.Performances.create(performance)
-        .then((results) => {
-          res.json({
-            success: results,
-          });
-        })
-        .catch((err) => {
-          res.status(500).json({
-            success: false,
-            errors: err.errors,
-          });
-        });
-
-      // create artist and assign new ID if no artsist exist
-    } else {
-      const newArtist = {
-        artist_name: performance.performance,
-      };
-      db.Artists.create(newArtist)
-        .then((results) => {
-          console.log(results);
-          req.body.ArtistId = results.id;
-        }).then(() => {
-          console.log(performance);
-          db.Performances.create(performance)
-            .then((results) => {
-              res.json({
-                success: results,
-              });
-            });
-        })
-        .catch((err) => {
-          res.status(500).json({
-            success: false,
-            errors: err.errors,
-          });
-        });
-    }
-  });
+  console.log(req.body);
+  db.Performances.create(req.body).then((results) => {
+    res.json({
+      success: results,
+    });
+  })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        errors: err.errors,
+      });
+    });
 });
+
+
+// router.post('/performances', (req, res) => {
+//   const performance = req.body;
+//   db.Artists.findOne({
+//     where: {
+//       artist_name: performance.performance,
+//     },
+//   }).then((dbArtist) => {
+// assign artist ID if artist exists
+// if (dbArtist) {
+//   req.body.ArtistId = dbArtist.id;
+//   db.Performances.create(performance)
+//     .then((results) => {
+//       res.json({
+//         success: results,
+//       });
+//     })
+//     .catch((err) => {
+//       res.status(500).json({
+//         success: false,
+//         errors: err.errors,
+//       });
+//     });
+
+// create artist and assign new ID if no artsist exist
+//     } else {
+//       const newArtist = {
+//         artist_name: performance.performance,
+//       };
+//       db.Artists.create(newArtist)
+//         .then((results) => {
+//           console.log(results);
+//           req.body.ArtistId = results.id;
+//         }).then(() => {
+//           console.log(performance);
+//           db.Performances.create(performance)
+//             .then((results) => {
+//               res.json({
+//                 success: results,
+//               });
+//             });
+//         })
+//         .catch((err) => {
+//           res.status(500).json({
+//             success: false,
+//             errors: err.errors,
+//           });
+//         });
+//     }
+//   });
+// });
 
 // PUT update, update an existing performance by id
 router.put('/performances/:id', (req, res) => {
