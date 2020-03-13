@@ -126,8 +126,15 @@ function Dashboard(props) {
         <Row>
           <Col sm={2}>
         
-          <MyFigure>
-              here
+          <MyFigure 
+          image={data.id.obj.image_url}
+          rank={data.id.obj.cm_artist_rank}
+          genre={data.id.obj.tags[0].name}
+          artist_name={data.id.obj.name}
+          >
+              {/* genre ={data.id.obj.tag[0].name} */}
+              
+
             </MyFigure>
         </Col>
        
@@ -233,21 +240,7 @@ function Dashboard(props) {
 
 
 
-        
-  <Card>
-    <Card.Img variant="top" src="holder.js/100px160" />
-    <Card.Body>
-      <Card.Title>Card title</Card.Title>
-      <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This card has even longer content than the first to
-        show that equal height action.
-      </Card.Text>
-    </Card.Body>
-    <Card.Footer>
-      <small className="text-muted">Last updated 3 mins ago</small>
-    </Card.Footer>
-  </Card> */}
+ 
       
 
     
@@ -255,37 +248,7 @@ function Dashboard(props) {
 
   
   <Row>
-    <Col md>
-
-      <Table fluid striped bordered hover variant="dark">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Bands in town</th>
-            <th>Instagram</th>
-            <th>Youtube</th>
-            <th>Deezer</th>
-            <th>Spotify</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-          </tr>
-
-
-        </tbody>
-      </Table>
-
-
-
-    </Col>
+    
 
   </Row>
   </>
@@ -388,4 +351,3 @@ export default Dashboard;
                 <Col>Spotify</Col>
                 <Col>Itunes</Col>
             </Row> */}
-            
