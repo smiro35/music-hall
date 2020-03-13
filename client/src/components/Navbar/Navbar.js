@@ -9,6 +9,7 @@ import Home from "../../pages/Home/Home";
 import Dashboard from "../../pages/Dashboard/Dashboard";
 import MyData from "../../pages/Data/Data";
 import TablePage from "../../pages/TablePage/TablePage.js";
+import{LinkContainer} from 'react-router-bootstrap'
 
 
 function MyNavbar(props){
@@ -17,7 +18,7 @@ function MyNavbar(props){
 
 
     <Navbar bg="light" expand="lg">
-    <Navbar.Brand href="/home">
+    <Navbar.Brand to="/home">
     <img
           src={Logo}
           width="161.25"
@@ -29,10 +30,18 @@ function MyNavbar(props){
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
-      <Nav.Link href="/Home">Home</Nav.Link>
-      <Nav.Link href="/Dashboard">Dashboard</Nav.Link>
-      <Nav.Link href="/TablePage ">Table</Nav.Link>
-      <Nav.Link href="/MyData">Data-Entry</Nav.Link>
+        <LinkContainer to="/">
+      <Nav.Link >Home</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to="/Dashboard">
+      <Nav.Link >Dashboard</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to="/table">
+      <Nav.Link>Table</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to="/MyData">
+      <Nav.Link >Data-Entry</Nav.Link>
+      </LinkContainer>
       </Nav>
       <div>{props.children}</div>
     </Navbar.Collapse>
@@ -72,7 +81,7 @@ export default MyNavbar
 
 
 //     <Navbar bg="light" expand="lg">
-// //   <Navbar.Brand href="#home">
+// //   <Navbar.Brand to="#home">
 
 // //   <img
 //         src={Logo}
@@ -85,8 +94,8 @@ export default MyNavbar
 //   <Navbar.Toggle aria-controls="basic-navbar-nav" />
 //   <Navbar.Collapse id="basic-navbar-nav">
 //     <Nav className="mr-auto">
-//       <Nav.Link href="#home">Home</Nav.Link>
-//       <Nav.Link href="#link">Link</Nav.Link>
+//       <Nav.Link to="#home">Home</Nav.Link>
+//       <Nav.Link to="#link"Item</Nav.Link>
       
 //     </Nav>
 //     <Form inline>
@@ -111,16 +120,16 @@ export default MyNavbar
 //       <p>List Based</p>
 //       <Nav vertical>
 //        >
-//           <NavLink href="#">Link</NavLink>
+//           <NavLink to="#"Item</NavLink>
 //         >
 //        >
-//           <NavLink href="#">Link</NavLink>
+//           <NavLink to="#"Item</NavLink>
 //         >
 //        >
-//           <NavLink href="#">Another Link</NavLink>
+//           <NavLink to="#">AnotherItem</NavLink>
 //         >
 //        >
-//           <NavLink disabled href="#">Disabled Link</NavLink>
+//           <NavLink disabled to="#">DisabledItem</NavLink>
 //         >
 //       </Nav>
      
@@ -135,14 +144,14 @@ export default MyNavbar
 
 
 //   <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  //   <Link className="navbar-brand" to="#">Navbar</Link>
+  //   Item className="navbar-brand" to="#">Navbar<Item>
   //   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
   //     <span className="navbar-toggler-icon"></span>
   //   </button>
   //   <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
   //     <div className="navbar-nav">
-  //       <Link className="nav-item nav-link active" to="/">Home <span className="sr-only"></span></Link>
-  //       <Link className="nav-item nav-link" to="Dashboard">Dashboard</Link>
+  //       Item className="nav-item nav-link active" to="/">Home <span className="sr-only"></span><Item>
+  //       Item className="nav-item nav-link" to="Dashboard">Dashboard<Item>
    
   //       <button className="nav-link active" to="#">VIEW TABLE </button>
   //      </div>

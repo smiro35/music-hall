@@ -113,7 +113,7 @@ function Dashboard(props) {
           
           alt=" "></img> </container> :
  <>
-        <Container fluid>
+        <Container fluid style={{backgroundColor:"#462560"}} width="100%" height="100%">
         <Row>
           <Col sm={4}>
         
