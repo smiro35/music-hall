@@ -16,9 +16,9 @@ function MyFigure(props){
     />
     <Figure.Caption>
       <ListGroup horizontal>
- <ListGroup.Item>Name:{props.children}</ListGroup.Item>
-        <ListGroup.Item>Genre: {props.children}</ListGroup.Item>
-        <ListGroup.Item>CM Rank: {props.children}</ListGroup.Item>
+ <ListGroup.Item>Name:{props.artist_name}</ListGroup.Item>
+        <ListGroup.Item>Genre: {props.genre}</ListGroup.Item>
+        <ListGroup.Item>CM Rank: {props.rank}</ListGroup.Item>
 
       </ListGroup>
     </Figure.Caption>

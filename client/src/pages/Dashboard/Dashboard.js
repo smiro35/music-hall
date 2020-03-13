@@ -108,11 +108,17 @@ function Dashboard(props) {
  <>
         <Container fluid>
         <Row>
-          <Col md={4}>
-          <MyFigure
-          image = {data.id.obj.image_url}
+          <Col sm={4}>
+        
+          <MyFigure 
+          image={data.id.obj.image_url}
+          rank={data.id.obj.cm_artist_rank}
+          genre={data.id.obj.tags[0].name}
+          artist_name={data.id.obj.name}
           >
-              here
+              {/* genre ={data.id.obj.tag[0].name} */}
+              
+
             </MyFigure>
         {/* we use the Object.key to get our data as an array of api keys(names) */}
        </Col>

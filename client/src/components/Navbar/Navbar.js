@@ -1,37 +1,48 @@
 import React, { useState, useContext } from 'react';
-import { Nav, NavItem, Navbar, Form,Button,FormControl } from 'react-bootstrap';
+import { Nav, Navbar, Form,Button,FormControl } from 'react-bootstrap';
 import SearchBar from '../Search/SearchBar';
 import { AuthProvider, AuthContext } from '../../AuthContext.js'
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
+import Logo from '../../music_hall.jpg'
 
 
 function MyNavbar(props){
 
   return (
- 
 
-<Navbar bg="light" expand="lg">
-  <Navbar.Brand href="#home">Music Hall Logo</Navbar.Brand>
-  <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="mr-auto">
-      <NavItem>
-      <NavLink to="/">Home</NavLink>
-      </NavItem>
-      <NavItem>
-      <NavLink to="/Dashboard">Dashboard</NavLink>
-      </NavItem>
-      <NavItem>
-      <NavLink to="/Table">Table</NavLink>
-      </NavItem>
-      <NavItem>
-      <NavLink to="/MyData">Data-Entry</NavLink>
-      </NavItem>
-       </Nav>
-  </Navbar.Collapse>
-  <div>{props.children}</div>
-</Navbar>
+
+    <Navbar bg="light" expand="lg">
+    <Navbar.Brand href="/home">
+    <img
+          src={Logo}
+          width="161.25"
+          height="75"
+          className="d-inline-block align-top"
+          alt=" "></img>
+  
+    </Navbar.Brand>
+    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="mr-auto">
+      <Nav.Link to="/">Home</Nav.Link>
+      <Nav.Link to="/Dashboard">Dashboard</Nav.Link>
+      <Nav.Link to="/Table">Table</Nav.Link>
+      <Nav.Link to="/MyData">Data-Entry</Nav.Link>
+      </Nav>
+      <div>{props.children}</div>
+    </Navbar.Collapse>
+  </Navbar> 
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -56,6 +67,30 @@ export default MyNavbar
 
 
 
+//     <Navbar bg="light" expand="lg">
+// //   <Navbar.Brand href="#home">
+
+// //   <img
+//         src={Logo}
+//         width="161.25"
+//         height="75"
+//         className="d-inline-block align-top"
+//         alt=" "></img>
+
+//   </Navbar.Brand>
+//   <Navbar.Toggle aria-controls="basic-navbar-nav" />
+//   <Navbar.Collapse id="basic-navbar-nav">
+//     <Nav className="mr-auto">
+//       <Nav.Link href="#home">Home</Nav.Link>
+//       <Nav.Link href="#link">Link</Nav.Link>
+      
+//     </Nav>
+//     <Form inline>
+//       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+//       <Button variant="outline-success">Search</Button>
+//     </Form>
+//   </Navbar.Collapse>
+// </Navbar>
 
 
 
@@ -63,25 +98,26 @@ export default MyNavbar
 
 
 
-// import { Nav, NavItem, NavLink } from 'reactstrap';
+
+// import { Nav, NavLink } from 'reactstrap';
 
 // const Sidenav = (props) => {
 //   return (
 //     <div>
 //       <p>List Based</p>
 //       <Nav vertical>
-//         <NavItem>
+//        >
 //           <NavLink href="#">Link</NavLink>
-//         </NavItem>
-//         <NavItem>
+//         >
+//        >
 //           <NavLink href="#">Link</NavLink>
-//         </NavItem>
-//         <NavItem>
+//         >
+//        >
 //           <NavLink href="#">Another Link</NavLink>
-//         </NavItem>
-//         <NavItem>
+//         >
+//        >
 //           <NavLink disabled href="#">Disabled Link</NavLink>
-//         </NavItem>
+//         >
 //       </Nav>
      
 //     </div>
