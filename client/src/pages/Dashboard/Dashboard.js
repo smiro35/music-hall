@@ -22,13 +22,9 @@ function Dashboard(props) {
   const [state, setState] = useState({
     search: "",
     value: "",
-
   });
-
   const [data, setData] = useState(null);
-
   const [tableData, setTabledata] = useState()
-
   const { isAuth, logout } = useContext(AuthContext);
   console.log("dashboard user: ", isAuth)
 
@@ -66,7 +62,6 @@ function Dashboard(props) {
         let newVal = response.data
         console.log("new value:", newVal);
 
-
         newData = response.data.bandsintown.obj.followers[19];
         newData['artist'] = state.search;
         newData['bandsintown'] = newData['value']
@@ -91,10 +86,6 @@ function Dashboard(props) {
 
       })
 
-
-
-
-
   };
   useEffect((e) => { console.log("this is our new data", data) }, [data])
 
@@ -105,7 +96,6 @@ function Dashboard(props) {
   }
   return (
     <>
-
 <MyNavbar>
           <SearchBar
             name="search"
@@ -113,10 +103,6 @@ function Dashboard(props) {
             search={state.search}
             handleInputChange={handleInputChange}
             handleSubmit={handleSubmit} />
-  
-  
-  
-          
         </MyNavbar>
 
       {!data ? <container> <img
@@ -127,11 +113,9 @@ function Dashboard(props) {
           
           alt=" "></img> </container> :
  <>
-        
-       
         <Container fluid>
         <Row>
-          <Col sm={2}>
+          <Col sm={4}>
         
           <MyFigure 
           image={data.id.obj.image_url}
@@ -143,13 +127,11 @@ function Dashboard(props) {
               
 
             </MyFigure>
-        </Col>
-       
-       
-        <Col sm={10}>
-     
         {/* we use the Object.key to get our data as an array of api keys(names) */}
-        {Object.keys(data).map((Api_name) => {
+       </Col>
+       <Col md={8}>
+       <Container fluid>
+        <Row> {Object.keys(data).map((Api_name) => {
           let time = ""
           let text = ""
           let image = ""
@@ -170,191 +152,46 @@ function Dashboard(props) {
               time = data[Api_name].obj.followers[19].timestp
               text = <div><h4>followers: {data[Api_name].obj.followers[19].value}</h4><h4>popularity:{data[Api_name].obj.popularity[5].value}</h4><h4>listeners:{data[Api_name].obj.listeners[19].value}</h4></div>
               break;
-              // case "itunes":
-              // // time = data[Api_name].obj.followers[19].timestp
-              // text = <h4>waiting...</h4>
-              // break;
               case "youtube":
                
                 text = <div><h4>{data[Api_name].obj.subscribers[0].value}</h4><h4>Views:{data[Api_name].obj.views[0].value}</h4></div>
               break;
-              // case "amazon":
-              // // time = data[Api_name].obj.followers[19].timestp
-              // text = <h4>waiting...</h4>
-              // break;
               case "deezer":
               time = data[Api_name].obj.fans[19].timestp
               text = <h4>Followers: {data[Api_name].obj.fans[19].value}</h4>
               break;
-              // case "facebook":
-              // // time = data[Api_name].obj.followers[19].timestp
-              // text = <h4>waiting...</h4>
-              // break;
-              // case "applemusic":
-              // // time = data[Api_name].obj.followers[19].timestp
-              // text = <h4>waiting...</h4>
-              // break;
-
-
-
-
-
-
-
-
-
-
             default:
               break;
           }
           return (
+           
+           
           
-
-
-            <Row>
-            <Col sm={2}>
-            
-            
-          </Col>
-         
-         
-          <Col sm={10}>
-       
-       
+          <Col sm={4}>
             <CardGroup vertical>
             <MyCard title={Api_name} timestp={time} image={image}>
-
               {text}
             </MyCard>
           </CardGroup>
           </Col>
-          </Row>
+
           )
-
         })}
-        </Col>
+          </Row>
+          </Container>
+       </Col>
+
+       
+        
         </Row>
-        </Container>
-        
-        
-
-        
-  
-     
- 
-
-
-
-
-
- 
-      
-
-    
-  
-
+        </Container>        
   
   <Row>
     
-
   </Row>
-  </>
-  
-  
-
-
-
-     
-       
+  </>       
 }
-
 </>
-      
-    );
+     );
 }
 export default Dashboard;
-// import React from "react";
-// import {
-//   GridComponent, 
-//   ColumnDirective, 
-//   ColumnsDirective,
-//   Page,
-//   PageSettingsModel,
-//   Inject,
-//   Filter,
-//   Group
-// } from '@syncfusion/ej2-react-grids';
-// import data from './dataSource.json';
-// import './Table.css';
-// // css code url("https://cdn.syncfusion.com/ej2/material.css")
-// // the Json object keys are rendered as the header, and the values as rows. 
-// export default class MyGrid extends React.Component {
-//   pageOptions:PageSettingsModel={
-//     pageSize:8, pageSizes:true
-//   };
-//   render(){
-//     return<GridComponent dataSource={data}
-//         allowPaging={true}
-//         height={268}
-//         pageSettings={this.pageOptions}
-//         pageSize={true}
-//         allowFiltering={true}
-//         allowGroupin={true}
-//     >
-//       <ColumnsDirective>
-//          <ColumnDirective field='ID' headerText='ID' textAlign='Right' width='100' />
-//          <ColumnDirective field='Customer' headerText='Customer' width='150' />
-//          <ColumnDirective field='Performance' headerText='Performance' />
-//          <ColumnDirective field='Date' headerText='Date' textAlign='Right' format='c2' width='100' />
-//       </ColumnsDirective >
-//       <Inject services ={[Page,Filter, Group]}/>
-//     </GridComponent>
-//   }
-// }
-// function Dashboard () {
-//     return (
-//         <>
-//         <MyNavbar>   
-//             <SearchBar/>
-//         </MyNavbar>
-//         <Simplecontainer>
-//             <Api/>
-//                 <Row>
-//                     <Col>
-//                     </Col>
-//                     <Col></Col>
-//                     <Col>Spotify</Col>
-//                     <Col>Itunes</Col>
-//                 </Row>
-//         </Simplecontainer>
-//         </>
-//     );
-// }
-
-
-{/* <SearchBar
-                name="search"
-                value={state.value}
-                search={state.search}
-                handleInputChange={handleInputChange}
-                handleSubmit={handleSubmit} /> */}
-
-{/* <Button className='m-1' onClick={e => {
-                console.log(props.history)
-                e.preventDefault();
-                props.history.push('/table')
-            }}>Table</Button> */}
-
-
-{/* <Button className='m-1' onClick={e => {
-                console.log(props.history)
-                e.preventDefault();
-                props.history.push('/MyData')
-            }}>Data Entry</Button> */}
-{/* <Row>
-                <Col>
-                </Col>
-                <Col></Col>
-                <Col>Spotify</Col>
-                <Col>Itunes</Col>
-            </Row> */}
