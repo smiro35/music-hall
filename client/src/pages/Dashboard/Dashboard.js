@@ -1,14 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../../AuthContext'
 import { Row, Col } from 'reactstrap';
-// import YouTube, { artist } from '../../components/Api/YouTube';
-import container from '../../components/Container/Container';
 import numeral from 'numeral';
 import axios from 'axios';
 import SearchBar from '../../components/Search/SearchBar';
 import MyNavbar from '../../components/Navbar/Navbar';
-// import Spotify from '../../components/Api/Spotify';
-// import Artist from '../../components/Api/Artist';
 import { Card, CardDeck, Button, Container, Table, Image, Figure, ListGroupItem, ListGroup,CardGroup } from 'react-bootstrap';
 import MyCard from '../../components/Card';
 import TopCard from '../../components/Cardimage';
@@ -31,16 +27,7 @@ function Dashboard(props) {
   const { isAuth, logout } = useContext(AuthContext);
   console.log("dashboard user: ", isAuth)
 
-  // we need to create route to search the database for the artist
-  // make a query to API using the search term
-  // save the results to tableData
-  // then render the table conditionally, (if there is data-render table, if  no data (null, undefined) then dont render whats in data)
-  // if there is no artist: backened needs to 
-
-
-  // const [subscriberCount, setSubscriberCount] = useState();
-  // const [viewCount, setViewCount] = useState();
-  // let count = "";
+ 
   function handleInputChange(event) {
     const { name, value } = event.target;
     console.log("this value", value)
