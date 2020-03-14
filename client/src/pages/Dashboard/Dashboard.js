@@ -140,7 +140,7 @@ function Dashboard(props) {
         :
  <>
 
- 
+<Container fluid  style={{backgroundColor:"#462560", marginBlock:"2rem"}} >  
           
           
           
@@ -202,7 +202,7 @@ function Dashboard(props) {
             
           
             
-            <CardDeck style={{display: 'flex', flexDirection: 'row'}} >
+            <CardGroup >
             
            
            <MyCard title={Api_name} timestp={time} image={image}>
@@ -210,7 +210,7 @@ function Dashboard(props) {
             </MyCard>
 
 
-            </CardDeck>
+            </CardGroup>
 
             
 
@@ -253,7 +253,8 @@ function Dashboard(props) {
         
         
         
-             
+</Container>
+          <Container fluid>    
           <Row>
           <Table striped bordered hover variant="dark">
           <thead>
@@ -276,6 +277,10 @@ function Dashboard(props) {
         </Table>
           </Row>
        
+
+    </Container>
+
+
   </>       
 }
 </>
