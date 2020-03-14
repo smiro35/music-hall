@@ -10,42 +10,42 @@ import pic from './images/img-01.png';
 import './vendor/animate/animate.css';
 import MyNavbar from "../../components/Navbar/Navbar.js";
 
-function Home(props) {
-
-  const { setIsAuth, setUser, isAuth } = useContext(AuthContext)
-  const emptyCreds = { emailInput: '', passwordInput: '' }
-  const errorMessage = 'invalid credentials'
-  const [formData, setFormData] = useState(emptyCreds)
-  const [credsAreInvalid, setCredsAreInvalid] = useState('')
-
-  function handleInputChange(event) {
-    event.preventDefault()
-    const { name, value } = event.target
-    setFormData({ ...formData, [name]: value });
-  }
-  function handleFormSubmit(event) {
-    event.preventDefault()
-    const inputCreds = {
-      email: formData.emailInput,
-      password: formData.passwordInput
+function LoginForm (props){
+  
+    const { setIsAuth, setUser, isAuth } = useContext(AuthContext)
+    const emptyCreds = { emailInput: '', passwordInput: '' }
+    const errorMessage = 'invalid credentials'
+    const [formData, setFormData] = useState(emptyCreds)
+    const [credsAreInvalid, setCredsAreInvalid] = useState('')
+    
+    function handleInputChange(event){
+        event.preventDefault()
+        const { name, value } = event.target
+        setFormData({ ...formData, [name]: value });
     }
-    login(inputCreds)
-    setFormData(emptyCreds)
-  }
-  function login(loginCreds) {
-    Axios.post('/api/auth/login', loginCreds)
-      .then(response => {
-        console.log("login response ", response)
-        setUser(response.data)
-        setIsAuth(true)
-      })
-      .catch(err => {
-        setCredsAreInvalid(errorMessage)
-        console.log(err)
-      })
+    function handleFormSubmit(event) {
+        event.preventDefault()
+        const inputCreds = {
+            email: formData.emailInput,
+            password: formData.passwordInput
+        }
+        login(inputCreds)
+        setFormData(emptyCreds)
+    }
+    function login(loginCreds){
+        Axios.post('/api/auth/login', loginCreds)
+            .then(response => {
+                console.log("login response ", response)
+                setUser(response.data)
+                setIsAuth(true)
+            })
+            .catch(err => {
+                setCredsAreInvalid(errorMessage)
+                console.log(err)
+            })
+    
 
-
-  }
+          }
 
 
   return (
@@ -53,14 +53,14 @@ function Home(props) {
     <>
       {isAuth && <Redirect to="/dashboard" />}
 
+      
 
 
-
-      <div className="limiter" >
+      <div className="limiter" onSubmit={handleFormSubmit}>>
         <div className="container-login100">
           <div className="wrap-login100">
             <img src={pic} alt="not working" />
-            <form className="login100-form validate-form" >
+            <form className="login100-form validate-form">
               <span className="login100-form-title"> Member Login </span>
               <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                 <input className="input100" type="text" name="email" placeholder="Email" name="username"
@@ -72,8 +72,8 @@ function Home(props) {
                 </span>
               </div>
               <div className="wrap-input100 validate-input" data-validate="Password is required">
-                <input className="input100" type="password" name="pass" placeholder="Password" name="password"
-                  value={formData.passwordInput} onChange={handleInputChange} />
+                <input className="input100" type="password" name="pass" placeholder="Password" name="password" 
+               value={formData.passwordInput} onChange={handleInputChange} />
                 <span className="focus-input100"></span>
                 <span className="symbol-input100">
                   <i className="fa fa-lock" aria-hidden="true"></i>
@@ -84,7 +84,7 @@ function Home(props) {
                   onClick={e => {
                     e.preventDefault();
                     props.history.push('/dashboard')
-                  }}>
+                }}>
                   Login
                 </button>
               </div>
@@ -110,8 +110,8 @@ function Home(props) {
           </div>
         </div>
       </div>
-
-
+    
+    
     </>
 
 
@@ -120,7 +120,58 @@ function Home(props) {
 
 }
 
-export default Home;
+export default LoginForm ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -128,9 +179,13 @@ export default Home;
 
 // import React, { useState, useContext } from 'react';
 // import { Redirect } from 'react-router-dom'
-// import { AuthContext } from '../../AuthContext';
+// import { AuthContext } from '../AuthContext';
 // import {Form , Container, Row, Button, Col, span} from 'react-bootstrap'
 // import Axios from 'axios';
+// import './css/main.css'
+// import './css/util.css'
+// import pic from './images/img-01.png';
+// import './vendor/animate/animate.css';
 // const LoginForm = props => {
 //     const { setIsAuth, setUser, isAuth } = useContext(AuthContext)
 //     const emptyCreds = { emailInput: '', passwordInput: '' }

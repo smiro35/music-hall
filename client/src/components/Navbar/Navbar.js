@@ -1,65 +1,73 @@
 import React, { useState, useContext } from 'react';
-import { Nav, NavItem, Navbar, Form,Button,FormControl } from 'react-bootstrap';
-import SearchBar from '../Api/SearchBar';
+import { Nav, Navbar, Form,Button,FormControl, Dropdown } from 'react-bootstrap';
+import SearchBar from '../Search/SearchBar';
 import { AuthProvider, AuthContext } from '../../AuthContext.js'
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
+import Logo from '../../music_hall.jpg'
+import Home from "../../pages/Home/Home";
+import Dashboard from "../../pages/Dashboard/Dashboard";
+import MyData from "../../pages/Data/Data";
+import TablePage from "../../pages/TablePage/TablePage.js";
+import{LinkContainer} from 'react-router-bootstrap'
+// import 'font-awesome/css/font-awesome.min.css';
+// import { FontAwesomeIcon,fas } from "@fortawesome/react-fontawesome";
+
+
 
 
 function MyNavbar(props){
 
   return (
-    <div>
 
-<Navbar bg="light" expand="lg">
-  <Navbar.Brand href="#home">Music Hall Logo</Navbar.Brand>
-  <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="mr-auto">
-      <Nav.Link> <NavLink to="/">Home</NavLink></Nav.Link>
-      <Nav.Link><NavLink to="/Dashboard">Dashboard</NavLink></Nav.Link>
-      <Nav.Link><NavLink to="/Table">Table</NavLink></Nav.Link>
-      <Nav.Link><NavLink to="/MyData">Data-Entry</NavLink></Nav.Link>
+
+    <Navbar bg="light"  sticky="top" text expand="lg" >
+    <Navbar.Brand to="/home">
+    <img
+          src={Logo}
+          width="161.25"
+          height="75"
+          className="d-inline-block align-top"
+          alt=" "></img>
+  
+    </Navbar.Brand>
+    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="mr-auto"  >
+        <LinkContainer to="/">
+      <Nav.Link >Home</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to="/Dashboard">
+      <Nav.Link >Dashboard</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to="/table">
+      <Nav.Link>Table</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to="/MyData">
+      <Nav.Link >Data-Entry</Nav.Link>
+      </LinkContainer>
+      </Nav>
+      <div>{props.children}</div>
+
+     
       
+    </Navbar.Collapse>
+  </Navbar> 
 
 
-   </Nav>
-  </Navbar.Collapse>
-</Navbar>
+
+
+
+
+
+
+
+
+
+
+
      
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-      {/* <Nav style={{marginLeft:"7rem"}}>
-        <NavItem>
-          <NavLink href="/" active>Home</NavLink>
-        </NavItem>
-       
-        <NavItem>
-          <NavLink href="/Dashboard">Dashboard</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="/Table">Table</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="MyData">Data-Entry</NavLink>
-        </NavItem>
-        <SearchBar/>
-      </Nav> */}
-    </div>
+ 
   );
 }
 
@@ -79,6 +87,30 @@ export default MyNavbar
 
 
 
+//     <Navbar bg="light" expand="lg">
+// //   <Navbar.Brand to="#home">
+
+// //   <img
+//         src={Logo}
+//         width="161.25"
+//         height="75"
+//         className="d-inline-block align-top"
+//         alt=" "></img>
+
+//   </Navbar.Brand>
+//   <Navbar.Toggle aria-controls="basic-navbar-nav" />
+//   <Navbar.Collapse id="basic-navbar-nav">
+//     <Nav className="mr-auto">
+//       <Nav.Link to="#home">Home</Nav.Link>
+//       <Nav.Link to="#link"Item</Nav.Link>
+      
+//     </Nav>
+//     <Form inline>
+//       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+//       <Button variant="outline-success">Search</Button>
+//     </Form>
+//   </Navbar.Collapse>
+// </Navbar>
 
 
 
@@ -86,25 +118,26 @@ export default MyNavbar
 
 
 
-// import { Nav, NavItem, NavLink } from 'reactstrap';
+
+// import { Nav, NavLink } from 'reactstrap';
 
 // const Sidenav = (props) => {
 //   return (
 //     <div>
 //       <p>List Based</p>
 //       <Nav vertical>
-//         <NavItem>
-//           <NavLink href="#">Link</NavLink>
-//         </NavItem>
-//         <NavItem>
-//           <NavLink href="#">Link</NavLink>
-//         </NavItem>
-//         <NavItem>
-//           <NavLink href="#">Another Link</NavLink>
-//         </NavItem>
-//         <NavItem>
-//           <NavLink disabled href="#">Disabled Link</NavLink>
-//         </NavItem>
+//        >
+//           <NavLink to="#"Item</NavLink>
+//         >
+//        >
+//           <NavLink to="#"Item</NavLink>
+//         >
+//        >
+//           <NavLink to="#">AnotherItem</NavLink>
+//         >
+//        >
+//           <NavLink disabled to="#">DisabledItem</NavLink>
+//         >
 //       </Nav>
      
 //     </div>
@@ -118,14 +151,14 @@ export default MyNavbar
 
 
 //   <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  //   <Link className="navbar-brand" to="#">Navbar</Link>
+  //   Item className="navbar-brand" to="#">Navbar<Item>
   //   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
   //     <span className="navbar-toggler-icon"></span>
   //   </button>
   //   <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
   //     <div className="navbar-nav">
-  //       <Link className="nav-item nav-link active" to="/">Home <span className="sr-only"></span></Link>
-  //       <Link className="nav-item nav-link" to="Dashboard">Dashboard</Link>
+  //       Item className="nav-item nav-link active" to="/">Home <span className="sr-only"></span><Item>
+  //       Item className="nav-item nav-link" to="Dashboard">Dashboard<Item>
    
   //       <button className="nav-link active" to="#">VIEW TABLE </button>
   //      </div>

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import TableHeader from "../../components/Tables/TableHeader.js";
+// import TableHeader from "../../components/Tables/TableHeader.js";
 import { TableData, TableItem } from "../../components/Tables/TableData.js";
 import API from "../../utils/API.js";
 import MyNavbar from "../../components/Navbar/Navbar.js";
 import ArtistSearch from '../TablePage/ArtistSearch'
-import MyGrid from '../../components/Tables/TableData'
+
 
 let oldInputLength = ''
 let allPerformances = ''

@@ -41,7 +41,7 @@ router.get('/user_data', (req, res) => {
     res.json({
       email: req.user.email,
       id: req.user.id,
-      role: req.user.role
+      // role: req.user.role
     });
   }
 });
