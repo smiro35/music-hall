@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 
 // Sync sequelize models then start Express app
 // =============================================
-db.sequelize.sync({ force: false })
+db.sequelize.sync({ force: true })
   .then(() => {
     console.log('\n*************************************');
     console.log('MySql database successfully connected');

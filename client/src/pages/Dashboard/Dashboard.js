@@ -46,6 +46,9 @@ function Dashboard(props) {
     let url = `http://localhost:3001/api/dashboard/${state.search}`
     axios.get(url)
       .then(response => {
+
+        console.log("our response", response);
+        
         //   const newData = data.data
         // console.log("this is rout",newData.push(data.data));
         // console.log(state.search)
