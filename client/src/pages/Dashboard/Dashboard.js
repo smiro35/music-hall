@@ -1,14 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../../AuthContext'
 import { Row, Col } from 'reactstrap';
-// import YouTube, { artist } from '../../components/Api/YouTube';
-import container from '../../components/Container/Container';
 import numeral from 'numeral';
 import axios from 'axios';
 import SearchBar from '../../components/Search/SearchBar';
 import MyNavbar from '../../components/Navbar/Navbar';
-// import Spotify from '../../components/Api/Spotify';
-// import Artist from '../../components/Api/Artist';
 import { Card, CardDeck, Button, Container, Table, Image, Figure, ListGroupItem, ListGroup,CardGroup } from 'react-bootstrap';
 import MyCard from '../../components/Card';
 import TopCard from '../../components/Cardimage';
@@ -19,6 +15,7 @@ import Logo from '../../music_hall.jpg'
 
 import API from '../../utils/API';
 let apiData = '';
+let newVal="";
 
 function Dashboard(props) {
   const [state, setState] = useState({
@@ -30,16 +27,7 @@ function Dashboard(props) {
   const { isAuth, logout } = useContext(AuthContext);
   console.log("dashboard user: ", isAuth)
 
-  // we need to create route to search the database for the artist
-  // make a query to API using the search term
-  // save the results to tableData
-  // then render the table conditionally, (if there is data-render table, if  no data (null, undefined) then dont render whats in data)
-  // if there is no artist: backened needs to 
-
-
-  // const [subscriberCount, setSubscriberCount] = useState();
-  // const [viewCount, setViewCount] = useState();
-  // let count = "";
+ 
   function handleInputChange(event) {
     const { name, value } = event.target;
     console.log("this value", value)
@@ -61,7 +49,7 @@ function Dashboard(props) {
         //   const newData = data.data
         // console.log("this is rout",newData.push(data.data));
         // console.log(state.search)
-        let newVal = response.data
+        newVal = response.data
         console.log("new value:", newVal);
 
         newData = response.data.bandsintown.obj.followers[19];
@@ -85,7 +73,6 @@ function Dashboard(props) {
         setData(
           newVal
         )
-
       })
 
   };
@@ -100,14 +87,19 @@ function Dashboard(props) {
  
   // Pass apiData to API util
   function handlePostArtist(event) {
-    console.log("click before");
     
-    console.log(apiData)
+    
+    console.log("this is apiData", apiData)
     API.postMusicAPI(apiData)
-    tableDisplay();
-    console.log("clicked after");
+    
+    setTabledata(
+      newVal
+    )
+    
     
   }
+
+  useEffect((e) => { console.log("this is our new tabledata", tableData) }, [tableData])
 
   
   return (
@@ -150,7 +142,7 @@ function Dashboard(props) {
             <Col>
             
         
-           <TopCard>
+           <TopCard handlePostArtist={handlePostArtist}>
 
            </TopCard>
             
@@ -191,7 +183,7 @@ function Dashboard(props) {
                 image="https://i.pinimg.com/originals/11/23/82/112382d6b0e0e47461fb55f03e597e9d.png"
               time = data[Api_name].obj.fans[19].timestp
               // text = <h4>Followers: {data[Api_name].obj.fans[19].value}</h4>
-              text=<><ListGroupItem> Deezer Followers: {data[Api_name].obj.fans[19].value}</ListGroupItem><ListGroupItem> {data[Api_name].obj.fans[19].value}</ListGroupItem></>
+              text=<><ListGroupItem> Deeze Followers: {data[Api_name].obj.fans[19].value}</ListGroupItem><ListGroupItem> {data[Api_name].obj.fans[19].value}</ListGroupItem></>
               break;
             default:
               break;
@@ -251,36 +243,130 @@ function Dashboard(props) {
       
           </Row>
         
-        
+           
         
 </Container>
+
+{!tableData ?    
+          
           <Container fluid>    
           <Row>
+          
           <Table striped bordered hover variant="dark">
           <thead>
             <tr>
-              <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Username</th>
+              <th>Date</th>
+              <th>BandsinTown</th>
+              <th>Instagram</th>
+              <th>Spotify</th>
+              <th>Youtube</th>
+              <th>Deezerrr</th>
+            </tr>
+          </thead>
+          
+          </Table>
+          </Row>
+          </Container>
+
+
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          : 
+
+          <Container fluid>    
+          <Row>
+          
+          <Table striped bordered hover variant="dark">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>BandsinTown</th>
+              <th>Instagram</th>
+              <th>Spotify</th>
+              <th>Youtube</th>
+              <th>Deezer</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
+
+
+<tr>
+          
+          {Object.keys(tableData).map((Api_name) => {
+          let time = ""
+          let text = ""
+          let image = ""
+          switch (Api_name) {
+            case "bandsintown":
+              image="https://darkskychoir.com/wp-content/uploads/2019/04/bandsintown.png"
+              time = tableData[Api_name].obj.followers[19].timestp
+          text = <h4>bands-followers:{tableData[Api_name].obj.followers[18].value}</h4>
+              break;
+            case "instagram":
+              image="https://pluspng.com/img-png/instagram-png-instagram-png-icon-1024.png"
+              time = tableData[Api_name].obj.followers[0].timestp
+              text = <h4>insta-Followers: {tableData[Api_name].obj.followers[0].value}</h4>
+              break;
+              
+              case "spotify":
+                image="https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png"
+              time = tableData[Api_name].obj.followers[0].timestp
+              text = <div><h4> spot-followers: {tableData[Api_name].obj.followers[0].value}</h4><h4>popularity:{tableData[Api_name].obj.popularity[5].value}</h4><h4>listeners:{data[Api_name].obj.listeners[19].value}</h4></div>
+              break;
+              case "youtube":
+                image="https://www.freepnglogos.com/uploads/youtube-play-red-logo-png-transparent-background-6.png"
+               
+                text = <div><h4>{tableData[Api_name].obj.subscribers[0].value}</h4><h4>Views:{tableData[Api_name].obj.views[0].value}</h4></div>
+              break;
+              case "deezer":
+                image="https://i.pinimg.com/originals/11/23/82/112382d6b0e0e47461fb55f03e597e9d.png"
+              time = tableData[Api_name].obj.fans[19].timestp
+              // text = <h4>Followers: {data[Api_name].obj.fans[19].value}</h4>
+              text=<><ListGroupItem> Deezer Followers: {tableData[Api_name].obj.fans[19].value}</ListGroupItem><ListGroupItem> {tableData[Api_name].obj.fans[19].value}</ListGroupItem></>
+              break;
+            default:
+              break;
+          }
+          return (
+           <>
+              <td>{text}</td>
+              {/* <td>Mark</td>
               <td>Otto</td>
               <td>@mdo</td>
-            </tr>
+              <td>@mdo</td>
+              <td>@mdo</td> */}
+           </>
+          )
+        })}
+
+</tr>
            
-          </tbody>
+           </tbody>
         </Table>
+        
           </Row>
+
+         
        
 
     </Container>
 
+      }
 
+    
   </>       
 }
 </>
