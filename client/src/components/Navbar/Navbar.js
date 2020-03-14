@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Nav, Navbar, Form,Button,FormControl } from 'react-bootstrap';
+import { Nav, Navbar, Form,Button,FormControl, Dropdown } from 'react-bootstrap';
 import SearchBar from '../Search/SearchBar';
 import { AuthProvider, AuthContext } from '../../AuthContext.js'
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
@@ -10,6 +10,10 @@ import Dashboard from "../../pages/Dashboard/Dashboard";
 import MyData from "../../pages/Data/Data";
 import TablePage from "../../pages/TablePage/TablePage.js";
 import{LinkContainer} from 'react-router-bootstrap'
+// import 'font-awesome/css/font-awesome.min.css';
+// import { FontAwesomeIcon,fas } from "@fortawesome/react-fontawesome";
+
+
 
 
 function MyNavbar(props){
@@ -44,6 +48,9 @@ function MyNavbar(props){
       </LinkContainer>
       </Nav>
       <div>{props.children}</div>
+
+     
+      
     </Navbar.Collapse>
   </Navbar> 
 

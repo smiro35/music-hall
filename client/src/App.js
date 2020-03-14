@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import NoMatch from "./pages/NoMatch";
 import MyData from "./pages/Data";
-import Login from "./components/LoginForm";
+import Login from "../src/pages/Home/LoginForm";
 import Signup from "./components/SingupForm";
 import TablePage from "./pages/TablePage/TablePage.js";
 import Members from './pages/Home/Members'
