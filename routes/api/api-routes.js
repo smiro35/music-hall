@@ -73,9 +73,9 @@ router.get('/dashboard/:artistsearch', async (req, res) => {
   headers.headers.Authorization = `Bearer ${Bearer.data.token}`;
 
   Apiresult = await axios.get(`https://api.chartmetric.com/api/artist/${id}`, headers);
-  searched.id = Apiresult.data;
+  Bio = Apiresult.data;
 
-  console.log("this is the id:", id);
+  console.log("this is the id:", Bio);
   
 
   // https://api.chartmetric.com/api/artist/:id

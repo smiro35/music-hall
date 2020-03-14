@@ -50,8 +50,15 @@ function Dashboard(props) {
         // console.log("this is rout",newData.push(data.data));
         // console.log(state.search)
         newVal = response.data
-        console.log("new value:", newVal);
 
+        console.log("our newVal", newVal);
+        
+       
+        let MyBio = response.data.Bio;
+        console.log("my Bio", MyBio);
+        
+          
+          
         newData = response.data.bandsintown.obj.followers[19];
         newData['artist'] = state.search;
         newData['bandsintown'] = newData['value']
@@ -185,8 +192,8 @@ function Dashboard(props) {
               // text = <h4>Followers: {data[Api_name].obj.fans[19].value}</h4>
               text=<><ListGroupItem> Deeze Followers: {data[Api_name].obj.fans[19].value}</ListGroupItem><ListGroupItem> {data[Api_name].obj.fans[19].value}</ListGroupItem></>
               break;
-            default:
-              break;
+            // default:
+            //   break;
           }
           return (
            

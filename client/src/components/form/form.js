@@ -85,6 +85,7 @@ function MyForm() {
 
 
   function handleFormSubmit(event) {
+    event.preventDefault()
     console.log("button was pressed")
     console.log(formObject);
     if (formObject.artist && formObject.date) {
