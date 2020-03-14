@@ -4,8 +4,9 @@ import{handlePostArtist} from '../pages/Dashboard/Dashboard'
 
 function ApiTable(props){
 
-//   function handlePostArtist(){
-//       console.log("posting to table");
+  // function handletwo(){
+  //   props.handlePostArtist();
+  //   props.tableDisplay();
       
     return(
     

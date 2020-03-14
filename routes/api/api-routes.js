@@ -53,6 +53,8 @@ router.get('/dashboard/:artistsearch', async (req, res) => {
   // Code for our ID
   id = await axios.get(`https://api.chartmetric.com/api/search?q=${req.params.artistsearch}`, headers);
   id = id.data.obj.artists[0].id;
+  
+  
   // console.log('id', id);
 
   // API CALLS BELOW ORGANIZED BY ALPHABETICAL ORDER

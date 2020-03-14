@@ -1,7 +1,7 @@
 import React from 'react';
-import{Figure, ListGroup, Button} from 'react-bootstrap';
+import{Figure, ListGroup, Button, Card, ListGroupItem} from 'react-bootstrap';
 
-function MyFigure(props){
+function TopCard(props){
 
   // function handleThem(e){
   //   props.handlePostArtist(); 
@@ -11,26 +11,31 @@ function MyFigure(props){
 
  return(
 
-    <Figure>
-    <Figure.Image
-      
-      width={171}
+  <Card style={{ width: '18rem' }}>
+  <Card.Img variant="top"  width={171}
       height={180}
-      alt="171x180"
-      src={props.image}
-    />
-    <Figure.Caption>
-      <ListGroup horizontal>
- <ListGroup.Item>Name:{props.artist_name}</ListGroup.Item>
-        <ListGroup.Item>Genre: {props.genre}</ListGroup.Item>
-        <ListGroup.Item>CM Rank: {props.rank}</ListGroup.Item>
-
-      </ListGroup>
-    </Figure.Caption>
-    <Button variant="primary" size="sm" onClick={props.handlePostArtist}>
+      alt="Artist's image"
+      src={props.image} />
+  <Card.Body>
+    <Card.Title>Name: {props.artist_name}</Card.Title>
+    </Card.Body>
+  <ListGroup className="list-group-flush">
+    <ListGroupItem>Genre: {props.genre}</ListGroupItem>
+    <ListGroupItem>CM RANK: {props.rank}</ListGroupItem>
+    
+  </ListGroup>
+  <Card.Footer>
+      <small className="text-muted">Last updated 3 mins ago</small>
+    </Card.Footer>
+  
+  <Button variant="primary" size="sm" onClick={props.handlePostArtist}>
       Add to database
 </Button>
-  </Figure>
+  
+    
+</Card>
+
+   
 
 
 
@@ -41,4 +46,7 @@ function MyFigure(props){
 
 }
 
-export default MyFigure;
+export default TopCard;
+
+
+
