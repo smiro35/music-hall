@@ -274,7 +274,7 @@ function Dashboard(props) {
               <th>Instagram</th>
               <th>Spotify</th>
               <th>Youtube</th>
-              <th>Deezer</th>
+              <th>Deezerrr</th>
             </tr>
           </thead>
           
