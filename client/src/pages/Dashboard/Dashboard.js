@@ -180,7 +180,7 @@ function Dashboard(props) {
               case "spotify":
                 image="https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png"
               time = data[Api_name].obj.followers[0].timestp
-              text = <div><h4> spot-followers: {data[Api_name].obj.followers[0].value}</h4><h4>popularity:{data[Api_name].obj.popularity[5].value}</h4><h4>listeners:{data[Api_name].obj.listeners[19].value}</h4></div>
+              text = <div><h4> spot-follower: {data[Api_name].obj.followers[0].value}</h4><h4>popularity:{data[Api_name].obj.popularity[5].value}</h4><h4>listeners:{data[Api_name].obj.listeners[19].value}</h4></div>
               break;
               case "youtube":
                 image="https://www.freepnglogos.com/uploads/youtube-play-red-logo-png-transparent-background-6.png"
