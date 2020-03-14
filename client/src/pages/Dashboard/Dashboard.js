@@ -183,7 +183,7 @@ function Dashboard(props) {
                 image="https://i.pinimg.com/originals/11/23/82/112382d6b0e0e47461fb55f03e597e9d.png"
               time = data[Api_name].obj.fans[19].timestp
               // text = <h4>Followers: {data[Api_name].obj.fans[19].value}</h4>
-              text=<><ListGroupItem> Deezer Followers: {data[Api_name].obj.fans[19].value}</ListGroupItem><ListGroupItem> {data[Api_name].obj.fans[19].value}</ListGroupItem></>
+              text=<><ListGroupItem> Deeze Followers: {data[Api_name].obj.fans[19].value}</ListGroupItem><ListGroupItem> {data[Api_name].obj.fans[19].value}</ListGroupItem></>
               break;
             default:
               break;

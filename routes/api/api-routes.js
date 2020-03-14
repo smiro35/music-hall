@@ -46,8 +46,9 @@ router.get('/artists', (req, res) => {
 router.get('/dashboard/:artistsearch', async (req, res) => {
   const searched = {};
   let id = 0;
-  let Apiresult = '';
-  const refreshtoken = { refreshtoken: 'JpmNnpIa9QDCuwwGymLSRQfmKtgCe7iyqr8oNs2nIN1xTTUtqrm6NGUVlUVmASbz' };
+  let Apiresult = ''; 
+  const refreshtoken = { refreshtoken: 'dQbmsANiCLGysuTyc008aAULfoXfK8Yf8fjn7BWiehC7LFeT4b3zzHpEYNboyQkj' };
+  // JpmNnpIa9QDCuwwGymLSRQfmKtgCe7iyqr8oNs2nIN1xTTUtqrm6NGUVlUVmASbz
   let Bearer = '';
   const headers = {
     headers: {
