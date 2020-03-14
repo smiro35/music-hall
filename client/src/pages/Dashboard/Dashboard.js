@@ -73,7 +73,6 @@ function Dashboard(props) {
         setData(
           newVal
         )
-
       })
 
   };
