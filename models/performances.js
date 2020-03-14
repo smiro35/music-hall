@@ -1,11 +1,6 @@
 // Creating our User model
 module.exports = function (sequelize, DataTypes) {
   const Performances = sequelize.define('Performances', {
-    // artist: {
-    //   type: DataTypes.STRING,
-    //   allowNull: true,
-    //   unique: true,
-    // },
     date: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -14,16 +9,6 @@ module.exports = function (sequelize, DataTypes) {
     total_sold: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: false,
-    },
-    spotify_reach: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      unique: false,
-    },
-    instagram_following: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
       unique: false,
     },
     total_money: {
@@ -46,33 +31,8 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
       unique: false,
     },
-    show_success: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true,
-      unique: false,
-    },
-    fiscal_year: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      unique: false,
-    },
     genre: {
       type: DataTypes.STRING,
-      allowNull: true,
-      unique: false,
-    },
-    spotify_popularity: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      unique: false,
-    },
-    instagram_strength: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      unique: false,
-    },
-    average_strength: {
-      type: DataTypes.INTEGER,
       allowNull: true,
       unique: false,
     },
@@ -87,6 +47,11 @@ module.exports = function (sequelize, DataTypes) {
       unique: false,
     },
     predictability: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: false,
+    },
+    marketing_budget: {
       type: DataTypes.INTEGER,
       allowNull: true,
       unique: false,

@@ -49,9 +49,9 @@ function TablePage() {
         })
         setPerformances(newArray)
         }
-
+        
     } 
-
+console.log(performances)
     return (
         <div>
             <MyNavbar>
@@ -69,7 +69,6 @@ function TablePage() {
                     {performances.map(performance => {
                         return (
                             <TableItem key={performance.id}>
-                                <td>{performance.id}</td>
                                 <td>{performance.Artist.artist_name}</td>
                                 <td>{performance.date}</td>
                                 <td>{performance.total_sold}</td>
@@ -77,9 +76,11 @@ function TablePage() {
                                 <td>{performance.total_attendance}</td>
                                 <td>{performance.average_ticket_price}</td>
                                 <td>{performance.percent_sold}</td>
-                                <td>{performance.show_success}</td>
-                                <td>{performance.fiscal_year}</td>
+                                <td>{performance.projected_success}</td>
+                                <td>{performance.actual_success}</td>
+                                <td>{performance.predictability}</td>
                                 <td>{performance.genre}</td>
+                                <td>{performance.marketing_budget}</td>
                             </TableItem>
                         )
                     })}
