@@ -257,9 +257,12 @@ function Dashboard(props) {
       
           </Row>
         
-        
+           
         
 </Container>
+
+{!tableData ?    
+          
           <Container fluid>    
           <Row>
           
@@ -275,57 +278,97 @@ function Dashboard(props) {
             </tr>
           </thead>
           
-          {Object.keys(data).map((Api_name) => {
+          </Table>
+          </Row>
+          </Container>
+
+
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          : 
+
+          <Container fluid>    
+          <Row>
+          
+          <Table striped bordered hover variant="dark">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>BandsinTown</th>
+              <th>Instagram</th>
+              <th>Spotify</th>
+              <th>Youtube</th>
+              <th>Deezer</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+<tr>
+          
+          {Object.keys(tableData).map((Api_name) => {
           let time = ""
           let text = ""
           let image = ""
           switch (Api_name) {
             case "bandsintown":
               image="https://darkskychoir.com/wp-content/uploads/2019/04/bandsintown.png"
-              time = data[Api_name].obj.followers[19].timestp
-          text = <h4>bands-followers:{data[Api_name].obj.followers[18].value}</h4>
+              time = tableData[Api_name].obj.followers[19].timestp
+          text = <h4>bands-followers:{tableData[Api_name].obj.followers[18].value}</h4>
               break;
             case "instagram":
               image="https://pluspng.com/img-png/instagram-png-instagram-png-icon-1024.png"
-              time = data[Api_name].obj.followers[0].timestp
-              text = <h4>insta-Followers: {data[Api_name].obj.followers[0].value}</h4>
+              time = tableData[Api_name].obj.followers[0].timestp
+              text = <h4>insta-Followers: {tableData[Api_name].obj.followers[0].value}</h4>
               break;
               
               case "spotify":
                 image="https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png"
-              time = data[Api_name].obj.followers[0].timestp
-              text = <div><h4> spot-followers: {data[Api_name].obj.followers[0].value}</h4><h4>popularity:{data[Api_name].obj.popularity[5].value}</h4><h4>listeners:{data[Api_name].obj.listeners[19].value}</h4></div>
+              time = tableData[Api_name].obj.followers[0].timestp
+              text = <div><h4> spot-followers: {tableData[Api_name].obj.followers[0].value}</h4><h4>popularity:{tableData[Api_name].obj.popularity[5].value}</h4><h4>listeners:{data[Api_name].obj.listeners[19].value}</h4></div>
               break;
               case "youtube":
                 image="https://www.freepnglogos.com/uploads/youtube-play-red-logo-png-transparent-background-6.png"
                
-                text = <div><h4>{data[Api_name].obj.subscribers[0].value}</h4><h4>Views:{data[Api_name].obj.views[0].value}</h4></div>
+                text = <div><h4>{tableData[Api_name].obj.subscribers[0].value}</h4><h4>Views:{tableData[Api_name].obj.views[0].value}</h4></div>
               break;
               case "deezer":
                 image="https://i.pinimg.com/originals/11/23/82/112382d6b0e0e47461fb55f03e597e9d.png"
-              time = data[Api_name].obj.fans[19].timestp
+              time = tableData[Api_name].obj.fans[19].timestp
               // text = <h4>Followers: {data[Api_name].obj.fans[19].value}</h4>
-              text=<><ListGroupItem> Deezer Followers: {data[Api_name].obj.fans[19].value}</ListGroupItem><ListGroupItem> {data[Api_name].obj.fans[19].value}</ListGroupItem></>
+              text=<><ListGroupItem> Deezer Followers: {tableData[Api_name].obj.fans[19].value}</ListGroupItem><ListGroupItem> {tableData[Api_name].obj.fans[19].value}</ListGroupItem></>
               break;
             default:
               break;
           }
           return (
-            <tbody>
-
-
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
+           <>
+              <td>{text}</td>
+              {/* <td>Mark</td>
               <td>Otto</td>
               <td>@mdo</td>
               <td>@mdo</td>
-              <td>@mdo</td>
-            </tr>
-           
-          </tbody>
+              <td>@mdo</td> */}
+           </>
           )
         })}
+
+</tr>
+           
+           </tbody>
         </Table>
         
           </Row>
@@ -335,7 +378,9 @@ function Dashboard(props) {
 
     </Container>
 
+      }
 
+    
   </>       
 }
 </>
