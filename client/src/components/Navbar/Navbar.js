@@ -10,13 +10,16 @@ import Dashboard from "../../pages/Dashboard/Dashboard";
 import MyData from "../../pages/Data/Data";
 import TablePage from "../../pages/TablePage/TablePage.js";
 import{LinkContainer} from 'react-router-bootstrap'
-// import 'font-awesome/css/font-awesome.min.css';
-// import { FontAwesomeIcon,fas } from "@fortawesome/react-fontawesome";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
 
 
 
 
 function MyNavbar(props){
+
+  const { logout } = useContext(AuthContext);
+  const [secret, setSecret] = useState("");
 
   return (
 
@@ -49,7 +52,26 @@ function MyNavbar(props){
       <Nav.Link >Data-Entry</Nav.Link>
       </LinkContainer>
       </Nav>
-      <div>{props.children}</div>
+      <span>
+      {props.children}
+      </span>
+
+      <br/>
+      
+      <Dropdown>
+  <Dropdown.Toggle style={{paddingLeft:"5px",borderRadius:"20%", width:"100%", height:"100%", backgroundColor:"#000", opacity:"1"}} id="dropdown-basic">
+    <AccountCircleIcon/>
+  </Dropdown.Toggle>
+
+  <Dropdown.Menu>
+    <Dropdown.Item onClick={() => {
+              logout();
+              setSecret("");
+            }}>SignOut</Dropdown.Item>
+    
+  </Dropdown.Menu>
+</Dropdown>
+      
 
      
       
