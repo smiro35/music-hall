@@ -3,43 +3,63 @@
 module.exports = function (sequelize, DataTypes) {
   const MusicAPI = sequelize.define('musicAPI', {
 
-    spotify: {
-      type: DataTypes.INTEGER,
+    youtube_subscribers_timestp: {
+      type: DataTypes.DATE,
       allowNull: true,
       unique: false,
     },
-    youtube: {
-      type: DataTypes.INTEGER,
+    youtube_subscribers: {
+      type: DataTypes.BIGINT,
       allowNull: true,
       unique: false,
     },
-    instagram: {
-      type: DataTypes.INTEGER,
+    youtube_views_timestp: {
+      type: DataTypes.DATE,
       allowNull: true,
       unique: false,
     },
-    bandsintown: {
-      type: DataTypes.INTEGER,
+    youtube_views: {
+      type: DataTypes.BIGINT,
       allowNull: true,
       unique: false,
     },
-    timestp: {
-      type: DataTypes.STRING,
+    instagram_timestp: {
+      type: DataTypes.DATE,
       allowNull: true,
       unique: false,
     },
-    daily_diff: {
-      type: DataTypes.INTEGER,
+    instagram_followers: {
+      type: DataTypes.BIGINT,
+      allowNull: true,
+      unique: false,
+    },
+    bandsintown_followers: {
+      type: DataTypes.BIGINT,
+      allowNull: true,
+      unique: false,
+    },
+    bandsintown_timestp: {
+      type: DataTypes.DATE,
       allowNull: true,
       unique: false,
     },
     spotify_timestp: {
-      type: DataTypes.STRING,
+      type: DataTypes.DATE,
       allowNull: true,
       unique: false,
     },
     spotify_popularity: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
+      allowNull: true,
+      unique: false,
+    },
+    deezer_timestp: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      unique: false,
+    },
+    deezer_popularity: {
+      type: DataTypes.BIGINT,
       allowNull: true,
       unique: false,
     },
@@ -55,17 +75,3 @@ module.exports = function (sequelize, DataTypes) {
   };
   return MusicAPI;
 };
-
-
-// CREATE TABLE musicAPIs (
-//     id Int AUTO_INCREMENT NOT NULL,
-//     artistID INT NOT NULL,
-//     spotify INTEGER NOT NULL,
-//     youtube INTEGER NOT NULL,
-//     instagram INTEGER NOT NULL,
-// 	createdAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
-//     updatedAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
-//     /* Set ID as primary key */
-//     PRIMARY KEY (id),
-//     FOREIGN KEY (artistID) references artists(id)
-// );
