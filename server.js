@@ -39,7 +39,12 @@ app.use('/api', routes);
 // Everything that is not an api request is sent to index.html
 // for client side routing.
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'client/public', 'index.html'), function(err){
+    if (err) {
+      res.status(500).send(err)
+    }
+
+  });
 });
 
 // Sync sequelize models then start Express app
