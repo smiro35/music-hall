@@ -5,7 +5,7 @@ import numeral from 'numeral';
 import axios from 'axios';
 import SearchBar from '../../components/Search/SearchBar';
 import MyNavbar from '../../components/Navbar/Navbar';
-import { Card, CardDeck, Button, Container, Table, Image, Figure, ListGroupItem, ListGroup,CardGroup } from 'react-bootstrap';
+import { Card, CardDeck, Button, Container, Table, Image, Figure, ListGroupItem, CardGroup } from 'react-bootstrap';
 import MyCard from '../../components/Card';
 import TopCard from '../../components/Cardimage';
 import ApiTable from '../../components/APiTable';
@@ -15,7 +15,7 @@ import Logo from '../../music_hall.jpg'
 
 import API from '../../utils/API';
 let apiData = '';
-let newVal="";
+let newVal = "";
 
 function Dashboard(props) {
   const [state, setState] = useState({
@@ -27,7 +27,7 @@ function Dashboard(props) {
   const { isAuth, logout } = useContext(AuthContext);
   console.log("dashboard user: ", isAuth)
 
- 
+
   function handleInputChange(event) {
     const { name, value } = event.target;
     console.log("this value", value)
@@ -48,20 +48,20 @@ function Dashboard(props) {
       .then(response => {
 
         console.log("our response", response);
-        
+
         //   const newData = data.data
         // console.log("this is rout",newData.push(data.data));
         // console.log(state.search)
         newVal = response.data
 
         console.log("our newVal", newVal);
-        
-       
+
+
         let MyBio = response.data.Bio;
         console.log("my Bio", MyBio);
-        
-          
-          
+
+
+
         newData = response.data.results.bandsintown.obj.followers[19];
         newData['artist'] = state.search;
         newData['bandsintown'] = newData['value']
@@ -88,341 +88,278 @@ function Dashboard(props) {
   };
   useEffect((e) => { console.log("this is our new data", data) }, [data])
 
-  function tableDisplay(event){
+  function tableDisplay(event) {
     console.log("table data:", data);
-    
+
   }
- 
- 
- 
+
+
+
   // Pass apiData to API util
   function handlePostArtist(event) {
-    
-    
+
+
     console.log("this is apiData", apiData)
     API.postMusicAPI(apiData)
-    
+
     setTabledata(
       newVal
     )
-    
-    
+
+
   }
 
   useEffect((e) => { console.log("this is our new tabledata", tableData) }, [tableData])
 
-  
+
   return (
     <>
-<MyNavbar>
-          <SearchBar
-            name="search"
-            value={state.value}
-            search={state.search}
-            handleInputChange={handleInputChange}
-            handleSubmit={handleSubmit} />
-        </MyNavbar>
+      <MyNavbar>
+        <SearchBar
+          name="search"
+          value={state.value}
+          search={state.search}
+          handleInputChange={handleInputChange}
+          handleSubmit={handleSubmit} />
+      </MyNavbar>
 
-      {!data ?   <>
-        <container> <img
+      {!data ? <>
+        <container fluid> <img
           src="https://www.nhpr.org/sites/nhpr/files/styles/x_large/public/201909/Telluride.jpg"
           width="100%"
-          height="50%"
-          // margin="20%"
           
-          alt=" "></img> 
-          
-          </container> 
+         
 
-          </>
-        
-        
-        
-        
+          alt=" Welcome to the Music Hall Dashboard! "></img>
+
+        </container>
+
+      </>
+
+
+
+
         :
- <>
+        <Container fluid style={{ background: "linear-gradient(135deg, #8363a1 0%, #74a8c3 100%)", backgroundImage:`url${Logo} width:"100%, height:100%` }}>
 
-<Container fluid  style={{backgroundColor:"#462560", marginBlock:"2rem"}} >  
-          
-          
-          
-          
-          
+          <Container fluid style={{ opacity:"1", marginBlock: "2rem", marginTop:"2rem" }} >
+
           <Row>
-            <Col>
-            
-        {data && 'bio' in data&& 
-           <TopCard 
-         image={data.bio.obj.image_url}
-         rank="5"
-         genre={data.bio.obj.tags[0].name}
-         artist_name={data.bio.obj.name}
-            handlePostArtist={handlePostArtist}
-           >
+              <Col>
 
-           </TopCard>
-           }
-            
-            
-            
-            
-            
-            </Col>
-       
+                {data && 'bio' in data &&
+                  <TopCard
+                    image={data.bio.obj.image_url}
+                    rank={data.bio.obj.cm_artist_rank}
+                    genre={data.bio.obj.tags[0].name}
+                    artist_name={data.bio.obj.name}
+                    handlePostArtist={handlePostArtist}
+                    
+                  >
 
-           {Object.keys(data.results).map((Api_name) => {
-          let time = ""
-          let text = ""
-          let image = ""
-          switch (Api_name) {
-            case "bandsintown":
-              image="https://darkskychoir.com/wp-content/uploads/2019/04/bandsintown.png"
-              time = data.results[Api_name].obj.followers[19].timestp
-          text = <h4>bands-followers:{data.results[Api_name].obj.followers[18].value}</h4>
-              break;
-            case "instagram":
-              image="https://pluspng.com/img-png/instagram-png-instagram-png-icon-1024.png"
-              time = data.results[Api_name].obj.followers[0].timestp
-              text = <h4>insta-Followers: {data.results[Api_name].obj.followers[0].value}</h4>
-              break;
+                  </TopCard>
+                }
+               </Col>
+
+
               
-              case "spotify":
-                image="https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png"
-              time = data.results[Api_name].obj.followers[0].timestp
-              text = <div><h4> spot-follower: {data.results[Api_name].obj.followers[0].value}</h4><h4>popularity:{data.results[Api_name].obj.popularity[5].value}</h4><h4>listeners:{data.results[Api_name].obj.listeners[19].value}</h4></div>
-              break;
-              case "youtube":
-                image="https://www.freepnglogos.com/uploads/youtube-play-red-logo-png-transparent-background-6.png"
-               
-                text = <div><h4>{data.results[Api_name].obj.subscribers[0].value}</h4><h4>Views:{data.results[Api_name].obj.views[0].value}</h4></div>
-              break;
-              case "deezer":
-                image="https://i.pinimg.com/originals/11/23/82/112382d6b0e0e47461fb55f03e597e9d.png"
-              time = data.results[Api_name].obj.fans[19].timestp
-              // text = <h4>Followers: {data[Api_name].obj.fans[19].value}</h4>
-              text=<><ListGroupItem> Deeze Followers: {data.results[Api_name].obj.fans[19].value}</ListGroupItem><ListGroupItem> {data.results[Api_name].obj.fans[19].value}</ListGroupItem></>
-              break;
-            // default:
-            //   break;
-          }
-          return (
-           
-
-            
-          
-            
-            <CardGroup >
-            
-           
-           <MyCard title={Api_name} timestp={time} image={image}>
-              {text}
-            </MyCard>
-
-
-            </CardGroup>
-
-            
-
-            
-          
-          
-          
-        
-        
-            
-           
-            
-          
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-           
-          
-          
-
-          )
-        })}
-          
-          
-      
-          </Row>
-        
-           
-        
-</Container>
-
-{!tableData ?    
-          
-          <Container fluid>    
-          <Row>
-          
-          <Table striped bordered hover variant="dark">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>BandsinTown</th>
-              <th>Instagram</th>
-              <th>Spotify</th>
-              <th>Youtube</th>
-              <th>Deezerrr</th>
-            </tr>
-          </thead>
-          
-          </Table>
-          </Row>
-          </Container>
-
-
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          : 
-
-          <Container fluid>    
-          <Row>
-          
-          <Table striped bordered hover variant="dark">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>BandsinTown</th>
-              <th>Instagram</th>
-              <th>Spotify</th>
-              <th>Youtube</th>
-              <th>Deezer</th>
-            </tr>
-          </thead>
-          <tbody>
-
-
-<tr>
-          
-          {Object.keys(tableData.results).map((Api_name) => {
-          let time = ""
-          let text = ""
-          let image = ""
-          switch (Api_name) {
-            case "bandsintown":
-              image="https://darkskychoir.com/wp-content/uploads/2019/04/bandsintown.png"
-              time = tableData.results[Api_name].obj.followers[19].timestp
-          text = <h4>bands-followers:{tableData.results[Api_name].obj.followers[18].value}</h4>
-              break;
-            case "instagram":
-              image="https://pluspng.com/img-png/instagram-png-instagram-png-icon-1024.png"
-              time = tableData.results[Api_name].obj.followers[0].timestp
-              text = <h4>insta-Followers: {tableData.results[Api_name].obj.followers[0].value}</h4>
-              break;
               
-              case "spotify":
-                image="https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png"
-              time = tableData.results[Api_name].obj.followers[0].timestp
-              text = <div><h4> spot-followers: {tableData.results[Api_name].obj.followers[0].value}</h4><h4>popularity:{tableData.results[Api_name].obj.popularity[5].value}</h4><h4>listeners:{data.results[Api_name].obj.listeners[19].value}</h4></div>
-              break;
-              case "youtube":
-                image="https://www.freepnglogos.com/uploads/youtube-play-red-logo-png-transparent-background-6.png"
-               
-                text = <div><h4>{tableData.results[Api_name].obj.subscribers[0].value}</h4><h4>Views:{tableData.results[Api_name].obj.views[0].value}</h4></div>
-              break;
-              case "deezer":
-                image="https://i.pinimg.com/originals/11/23/82/112382d6b0e0e47461fb55f03e597e9d.png"
-              time = tableData.results[Api_name].obj.fans[19].timestp
-              // text = <h4>Followers: {data[Api_name].obj.fans[19].value}</h4>
-              text=<><ListGroupItem> Deezer Followers: {tableData.results[Api_name].obj.fans[19].value}</ListGroupItem><ListGroupItem> {tableData.results[Api_name].obj.fans[19].value}</ListGroupItem></>
-              break;
-            default:
-              break;
-          }
-          return (
-           <>
-              <td>{text}</td>
-              {/* <td>Mark</td>
+              
+              
+              
+              
+              
+              {Object.keys(data.results).map((Api_name) => {
+                let time = ""
+                let text = numeral("").format('0,0');
+                let image = ""
+                
+                switch (Api_name) {
+                  case "bandsintown":
+                    image = "https://darkskychoir.com/wp-content/uploads/2019/04/bandsintown.png"
+                    time = data.results[Api_name].obj.followers[19].timestp
+                    text = <><h4 >Followers:</h4><br/><ListGroupItem style={{borderRadius:"30rem", backgroundColor:"#9063cd",color:"white"}}> {data.results[Api_name].obj.followers[18].value}</ListGroupItem></>
+                    
+                    break;
+                  case "instagram":
+                    image = "https://pluspng.com/img-png/instagram-png-instagram-png-icon-1024.png"
+                    time = data.results[Api_name].obj.followers[0].timestp
+                    text = <><h4 >Followers:</h4><br/><ListGroupItem style={{borderRadius:"30rem", backgroundColor:"#9063cd",color:"white"}}> {data.results[Api_name].obj.followers[0].value}</ListGroupItem></>
+                    
+                    break;
+
+                  case "spotify":
+                    image = "https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png"
+                    time = data.results[Api_name].obj.followers[0].timestp
+                    text = <><h4 >Followers:</h4><br/><ListGroupItem style={{borderRadius:"30rem", backgroundColor:"#9063cd",color:"white"}}> {data.results[Api_name].obj.followers[0].value}</ListGroupItem></>
+                    
+                    break;
+                  case "youtube":
+                    image = "https://lh6.googleusercontent.com/proxy/opjltYFTlI3C9bRRpxCBbRPh37Rd_DumhkwtE__adClUzJje1zDU8rpx5BVd1LFQasztUHMEA_s8CCNp2hmtWLNB"
+
+                text=<><h4 >Subs:</h4><br/><ListGroupItem style={{borderRadius:"30rem", backgroundColor:"#9063cd",color:"white"}}> {data.results[Api_name].obj.subscribers[0].value}</ListGroupItem></> 
+                    time = data.results[Api_name].obj.subscribers[0].timestp
+                    break;
+                  case "deezer":
+                    image = "https://i.pinimg.com/originals/11/23/82/112382d6b0e0e47461fb55f03e597e9d.png"
+                    time = data.results[Api_name].obj.fans[19].timestp
+                    
+                  text=<><h4 >Fans:</h4><br/><ListGroupItem style={{borderRadius:"30rem", backgroundColor:"#9063cd",color:"white"}}>{data.results[Api_name].obj.fans[19].value}</ListGroupItem></> 
+                  numeral(text).format('0,0')  
+                  break;
+                  
+                }
+                return (
+                  
+                    
+                  
+                  
+
+                  <CardGroup >
+
+
+                    <MyCard title={Api_name} timestp={time} image={image}>
+                      {text}
+                    </MyCard>
+
+
+                  </CardGroup>
+
+                  
+                )
+              })}
+
+
+
+            </Row>
+ </Container>
+
+          
+          
+          
+          
+          {!tableData ?
+
+            <Container fluid>
+              <Row>
+
+                <Table striped bordered hover variant="dark">
+                  <thead>
+                    <tr>
+                      
+                      <th>BandsinTown</th>
+                      <th>Instagram</th>
+                      <th>Spotify</th>
+                      <th>Youtube</th>
+                      <th>Deezer</th>
+                    </tr>
+                  </thead>
+
+                </Table>
+              </Row>
+            </Container>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            :
+
+            <Container fluid>
+              <Row>
+
+                <Table striped bordered hover variant="dark">
+                  <thead>
+                    <tr>
+                      
+                      <th>BandsinTown</th>
+                      <th>Instagram</th>
+                      <th>Spotify</th>
+                      <th>Youtube</th>
+                      <th>Deezer</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+
+                    <tr>
+          
+
+                      {Object.keys(tableData.results).map((Api_name) => {
+                        
+                        let text = ""
+                        
+                        switch (Api_name) {
+                          case "bandsintown":
+                            
+                            text = <>{tableData.results[Api_name].obj.followers[18].value}</>
+                            break;
+                          case "instagram":
+                           
+                            text = <>{tableData.results[Api_name].obj.followers[0].value}</>
+                            break;
+
+                          case "spotify":
+                            
+                        text = <>{tableData.results[Api_name].obj.followers[0].value}</>
+                            break;
+                          case "youtube":
+                            
+
+                            text = <>{tableData.results[Api_name].obj.subscribers[0].value}</>
+                            break;
+                          case "deezer":
+                            
+                            text = <>{tableData.results[Api_name].obj.fans[19].value}</>
+                            break;
+                          
+                        }
+                        return (
+                          <>
+                            <td>{text}</td>
+                            {/* <td>Mark</td>
               <td>Otto</td>
               <td>@mdo</td>
               <td>@mdo</td>
               <td>@mdo</td> */}
-           </>
-          )
-        })}
+                          </>
+                        )
+                      })}
 
-</tr>
-           
-           </tbody>
-        </Table>
-        
-          </Row>
+                    </tr>
 
-         
-       
+                  </tbody>
+                </Table>
 
-    </Container>
+              </Row>
 
+
+
+
+            </Container>
+
+          }
+
+
+        </Container>
       }
-
-    
-  </>       
-}
-</>
-     );
+    </>
+  );
 }
 export default Dashboard;
 
 
 
 
-{/* <container> <img
-          src="https://www.nhpr.org/sites/nhpr/files/styles/x_large/public/201909/Telluride.jpg"
-          width="100%"
-          height="50%"
-          // margin="20%"
-          
-          alt=" "></img> </container>  */}
-
-
-
-
-
-
-
- /* <Container fluid style={{backgroundColor:"#462560"}} width="100%" height="100%">
-        
-          <Col sm={4}>
-        
-          <MyFigure 
-          image={data.id.obj.image_url}
-          rank={data.id.obj.cm_artist_rank}
-          genre={data.id.obj.tags[0].name}
-          artist_name={data.id.obj.name}
-          >
-              {/* genre ={data.id.obj.tag[0].name} */
-              
-
-            /* </MyFigure> */
-        /* /* we use the Object.key to get our data as an array of api keys(names) */ 
-      /* //  </Col> */
-      //  <Col md={8}>
-      //  <Container fluid> */}

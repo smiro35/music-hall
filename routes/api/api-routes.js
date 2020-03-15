@@ -67,9 +67,6 @@ router.get('/dashboard/:artistsearch', async (req, res) => {
   id = await axios.get(`https://api.chartmetric.com/api/search?q=${req.params.artistsearch}`, headers);
   id = id.data.obj.artists[0].id;
   
-  
-  // console.log('id', id);
-
   // API CALLS BELOW ORGANIZED BY ALPHABETICAL ORDER
 
   Bearer = await axios.post('https://api.chartmetric.com/api/token', refreshtoken);
@@ -77,94 +74,28 @@ router.get('/dashboard/:artistsearch', async (req, res) => {
 
   Apiresult = await axios.get(`https://api.chartmetric.com/api/artist/${id}`, headers);
   searched.bio = Apiresult.data;
-  
 
-  // https://api.chartmetric.com/api/artist/:id
-
-
-
-  // Bearer = await axios.post('https://api.chartmetric.com/api/token', refreshtoken);
-  // headers.headers.Authorization = `Bearer ${Bearer.data.token}`;
-
-  // Apiresult = await axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/artist-rank`, headers);
-  // searched.artist_rank = Apiresult.data;
-
-  // console.log("this is the rank", artist_rank);
-  
-
-  // https://api.chartmetric.com/api/artist/:id/
-
-  // //1. Api call for bandsintown
+ //1. Api call for bandsintown
   Bearer = await axios.post('https://api.chartmetric.com/api/token', refreshtoken);
   headers.headers.Authorization = `Bearer ${Bearer.data.token}`;
 
   Apiresult = await axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/bandsintown`, headers);
   searched.results.bandsintown = Apiresult.data;
-  // console.log('this is Value', Apiresult.data.obj.followers[19].value);
-  // console.log('this is Time', Apiresult.data.obj.followers[19].timestp);
-
-
-  // console.log("this is the val", bandsintown);
-
-
-  // // 2.Api call for deezer
+  
+ // 2.Api call for deezer
   Bearer = await axios.post('https://api.chartmetric.com/api/token', refreshtoken);
   headers.headers.Authorization = `Bearer ${Bearer.data.token}`;
 
   Apiresult = await axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/deezer`, headers);
   searched.results.deezer = Apiresult.data;
 
-  // // // //3. Api call for Facebook
-  // Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
-  // headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
-
-  // Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/facebook`,headers)
-  // //  console.log("facebook", Apiresult.data);
-
-  // searched.facebook = Apiresult.data;
-
-
-  // // // //4. Api call for facebook_fans_by_country
-  // Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
-  // headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
-
-  // Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/applemusic`,headers)
-  // searched.applemusic= Apiresult.data;
-
-
-  // // // //5. Api call for facebook_storytellers_by_country
-  // Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
-  // headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
-
-  // Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/amazon`,headers)
-  // searched.amazon = Apiresult.data;
-
-  // // // //6. Api call for instagram`
+ //3. Api call for instagram`
   Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
   headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
 
   Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/instagram`,headers)
   searched.results.instagram = Apiresult.data;
-
-
-  // Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
-  // headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
-
-  // Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/where-people-listen`,headers)
-  // searched.instagram = Apiresult.data;
-
-  // console.log("spotify loaction", Apiresult);
-  
-  // https://api.chartmetric.com/api/artist/:id/where-people-listen
-
-  // // // //7. Api call for soundcloud
-  // Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
-  // headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
-
-  // Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/soundcloud`,headers)
-  // searched.soundcloud = Apiresult.data;
-
-  // // 8.Api call for spotify
+ // 4.Api call for spotify
   Bearer = await axios.post('https://api.chartmetric.com/api/token', refreshtoken);
   headers.headers.Authorization = `Bearer ${Bearer.data.token}`;
 
@@ -172,49 +103,12 @@ router.get('/dashboard/:artistsearch', async (req, res) => {
   searched.results.spotify = Apiresult.data;
 
 
-  // // // //9. Api call for twitter
-  // Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
-  // headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
-
-  // Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/itunes`,headers)
-  // searched.itunes = Apiresult.data;
-
-  // // // //10. Api call for wikipedia
-  // Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
-  // headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
-
-  // Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/wikipedia`,headers)
-  // searched.wikipedia = Apiresult.data;
-
-
-  // // // //11. Api call for youtube_channel
+ //5. Api call for youtube_channel
   Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
   headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
 
   Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/youtube_channel`,headers)
   searched.results.youtube= Apiresult.data;
-
-  // // // //12. Api call for youtube_artist
-  // Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
-  // headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
-
-  // Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/youtube_artist`,headers)
-  // searched.youtube_artist = Apiresult.data;
-
-  // 13. APi call for Shazam
-  // Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
-  // headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
-
-  // Apiresult = await  axios.get(`https://api.chartmetric.com/api/artist/${id}/stat/shazam/US/city${Boston}`,headers)
-  // searched.shazam = Apiresult.data;
-  // console.log(Apiresult.data);
-
-  // //14. Api call for Chartmetrics score
-  // Bearer = await  axios.post("https://api.chartmetric.com/api/token", refreshtoken )
-  // headers.headers.Authorization =`Bearer ${Bearer.data.token}`;
-
-  // Apiresult = await  axios.get(`https://api.chartmetric.com/api/charts/${id}/cm-score`,headers)
-  // searched.CM_score = Apiresult.data;
 
 
   res.json(searched);

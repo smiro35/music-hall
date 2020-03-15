@@ -24,10 +24,7 @@ function TopCard(props){
     <ListGroupItem>CM RANK: {props.rank}</ListGroupItem>
     
   </ListGroup>
-  <Card.Footer>
-      <small className="text-muted">Last updated 3 mins ago</small>
-    </Card.Footer>
-  
+ 
   <Button variant="primary" size="sm" onClick={props.handlePostArtist}>
       Add to database
 </Button>
