@@ -6,8 +6,7 @@ import API from '../../utils/API'
 
 
 function SearchBar(props) {
-  function addArtist(){
-  }
+  
     return (
       <Form inline >
       <FormControl style={{borderRadius:"30rem", width:"20rem" }} type="text" placeholder="Search" className="mr-md-2" onChange={props.handleInputChange} name={props.name}/>
