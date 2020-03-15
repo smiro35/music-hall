@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
 // import SimpleContainer from '../Container/Container'
 import { Form, Col, Button, Container } from "react-bootstrap";
+import DatePicker from 'react-datepicker';
 import API from "../../utils/API.js";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 
 
 function MyForm() {
+  
 
+  const [startDate, setStartDate] = useState(new Date());
   const [artists, setArtists] = useState([])
-  console.log(artists)
   const [formObject, setformObject] = useState(
     {
       artist: "",
-      date: "",
       ticketsSold: 0,
       attendance: 0,
       avgTicketPrice: 0,
@@ -62,37 +65,17 @@ function MyForm() {
       [name]: value
     });
   }
-  // code to post
-  // handleSubmit (event) {
-  //   //alert('A list was submitted: ' + thisformObject.formvalue);
-  //   event.preventDefault();
-  //   fetch('your post url here', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       artist:formObject.artist,
-  //       dateformObject.date,
-  //       ticketsSoldformObject.ticketsSold
-  //     })
-  //   })
-  //   .then(res => res.json())
-  //   .then(data => console.log(data))
-  //   .catch(err => console.log(err);
-  // }
 
 
   function handleFormSubmit(event) {
     event.preventDefault()
     console.log("button was pressed")
     console.log(formObject);
-    if (formObject.artist && formObject.date) {
+    if (formObject.artist) {
 
       API.postPerformance({
         ArtistId: formObject.artist,
-        date: formObject.date,
+        date: startDate,
         total_sold: formObject.ticketsSold,
         total_money: formObject.total$,
         total_attendance: formObject.attendance,
@@ -111,6 +94,7 @@ function MyForm() {
   }
 
   return (
+
     <Container>
       <Form onSubmit={handleFormSubmit}>
         <Form.Row>
@@ -128,10 +112,7 @@ function MyForm() {
                 )}
             </Form.Control>
           </Form.Group>
-          <Form.Group as={Col} controlId="formGridEmail">
-            <Form.Label>Date of the Performance</Form.Label>
-            <Form.Control type="text" name="date" value={formObject.date} onChange={handleInputChange} placeholder="YYYY/MM/DD" />
-          </Form.Group>
+          <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
         </Form.Row>
         <Form.Row>
           <Form.Group as={Col} controlId="formGridPassword">
