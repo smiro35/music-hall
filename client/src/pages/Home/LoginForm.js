@@ -81,7 +81,9 @@ function LoginForm(props) {
                             <div className="container-login100-form-btn">
                                 <button className="btn btn-success" className="login100-form-btn-success" className="m-1"
                                     onClick={e => {
+                                        
                                         e.preventDefault();
+                                        handleFormSubmit();
                                         props.history.push('/dashboard')
                                     }}>
                                     Login
