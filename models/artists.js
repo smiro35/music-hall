@@ -17,7 +17,7 @@ module.exports = function (sequelize, DataTypes) {
       unique: false,
     },
   });
-// artist APi
+  // artist APi
   Artists.associate = function (models) {
     // Associating Artists with Performances
     Artists.hasMany(models.Performances, {
