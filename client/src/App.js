@@ -29,17 +29,22 @@ function App(){
     <Route
       {...rest}
       render={props =>
-        isAuth ? <Component {...props} /> : <Redirect to='/login' />
-        // isAuth ? <Component {...props} /> : <Redirect to="/login" />
+        isAuth ? <Component {...props} /> : <Redirect to='/' />
+        
       }
     />
   );
   return (
-    // <AuthProvider>    
+     
       <Router>
         <Switch>
+        <Route
+          exact
+          path="/"
+          render={props => <Login {...props} />}
+        />
         
-          <Route exact path="/" component={Login} />
+          <Route exact path="/Login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute exact path="/members" component={Members} />
@@ -48,7 +53,7 @@ function App(){
           <Route component={NoMatch} />
         </Switch>
       </Router>
-    // </AuthProvider>
+    
   )
 };
 export default () => (
