@@ -42,6 +42,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
+
 // Sync sequelize models then start Express app
 // =============================================
 db.sequelize.sync({ force: false})
