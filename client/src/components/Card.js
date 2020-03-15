@@ -4,7 +4,7 @@ import {Card, ListGroup} from 'react-bootstrap'
 function MyCard(props){
 return(
 
-  <Card style={{ width: '12.5rem', flex: 1  }}>
+  <Card style={{ width: '12.5rem'  }}>
 <Card.Img variant="top" src={props.image}/>
  <Card.Body>
 
