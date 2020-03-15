@@ -75,17 +75,3 @@ module.exports = function (sequelize, DataTypes) {
   };
   return MusicAPI;
 };
-
-
-// CREATE TABLE musicAPIs (
-//     id Int AUTO_INCREMENT NOT NULL,
-//     artistID INT NOT NULL,
-//     spotify INTEGER NOT NULL,
-//     youtube INTEGER NOT NULL,
-//     instagram INTEGER NOT NULL,
-// 	createdAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
-//     updatedAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
-//     /* Set ID as primary key */
-//     PRIMARY KEY (id),
-//     FOREIGN KEY (artistID) references artists(id)
-// );

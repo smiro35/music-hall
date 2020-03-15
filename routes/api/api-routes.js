@@ -190,7 +190,7 @@ router.put('/performances/:id', (req, res) => {
       where: {
         id: req.body.id,
       },
-    }).then((response) => {
+    }).then(() => {
     res.json({
       success: true,
     });
@@ -238,7 +238,6 @@ router.post('/artists', (req, res) => {
 // musicAPI route
 
 router.post('/musicapi', (req, res) => {
-  console.log(req.body)
   db.Artists.findOne({
     where: {
       artist_name: req.body.artist,
