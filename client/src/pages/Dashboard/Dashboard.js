@@ -357,12 +357,12 @@ function Dashboard(props) {
                             break;
                           case "instagram":
                            
-                            text = <>{tableData.results[Api_name].obj.followers[0].value}</>
+                            text = <>{tableData.results[Api_name].obj.followers[20].value}</>
                             break;
 
                           case "spotify":
                             
-                        text = <>{tableData.results[Api_name].obj.followers[20].value}</>
+                        text = <>{tableData.results[Api_name].obj.followers[0].value}</>
                             break;
                           case "youtube":
                             
