@@ -232,8 +232,8 @@ function Dashboard(props) {
                     break;
                   case "instagram":
                     image = "https://pluspng.com/img-png/instagram-png-instagram-png-icon-1024.png"
-                    time = data.results[Api_name].obj.followers[0].timestp
-                    text = <><h4 >Followers:</h4><br/><ListGroupItem style={{borderRadius:"30rem", backgroundColor:"#9063cd",color:"white"}}> {data.results[Api_name].obj.followers[0].value}</ListGroupItem></>
+                    time = data.results[Api_name].obj.followers[20].timestp
+                    text = <><h4 >Followers:</h4><br/><ListGroupItem style={{borderRadius:"30rem", backgroundColor:"#9063cd",color:"white"}}> {data.results[Api_name].obj.followers[20].value}</ListGroupItem></>
                     
                     break;
 
@@ -246,8 +246,8 @@ function Dashboard(props) {
                   case "youtube":
                     image = "https://lh6.googleusercontent.com/proxy/opjltYFTlI3C9bRRpxCBbRPh37Rd_DumhkwtE__adClUzJje1zDU8rpx5BVd1LFQasztUHMEA_s8CCNp2hmtWLNB"
 
-                text=<><h4 >Subs:</h4><br/><ListGroupItem style={{borderRadius:"30rem", backgroundColor:"#9063cd",color:"white"}}> {data.results[Api_name].obj.subscribers[0].value}</ListGroupItem></> 
-                    time = data.results[Api_name].obj.subscribers[0].timestp
+                text=<><h4 >Subs:</h4><br/><ListGroupItem style={{borderRadius:"30rem", backgroundColor:"#9063cd",color:"white"}}> {data.results[Api_name].obj.subscribers[20].value}</ListGroupItem></> 
+                    time = data.results[Api_name].obj.subscribers[20].timestp
                     break;
                   case "deezer":
                     image = "https://i.pinimg.com/originals/11/23/82/112382d6b0e0e47461fb55f03e597e9d.png"
