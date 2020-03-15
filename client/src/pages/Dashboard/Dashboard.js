@@ -362,12 +362,12 @@ function Dashboard(props) {
 
                           case "spotify":
                             
-                        text = <>{tableData.results[Api_name].obj.followers[0].value}</>
+                        text = <>{tableData.results[Api_name].obj.followers[20].value}</>
                             break;
                           case "youtube":
                             
 
-                            text = <>{tableData.results[Api_name].obj.subscribers[0].value}</>
+                            text = <>{tableData.results[Api_name].obj.subscribers[20].value}</>
                             break;
                           case "deezer":
                             
