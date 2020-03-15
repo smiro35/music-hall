@@ -39,7 +39,7 @@ function Dashboard(props) {
       }
     )
   }
-  let newData = '';
+
   function handleSubmit(event) {
     event.preventDefault();
     // console.log("submitted");
@@ -60,24 +60,72 @@ function Dashboard(props) {
         let MyBio = response.data.Bio;
         console.log("my Bio", MyBio);
 
+        console.log(response.data.results)
 
 
-        newData = response.data.results.bandsintown.obj.followers[19];
-        newData['artist'] = state.search;
-        newData['bandsintown'] = newData['value']
-        delete newData.value
-        delete newData.channel_id
-        delete newData.interpolation
+        // manipulating bandsintown api data
+        const bandsintown = response.data.results.bandsintown.obj.followers[19];
+        bandsintown['artist'] = state.search;
+        bandsintown['bandsintown_followers'] = bandsintown['value']
+        bandsintown['bandsintown_timestp'] = bandsintown['timestp']
+        bandsintown.bandsintown_timestp = Date.parse(bandsintown.bandsintown_timestp)
+        delete bandsintown.value
+        delete bandsintown.channel_id
+        delete bandsintown.interpolation
+        delete bandsintown.daily_diff
+        delete bandsintown.timestp
+
+        // manipulating spotify api data
         const spotifyPopularity = response.data.results.spotify.obj.popularity.reverse()[0]
         spotifyPopularity['spotify_timestp'] = spotifyPopularity['timestp']
         spotifyPopularity['spotify_popularity'] = spotifyPopularity['value']
-        const deezer = response.data.results.deezer.obj.fans[20].value;
-        console.log("this is the deezer data", response.data.results.deezer.obj.fans[20])
+        spotifyPopularity.spotify_timestp = Date.parse(spotifyPopularity.spotify_timestp)
         delete spotifyPopularity.timestp
-        delete spotifyPopularity.value
-        console.log(response.data.results.spotify.obj.popularity)
-        console.log(spotifyPopularity)
-        apiData = { ...newData, ...spotifyPopularity };
+        delete spotifyPopularity.value   
+        
+        // manipulating deezer fans api data
+        const deezerFans = response.data.results.deezer.obj.fans.reverse()[0]
+        deezerFans['deezer_timestp'] = deezerFans['timestp']
+        deezerFans['deezer_popularity'] = deezerFans['value']
+        deezerFans.deezer_timestp = Date.parse(deezerFans.deezer_timestp)
+        delete deezerFans.timestp
+        delete deezerFans.value
+        delete deezerFans.daily_diff
+        delete deezerFans.interpolation
+
+        // manipulating instagram api data
+        const instagramFollowers = response.data.results.instagram.obj.followers.reverse()[0]
+        instagramFollowers['instagram_timestp'] = instagramFollowers['timestp']
+        instagramFollowers['instagram_followers'] = instagramFollowers['value']
+        instagramFollowers.instagram_timestp = Date.parse(instagramFollowers.instagram_timestp)
+        delete instagramFollowers['timestp']
+        delete instagramFollowers['value']
+        delete instagramFollowers['flags']
+        delete instagramFollowers['daily_diff']
+        delete instagramFollowers['interpolation']
+
+        // manipulating youtube subscribers api data
+        const youtubeSubscribers = response.data.results.youtube.obj.subscribers.reverse()[0]
+        youtubeSubscribers['youtube_subscribers_timestp'] = youtubeSubscribers['timestp']
+        youtubeSubscribers['youtube_subscribers'] = youtubeSubscribers['value']
+        youtubeSubscribers.youtube_subscribers_timestp = Date.parse(youtubeSubscribers.youtube_subscribers_timestp)
+        delete youtubeSubscribers['timestp']
+        delete youtubeSubscribers['value']
+        delete youtubeSubscribers['daily_diff']
+        delete youtubeSubscribers['interpolation']
+
+        // manipulating youtube views api data
+        const youtubeViews = response.data.results.youtube.obj.views.reverse()[0]
+        youtubeViews['youtube_views_timestp'] = youtubeViews['timestp']
+        youtubeViews['youtube_views'] = youtubeViews['value']
+        youtubeViews.youtube_views_timestp = Date.parse(youtubeViews.youtube_views_timestp)
+        delete youtubeViews['timestp']
+        delete youtubeViews['value']
+        delete youtubeViews['daily_diff']
+        delete youtubeViews['interpolation']
+
+        //combining api data into object
+        apiData = { ...bandsintown, ...spotifyPopularity, ...deezerFans, ...instagramFollowers, ...youtubeSubscribers, ...youtubeViews };
         console.log(apiData);
 
         setData(
