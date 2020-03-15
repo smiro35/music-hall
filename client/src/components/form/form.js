@@ -4,14 +4,16 @@ import { Form, Col, Button, Container } from "react-bootstrap";
 import DatePicker from 'react-datepicker';
 import API from "../../utils/API.js";
 
-import "react-datepicker/dist/react-datepicker.css";
-
-
+import 'react-datepicker/dist/react-datepicker.css';
+// CSS Modules, react-datepicker-cssmodules.css
+// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import './form.css';
 
 function MyForm() {
-  
+
 
   const [startDate, setStartDate] = useState(new Date());
+  console.log(startDate)
   const [artists, setArtists] = useState([])
   const [formObject, setformObject] = useState(
     {
@@ -112,7 +114,14 @@ function MyForm() {
                 )}
             </Form.Control>
           </Form.Group>
-          <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
+          <Form.Group as={Col}>
+            <Form.Label>Date</Form.Label>
+            <br/>
+                  <DatePicker 
+                    className='date-picker'
+                    selected={startDate}
+                    onChange={date => setStartDate(date)}>Date</DatePicker>
+          </Form.Group>
         </Form.Row>
         <Form.Row>
           <Form.Group as={Col} controlId="formGridPassword">

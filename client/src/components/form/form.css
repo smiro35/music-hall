@@ -1,0 +1,9 @@
+.date-picker {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: .375rem .75rem;
+    height: calc(1.5em + .75rem + 2px);
+    font-size: 1rem;
+    margin-top: 0;
+    margin-bottom: .5rem;
+}
