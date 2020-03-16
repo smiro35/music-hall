@@ -132,8 +132,17 @@ function Dashboard(props) {
           newVal
         )
       })
+      .catch(err => {
+        if(err)
+        alert("please check name spelling and try again!")
+        
+        console.log(err)
+    })
+      
+      }
+     
 
-  };
+     
   useEffect((e) => { console.log("this is our new data", data) }, [data])
 
   function tableDisplay(event) {
