@@ -76,14 +76,14 @@ function Dashboard(props) {
           delete bandsintown.timestp
         }
 
-        const spotifyPopularity = response.data.results.spotify.obj.popularity.reverse()[0]
+        const spotifyFollowers = response.data.results.spotify.obj.followers.reverse()[0]
         // manipulating spotify api data
-        if (spotifyPopularity) {
-          spotifyPopularity['spotify_timestp'] = spotifyPopularity['timestp']
-          spotifyPopularity['spotify_popularity'] = spotifyPopularity['value']
-          spotifyPopularity.spotify_timestp = Date.parse(spotifyPopularity.spotify_timestp)
-          delete spotifyPopularity.timestp
-          delete spotifyPopularity.value
+        if (spotifyFollowers) {
+          spotifyFollowers['spotify_timestp'] = spotifyFollowers['timestp']
+          spotifyFollowers['spotify_popularity'] = spotifyFollowers['value']
+          spotifyFollowers.spotify_timestp = Date.parse(spotifyFollowers.spotify_timestp)
+          delete spotifyFollowers.timestp
+          delete spotifyFollowers.value
         }
 
         const deezerFans = response.data.results.deezer.obj.fans.reverse()[0]
@@ -140,7 +140,7 @@ function Dashboard(props) {
 
 
         //combining api data into object
-        apiData = { ...bandsintown, ...spotifyPopularity, ...deezerFans, ...instagramFollowers, ...youtubeSubscribers, ...youtubeViews };
+        apiData = { ...bandsintown, ...spotifyFollowers, ...deezerFans, ...instagramFollowers, ...youtubeSubscribers, ...youtubeViews };
         apiData['artist'] = state.search;
         console.log(apiData);
 
