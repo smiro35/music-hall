@@ -31,11 +31,6 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
       unique: false,
     },
-    genre: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      unique: false,
-    },
     projected_success: {
       type: DataTypes.STRING,
       allowNull: true,

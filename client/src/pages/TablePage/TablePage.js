@@ -4,6 +4,7 @@ import { TableData, TableItem } from "../../components/Tables/TableData.js";
 import API from "../../utils/API.js";
 import MyNavbar from "../../components/Navbar/Navbar.js";
 import ArtistSearch from '../TablePage/ArtistSearch'
+import { Container, Table } from 'react-bootstrap';
 
 
 let oldInputLength = ''
@@ -12,10 +13,12 @@ let allPerformances = ''
 function TablePage() {
 
     const [performances, setPerformances] = useState([])
+    const [musicData, setMusicData] = useState([])
 
     //Load all performances within setPerformances
     useEffect(() => {
-        loadPerformances()
+        loadPerformances();
+        loadMusicData();
     }, [])
 
     //Load all performances and set to performances
@@ -23,47 +26,57 @@ function TablePage() {
         API.getPerformances()
             .then(res =>
                 setPerformances(res.data)
-                (allPerformances = res.data)
+                    (allPerformances = res.data)
             )
             .catch(error => console.log(error));
     }
- 
+
+    //Load all performances and set to performances
+    function loadMusicData() {
+        API.getMusicAPI()
+            .then(res =>
+                setMusicData(res.data)
+                // (allPerformances = res.data)
+            )
+            .catch(error => console.log(error));
+    }
+
     //Reactively handle search as user types in searchbar
-    function handleSearchChange(event) {      
+    function handleSearchChange(event) {
         const input = event.target.value
 
         //if input deleted, refilter allperformances 
-        if(input.length < oldInputLength){
+        if (input.length < oldInputLength) {
             console.log(allPerformances)
-           const newArray = allPerformances.filter(performance => {
-               return performance.Artist.artist_name.slice(0, input.length) === input
-           }) 
-           setPerformances(newArray)
+            const newArray = allPerformances.filter(performance => {
+                return performance.Artist.artist_name.slice(0, input.length) === input
+            })
+            setPerformances(newArray)
         }
 
         //else continue filtering current list
-        else{
+        else {
             oldInputLength = input.length
-            const newArray = performances.filter(performance => {        
-            return performance.Artist.artist_name.slice(0, input.length) === input 
-        })
-        setPerformances(newArray)
+            const newArray = performances.filter(performance => {
+                return performance.Artist.artist_name.slice(0, input.length) === input
+            })
+            setPerformances(newArray)
         }
-        
-    } 
-console.log(performances)
+
+    }
+    console.log(performances)
     return (
-        <div>
+        <>
             <MyNavbar>
 
-            <ArtistSearch handleSearchChange={handleSearchChange} />
+                <ArtistSearch handleSearchChange={handleSearchChange} />
 
             </MyNavbar>
             {/* <TableHeader />
             <TableDataEntry /> */}
-            
-            {/* <TableHeader /> */}
 
+            {/* <TableHeader /> */}
+            <div>Performance Table</div>
             {performances.length ? (
                 <TableData>
                     {performances.map(performance => {
@@ -79,7 +92,6 @@ console.log(performances)
                                 <td>{performance.projected_success}</td>
                                 <td>{performance.actual_success}</td>
                                 <td>{performance.predictability}</td>
-                                <td>{performance.genre}</td>
                                 <td>{performance.marketing_budget}</td>
                             </TableItem>
                         )
@@ -87,8 +99,37 @@ console.log(performances)
                 </TableData>) : (
                     <h2>No Results</h2>
                 )}
+            <div>MusicAPI Table</div>
+            {musicData.length ? (
+                    <Table>
+                    <thead>
+                    <tr>
+                      <th>Artist</th>
+                      <th>Youtube Subscribers</th>
+                      <th>Instagram Followers</th>
+                      <th>Bandsintown Followers</th>
+                      <th>Spotify Followers</th>
+                      <th>Deezer Followers</th>
+                    </tr>
+                  </thead>
+                    {musicData.map(data => {
+                        console.log(data)
+                        return (
+                            <TableItem key={data.id}>
+                                <td>{data.Artist.artist_name}</td>
+                                <td>{data.youtube_subscribers}</td>
+                                <td>{data.instagram_followers}</td>
+                                <td>{data.bandsintown_followers}</td>
+                                <td>{data.spotify_popularity}</td>
+                                <td>{data.deezer_popularity}</td>
+                            </TableItem>
+                        )
+                    })}</Table>
+                ) : (
+                    <h2>No Results</h2>
+                )}
 
-        </div>
+        </>
     )
 };
 
@@ -137,7 +178,7 @@ export default TablePage;
 // return(
 
 // <div>
-    
+
 //  <MyGrid/>
 // </div>
 
@@ -208,7 +249,7 @@ export default TablePage;
 //             )
 //             .catch(error => console.log(error));
 //     }
- 
+
 //     //Reactively handle search as user types in searchbar
 //     function handleSearchChange(event) {      
 //         const input = event.target.value
@@ -242,7 +283,7 @@ export default TablePage;
 //             </MyNavbar>
 //             {/* <TableHeader />
 //             <TableDataEntry /> */}
-            
+
 //             {/* <TableHeader /> */}
 
 //             {performances.length ? (

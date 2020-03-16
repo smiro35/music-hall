@@ -235,7 +235,7 @@ router.post('/artists', (req, res) => {
   });
 });
 
-// musicAPI route
+// musicAPI post route
 
 router.post('/musicapi', (req, res) => {
   db.Artists.findOne({
@@ -282,6 +282,22 @@ router.post('/musicapi', (req, res) => {
           });
         });
     }
+  });
+});
+
+// musicAPI get route
+
+router.get('/musicapi', (req, res) => {
+  const query = {};
+  if (req.query.artistID) {
+    query.artistid = req.artistID;
+  }
+  db.musicAPI.findAll({
+    where: query,
+    include: [db.Artists],
+  }).then((MusicAPI) => {
+    console.log(MusicAPI);
+    res.json(MusicAPI);
   });
 });
 

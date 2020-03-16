@@ -24,7 +24,6 @@ function MyForm() {
       percentSold: 0,
       fiscalYear: 0,
       total$: 0,
-      genre: "",
       projectedSuccess: "",
       actualSuccess: "",
       predictability: "",
@@ -70,7 +69,6 @@ function MyForm() {
 
 
   function handleFormSubmit(event) {
-    event.preventDefault()
     console.log("button was pressed")
     console.log(formObject);
     if (formObject.artist) {
@@ -88,7 +86,6 @@ function MyForm() {
         marketing_budget: formObject.marketingBudget,
         projected_success: formObject.projectedSuccess,
         actual_success: formObject.actualSuccess,
-        genre: formObject.genre
       })
         .then(data => console.log("This is it" + data))
         .catch(err => console.log(err))
@@ -147,10 +144,6 @@ function MyForm() {
             <Form.Control name="total$" value={formObject.total$} onChange={handleInputChange} placeholder="$$$$" />
           </Form.Group>
         </Form.Row>
-        <Form.Group as={Col} id="formGridCheckbox">
-          <Form.Label>Genre</Form.Label>
-          <Form.Control name="genre" value={formObject.genre} onChange={handleInputChange} placeholder="Genre" />
-        </Form.Group>
         <Form.Row>
           <Form.Group as={Col} id="formGridCheckbox">
             <Form.Label>Projected Success</Form.Label>
