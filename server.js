@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 // Express boilerplate middleware
 // =============================================
 app.use(logger('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Express session middleware
