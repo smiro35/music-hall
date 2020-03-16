@@ -72,11 +72,8 @@ function TablePage() {
                 <ArtistSearch handleSearchChange={handleSearchChange} />
 
             </MyNavbar>
-            {/* <TableHeader />
-            <TableDataEntry /> */}
-
-            {/* <TableHeader /> */}
-            <div>Performance Table</div>
+            
+            <h1>Performance Table</h1>
             {performances.length ? (
                 <TableData>
                     {performances.map(performance => {
@@ -99,7 +96,8 @@ function TablePage() {
                 </TableData>) : (
                     <h2>No Results</h2>
                 )}
-            <div>MusicAPI Table</div>
+                <br/>
+            <h1>API Information Table</h1>
             {musicData.length ? (
                     <Table>
                     <thead>

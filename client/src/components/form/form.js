@@ -3,14 +3,17 @@ import React, { useState, useEffect } from 'react';
 import { Form, Col, Button, Container } from "react-bootstrap";
 import DatePicker from 'react-datepicker';
 import API from "../../utils/API.js";
+import Tablepage from '../../pages/TablePage/TablePage'
+import MyData from '../../pages/Data/Data'
 
 import 'react-datepicker/dist/react-datepicker.css';
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import './form.css';
 
-function MyForm() {
+function MyForm(props) {
 
+  let table = Tablepage
 
   const [startDate, setStartDate] = useState(new Date());
   console.log(startDate)
