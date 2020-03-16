@@ -18,7 +18,6 @@ export function TableData({ children }) {
           <th>Projected Success</th>
           <th>Actual Success</th>
           <th>Predictability</th>
-          <th>Genre</th>
           <th>Marketing Budget</th>
         </tr>
       </thead>

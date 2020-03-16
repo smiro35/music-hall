@@ -63,6 +63,11 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
       unique: false,
     },
+    genre: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: false,
+    },
   });
   MusicAPI.associate = function (models) {
     // We're saying that a musicAPI call should belong to an Artist

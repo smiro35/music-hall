@@ -18,5 +18,9 @@ export default {
     postMusicAPI: function(apiData){
         console.log(apiData);
         return axios.post("/api/musicapi", apiData)
+    },
+    getMusicAPI: function(apiData){
+        console.log(apiData);
+        return axios.get("/api/musicapi", apiData)
     }
 }
