@@ -56,12 +56,12 @@ function LoginForm(props) {
 
 
 
-            <div className="limiter" onSubmit={handleFormSubmit}>
+            <div className="limiter">
                 <div className="container-login100">
                     <div className="wrap-login100">
                         <img src="https://www.portsmouthnh.com/wp-content/uploads/2018/08/Music-Hall-Portsmouth-NH-EDITED.1-2018-e1533561736653.jpg" width="50%"
                             height="75%" alt="not working" />
-                        <form className="login100-form validate-form" onClick={handleFormSubmit}>
+                        <form className="login100-form validate-form">
                             <span className="login100-form-title"> <h1>WELCOME!</h1> </span>
                             <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                                 <input className="input100" type="text" name="emailInput" placeholder="Email"
@@ -78,7 +78,7 @@ function LoginForm(props) {
                                 <span className="symbol-input100">
                                 </span>
                             </div>
-                            <div className="container-login100-form-btn">
+                            <div className="container-login100-form-btn" onClick={handleFormSubmit}>
                                 <button className="btn btn-success" className="login100-form-btn-success" className="m-1"
                                     onClick={e => {
                                         e.preventDefault();
