@@ -78,12 +78,10 @@ function LoginForm(props) {
                                 <span className="symbol-input100">
                                 </span>
                             </div>
-                            <div className="container-login100-form-btn">
+                            <div className="container-login100-form-btn" onClick={handleFormSubmit}>
                                 <button className="btn btn-success" className="login100-form-btn-success" className="m-1"
                                     onClick={e => {
-                                        
                                         e.preventDefault();
-                                        handleFormSubmit();
                                         props.history.push('/dashboard')
                                     }}>
                                     Login
