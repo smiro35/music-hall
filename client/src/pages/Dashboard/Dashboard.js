@@ -16,6 +16,7 @@ import Logo from '../../music_hall.jpg'
 import API from '../../utils/API';
 let apiData = '';
 let newVal = "";
+let text =""
 
 function Dashboard(props) {
   const [state, setState] = useState({
@@ -76,14 +77,14 @@ function Dashboard(props) {
           delete bandsintown.timestp
         }
 
-        const spotifyPopularity = response.data.results.spotify.obj.popularity.reverse()[0]
+        const spotifyFollowers = response.data.results.spotify.obj.followers.reverse()[0]
         // manipulating spotify api data
-        if (spotifyPopularity) {
-          spotifyPopularity['spotify_timestp'] = spotifyPopularity['timestp']
-          spotifyPopularity['spotify_popularity'] = spotifyPopularity['value']
-          spotifyPopularity.spotify_timestp = Date.parse(spotifyPopularity.spotify_timestp)
-          delete spotifyPopularity.timestp
-          delete spotifyPopularity.value
+        if (spotifyFollowers) {
+          spotifyFollowers['spotify_timestp'] = spotifyFollowers['timestp']
+          spotifyFollowers['spotify_popularity'] = spotifyFollowers['value']
+          spotifyFollowers.spotify_timestp = Date.parse(spotifyFollowers.spotify_timestp)
+          delete spotifyFollowers.timestp
+          delete spotifyFollowers.value
         }
 
         const deezerFans = response.data.results.deezer.obj.fans.reverse()[0]
@@ -140,7 +141,7 @@ function Dashboard(props) {
 
 
         //combining api data into object
-        apiData = { ...bandsintown, ...spotifyPopularity, ...deezerFans, ...instagramFollowers, ...youtubeSubscribers, ...youtubeViews };
+        apiData = { ...bandsintown, ...spotifyFollowers, ...deezerFans, ...instagramFollowers, ...youtubeSubscribers, ...youtubeViews };
         apiData['artist'] = state.search;
         console.log(apiData);
 
@@ -160,6 +161,11 @@ function Dashboard(props) {
 
      
   useEffect((e) => { console.log("this is our new data", data) }, [data])
+  useEffect((e=>{
+    console.log("this is text", text);
+    
+  }),text);
+  
 
   function tableDisplay(event) {
     console.log("table data:", data);
@@ -245,35 +251,36 @@ function Dashboard(props) {
                 switch (Api_name) {
                   case "bandsintown":
                     image = "https://darkskychoir.com/wp-content/uploads/2019/04/bandsintown.png"
-                    time = data.results[Api_name].obj.followers[19].timestp
-                    text = <><h4 >Followers:</h4><br /><ListGroupItem style={{ borderRadius: "30rem", backgroundColor: "#9063cd", color: "white" }}> {data.results[Api_name].obj.followers[18].value}</ListGroupItem></>
+                    time = data.results[Api_name].obj.followers.reverse()[1].timestp
+                    text = <><h4 >Followers:</h4><br /><ListGroupItem style={{ borderRadius: "30rem", backgroundColor: "#9063cd", color: "white" }}> {data.results[Api_name].obj.followers.reverse()[1].value}</ListGroupItem></>
 
                     break;
                   case "instagram":
                     image = "https://pluspng.com/img-png/instagram-png-instagram-png-icon-1024.png"
-                    time = data.results[Api_name].obj.followers[20].timestp
-                    text = <><h4 >Followers:</h4><br/><ListGroupItem style={{borderRadius:"30rem", backgroundColor:"#9063cd",color:"white"}}> {data.results[Api_name].obj.followers[20].value}</ListGroupItem></>
+                    time = data.results[Api_name].obj.followers.reverse()[1].timestp
+                    text = <><h4 >Followers:</h4><br/><ListGroupItem style={{borderRadius:"30rem", backgroundColor:"#9063cd",color:"white"}}> {data.results[Api_name].obj.followers.reverse()[1].value}</ListGroupItem></>
                     
                     break;
 
                   case "spotify":
                     image = "https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png"
-                    time = data.results[Api_name].obj.followers[0].timestp
-                    text = <><h4 >Followers:</h4><br /><ListGroupItem style={{ borderRadius: "30rem", backgroundColor: "#9063cd", color: "white" }}> {data.results[Api_name].obj.followers[0].value}</ListGroupItem></>
+                    time = data.results[Api_name].obj.followers.reverse()[1].timestp
+                    text = <><h4 >Followers:</h4><br /><ListGroupItem style={{ borderRadius: "30rem", backgroundColor: "#9063cd", color: "white" }}> {data.results[Api_name].obj.followers.reverse()[1].value}</ListGroupItem></>
 
                     break;
                   case "youtube":
                     image = "https://lh6.googleusercontent.com/proxy/opjltYFTlI3C9bRRpxCBbRPh37Rd_DumhkwtE__adClUzJje1zDU8rpx5BVd1LFQasztUHMEA_s8CCNp2hmtWLNB"
 
-                text=<><h4 >Subs:</h4><br/><ListGroupItem style={{borderRadius:"30rem", backgroundColor:"#9063cd",color:"white"}}> {data.results[Api_name].obj.subscribers[1].value}</ListGroupItem></> 
-                    time = data.results[Api_name].obj.subscribers[1].timestp
+                text=<><h4 >Subs:</h4><br/><ListGroupItem style={{borderRadius:"30rem", backgroundColor:"#9063cd",color:"white"}}> {data.results[Api_name].obj.subscribers.reverse()[1].value}</ListGroupItem></> 
+                    time = data.results[Api_name].obj.subscribers.reverse()[1].timestp
                     break;
                   case "deezer":
                     image = "https://i.pinimg.com/originals/11/23/82/112382d6b0e0e47461fb55f03e597e9d.png"
-                    time = data.results[Api_name].obj.fans[19].timestp
+                    time = data.results[Api_name].obj.fans.reverse()[1].timestp
 
-                    text = <><h4 >Fans:</h4><br /><ListGroupItem style={{ borderRadius: "30rem", backgroundColor: "#9063cd", color: "white" }}>{data.results[Api_name].obj.fans[19].value}</ListGroupItem></>
-                    numeral(text).format('0,0')
+                    text = <><h4 >Fans:</h4><br /><ListGroupItem style={{ borderRadius: "30rem", backgroundColor: "#9063cd", color: "white" }}>{data.results[Api_name].obj.fans.reverse()[1].value}</ListGroupItem></>
+                    
+                    
                     break;
 
                 }
@@ -372,16 +379,16 @@ function Dashboard(props) {
                         switch (Api_name) {
                           case "bandsintown":
 
-                            text = <>{tableData.results[Api_name].obj.followers[18].value}</>
+                            text = <>{tableData.results[Api_name].obj.followers[1].value}</>
                             break;
                           case "instagram":
                            
-                            text = <>{tableData.results[Api_name].obj.followers[20].value}</>
+                            text = <>{tableData.results[Api_name].obj.followers[1].value}</>
                             break;
 
                           case "spotify":
 
-                            text = <>{tableData.results[Api_name].obj.followers[0].value}</>
+                            text = <>{tableData.results[Api_name].obj.followers[1].value}</>
                             break;
                           case "youtube":
 
@@ -390,7 +397,7 @@ function Dashboard(props) {
                             break;
                           case "deezer":
 
-                            text = <>{tableData.results[Api_name].obj.fans[19].value}</>
+                            text = <>{tableData.results[Api_name].obj.fans[1].value}</>
                             break;
 
                         }
