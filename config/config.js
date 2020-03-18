@@ -21,7 +21,8 @@ module.exports = {
     password: 'jpg4v9uam81o2rod',
     database: 'qw0tfgf5kf1riikq',
     host: 'umabrisfx8afs3ja.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-    dialect: 'mysql',
+    Port:'3306',
+    
   },
 
 };
