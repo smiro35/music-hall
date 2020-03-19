@@ -44,7 +44,7 @@ function Dashboard(props) {
   function handleSubmit(event) {
     event.preventDefault();
     // console.log("submitted");
-    let url = `http://localhost:3001/api/dashboard/${state.search}`
+    let url = `https://localhost:3001/api/dashboard/${state.search}`
     axios.get(url)
       .then(response => {
 
