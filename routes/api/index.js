@@ -6,6 +6,6 @@ router.get('/secrets', isAuthenticated, (req, res) => {
   res.json('In the long run, we only hit what we aim at...(~someone else)');
 });
 
-router.use(('./api', apiRoutes));
+router.use(('/api', apiRoutes));
 
 module.exports = router;
