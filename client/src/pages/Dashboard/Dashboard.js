@@ -16,7 +16,7 @@ import Logo from '../../music_hall.jpg'
 import API from '../../utils/API';
 let apiData = '';
 let newVal = "";
-let text =""
+let text = ""
 
 function Dashboard(props) {
   const [state, setState] = useState({
@@ -47,6 +47,10 @@ function Dashboard(props) {
     let url = `http://localhost:3001/api/dashboard/${state.search}`
     axios.get(url)
       .then(response => {
+
+        if (response === undefined) {
+          alert('undefined')
+        }
 
         console.log("our response", response);
 
@@ -149,23 +153,23 @@ function Dashboard(props) {
           newVal
         )
       })
-      .catch(err => {
-        if(err)
-        alert("please check name spelling and try again!")
-        
-        console.log(err)
-    })
-      
-      }
-     
+    //   .catch(err => {
+    //     if(err)
+    //     alert("please check name spelling and try again!")
 
-     
+    //     console.log(err)
+    // })
+
+  }
+
+
+
   useEffect((e) => { console.log("this is our new data", data) }, [data])
-  useEffect((e=>{
+  useEffect((e => {
     console.log("this is text", text);
-    
-  }),text);
-  
+
+  }), text);
+
 
   function tableDisplay(event) {
     console.log("table data:", data);
@@ -251,36 +255,46 @@ function Dashboard(props) {
                 switch (Api_name) {
                   case "bandsintown":
                     image = "https://darkskychoir.com/wp-content/uploads/2019/04/bandsintown.png"
-                    time = data.results[Api_name].obj.followers.reverse()[1].timestp
-                    text = <><h4 >Followers:</h4><br /><ListGroupItem style={{ borderRadius: "30rem", backgroundColor: "#9063cd", color: "white" }}> {data.results[Api_name].obj.followers.reverse()[1].value}</ListGroupItem></>
+                    if (data.results[Api_name].obj.followers.reverse()[1] !== undefined) {
+                      time = data.results[Api_name].obj.followers.reverse()[1].timestp
+                      text = <><h4 >Followers:</h4><br /><ListGroupItem style={{ borderRadius: "30rem", backgroundColor: "#9063cd", color: "white" }}> {data.results[Api_name].obj.followers.reverse()[1].value}</ListGroupItem></>
+                    }
+
+
+
 
                     break;
                   case "instagram":
                     image = "https://pluspng.com/img-png/instagram-png-instagram-png-icon-1024.png"
-                    time = data.results[Api_name].obj.followers.reverse()[1].timestp
-                    text = <><h4 >Followers:</h4><br/><ListGroupItem style={{borderRadius:"30rem", backgroundColor:"#9063cd",color:"white"}}> {data.results[Api_name].obj.followers.reverse()[1].value}</ListGroupItem></>
-                    
+                    if (data.results[Api_name].obj.followers.reverse()[1] !== undefined) {
+                      time = data.results[Api_name].obj.followers.reverse()[1].timestp
+                      text = <><h4 >Followers:</h4><br /><ListGroupItem style={{ borderRadius: "30rem", backgroundColor: "#9063cd", color: "white" }}> {data.results[Api_name].obj.followers.reverse()[1].value}</ListGroupItem></>
+                    }
                     break;
 
                   case "spotify":
                     image = "https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png"
-                    time = data.results[Api_name].obj.followers.reverse()[1].timestp
-                    text = <><h4 >Followers:</h4><br /><ListGroupItem style={{ borderRadius: "30rem", backgroundColor: "#9063cd", color: "white" }}> {data.results[Api_name].obj.followers.reverse()[1].value}</ListGroupItem></>
-
+                    if (data.results[Api_name].obj.followers.reverse()[1] !== undefined) {
+                      time = data.results[Api_name].obj.followers.reverse()[1].timestp
+                      text = <><h4 >Followers:</h4><br /><ListGroupItem style={{ borderRadius: "30rem", backgroundColor: "#9063cd", color: "white" }}> {data.results[Api_name].obj.followers.reverse()[1].value}</ListGroupItem></>
+                    }
                     break;
+
                   case "youtube":
                     image = "https://lh6.googleusercontent.com/proxy/opjltYFTlI3C9bRRpxCBbRPh37Rd_DumhkwtE__adClUzJje1zDU8rpx5BVd1LFQasztUHMEA_s8CCNp2hmtWLNB"
+                    if (data.results[Api_name].obj.subscribers.reverse()[1] !== undefined) {
+                      text = <><h4 >Subs:</h4><br /><ListGroupItem style={{ borderRadius: "30rem", backgroundColor: "#9063cd", color: "white" }}> {data.results[Api_name].obj.subscribers.reverse()[1].value}</ListGroupItem></>
+                      time = data.results[Api_name].obj.subscribers.reverse()[1].timestp
+                    }
 
-                text=<><h4 >Subs:</h4><br/><ListGroupItem style={{borderRadius:"30rem", backgroundColor:"#9063cd",color:"white"}}> {data.results[Api_name].obj.subscribers.reverse()[1].value}</ListGroupItem></> 
-                    time = data.results[Api_name].obj.subscribers.reverse()[1].timestp
                     break;
                   case "deezer":
                     image = "https://i.pinimg.com/originals/11/23/82/112382d6b0e0e47461fb55f03e597e9d.png"
-                    time = data.results[Api_name].obj.fans.reverse()[1].timestp
+                    if (data.results[Api_name].obj.fans.reverse()[1] !== undefined) {
+                      time = data.results[Api_name].obj.fans.reverse()[1].timestp
+                      text = <><h4 >Fans:</h4><br /><ListGroupItem style={{ borderRadius: "30rem", backgroundColor: "#9063cd", color: "white" }}>{data.results[Api_name].obj.fans.reverse()[1].value}</ListGroupItem></>
+                    }
 
-                    text = <><h4 >Fans:</h4><br /><ListGroupItem style={{ borderRadius: "30rem", backgroundColor: "#9063cd", color: "white" }}>{data.results[Api_name].obj.fans.reverse()[1].value}</ListGroupItem></>
-                    
-                    
                     break;
 
                 }
@@ -334,22 +348,6 @@ function Dashboard(props) {
               </Row>
             </Container>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             :
 
             <Container fluid>
@@ -373,31 +371,53 @@ function Dashboard(props) {
 
 
                       {Object.keys(tableData.results).map((Api_name) => {
-
+                        console.log(tableData.results)
                         let text = ""
 
                         switch (Api_name) {
                           case "bandsintown":
+                            if (tableData.results[Api_name].obj.followers[1] !== undefined) {
+                              text = <>{tableData.results[Api_name].obj.followers[1].value}</>
+                            }
+                            else {
+                              text = 'undefined'
+                            }
 
-                            text = <>{tableData.results[Api_name].obj.followers[1].value}</>
                             break;
                           case "instagram":
-                           
-                            text = <>{tableData.results[Api_name].obj.followers[1].value}</>
+                            if (tableData.results[Api_name].obj.followers[1] !== undefined) {
+                              text = <>{tableData.results[Api_name].obj.followers[1].value}</>
+                            }
+                            else {
+                              text = 'undefined'
+                            }
+
                             break;
 
                           case "spotify":
+                            if (tableData.results[Api_name].obj.followers[1] !== undefined) {
+                              text = <>{tableData.results[Api_name].obj.followers[1].value}</>
+                            }
+                            else {
+                              text = 'undefined'
+                            }
 
-                            text = <>{tableData.results[Api_name].obj.followers[1].value}</>
                             break;
                           case "youtube":
-
-
-                            text = <>{tableData.results[Api_name].obj.subscribers[1].value}</>
+                            if (tableData.results[Api_name].obj.subscribers[1] !== undefined) {
+                              text = <>{tableData.results[Api_name].obj.subscribers[1].value}</>
+                            }
+                            else {
+                              text = 'undefined'
+                            }
                             break;
                           case "deezer":
-
-                            text = <>{tableData.results[Api_name].obj.fans[1].value}</>
+                            if (tableData.results[Api_name].obj.fans[1] !== undefined) {
+                              text = <>{tableData.results[Api_name].obj.fans[1].value}</>
+                            }
+                            else {
+                              text = 'undefined'
+                            }
                             break;
 
                         }
