@@ -153,12 +153,12 @@ function Dashboard(props) {
           newVal
         )
       })
-    //   .catch(err => {
-    //     if(err)
-    //     alert("please check name spelling and try again!")
+      .catch(err => {
+        if(err)
+        
 
-    //     console.log(err)
-    // })
+        console.log(err.message)
+    })
 
   }
 
