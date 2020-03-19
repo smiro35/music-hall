@@ -44,7 +44,7 @@ function Dashboard(props) {
   function handleSubmit(event) {
     event.preventDefault();
     // console.log("submitted");
-    let url =  `https://music-hall-app.herokuapp.com/dashboard/${state.search}`
+    let url =  `api/dashboard/${state.search}`
     axios.get(url)
       .then(response => {
 
