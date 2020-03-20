@@ -204,7 +204,7 @@ function Dashboard(props) {
           value={state.value}
           search={state.search}
           handleInputChange={handleInputChange}
-          handleSubmit={handleSubmit} />
+          handleSubmit={handleSubmit}/>
       </MyNavbar>
 
       {!data ? <>
@@ -358,10 +358,10 @@ function Dashboard(props) {
                     <tr>
 
                       <th>BandsinTown</th>
+                      <th>Deezer</th>
                       <th>Instagram</th>
                       <th>Spotify</th>
                       <th>Youtube</th>
-                      <th>Deezer</th>
                     </tr>
                   </thead>
                   <tbody>
