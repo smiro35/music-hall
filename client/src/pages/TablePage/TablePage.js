@@ -4,11 +4,13 @@ import { TableData, TableItem } from "../../components/Tables/TableData.js";
 import API from "../../utils/API.js";
 import MyNavbar from "../../components/Navbar/Navbar.js";
 import ArtistSearch from '../TablePage/ArtistSearch'
-import { Container, Table } from 'react-bootstrap';
+import { Container, Table, Button } from 'react-bootstrap';
 
 
 let oldInputLength = ''
 let allPerformances = ''
+
+
 
 function TablePage() {
 
@@ -64,7 +66,43 @@ function TablePage() {
         }
 
     }
-    console.log(performances)
+
+    function download(data){
+        const blob = new Blob([data],{type: 'text/csv'})
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a')
+        a.setAttribute('hidden', '')
+        a.setAttribute('href',url)
+        a.setAttribute('download', 'download.csv')
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+
+    }
+
+    function csv(data){
+
+        const csvRows = [];
+     musicData.map(data =>{
+
+        // console.log("musicdata data",data);
+
+        // csvRows.push(data);
+
+        // console.log("this is rows",csvRows);
+        
+        download(csvRows)
+            
+     })
+
+    
+    
+
+        
+        
+
+    }
+    
     return (
         <>
             <MyNavbar>
@@ -98,6 +136,7 @@ function TablePage() {
                 )}
                 <br/>
             <h1>API Information Table</h1>
+            <Button onClick={csv}>CSV EXPORT</Button>
             {musicData.length ? (
                     <Table>
                     <thead>
@@ -111,7 +150,7 @@ function TablePage() {
                     </tr>
                   </thead>
                     {musicData.map(data => {
-                        console.log(data)
+                        console.log("here it is",data)
                         return (
                             <TableItem key={data.id}>
                                 <td>{data.Artist.artist_name}</td>
