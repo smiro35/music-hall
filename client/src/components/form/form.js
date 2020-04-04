@@ -150,11 +150,23 @@ function MyForm(props) {
         <Form.Row>
           <Form.Group as={Col} id="formGridCheckbox">
             <Form.Label>Projected Success</Form.Label>
-            <Form.Control name="projectedSuccess" value={formObject.projectedSuccess} onChange={handleInputChange} placeholder="Projected Success" />
+            <Form.Control as="select"  name="projectedSuccess" value={formObject.projectedSuccess} onChange={handleInputChange} placeholder="Projected Success" >
+            <option>Select one</option>
+            <option>Poor</option>
+            <option>Good</option>
+            <option>Great</option>
+           
+           </Form.Control>
           </Form.Group>
           <Form.Group as={Col} id="formGridCheckbox">
             <Form.Label>Actual Success</Form.Label>
-            <Form.Control name="actualSuccess" value={formObject.actualSuccess} onChange={handleInputChange} placeholder="Actual Success" />
+            <Form.Control as="select"  name="actualSuccess" value={formObject.actualSuccess} onChange={handleInputChange} placeholder="Actual Success" >
+            <option>Select one</option>
+            <option>Poor</option>
+            <option>Good</option>
+            <option>Great</option>
+           
+              </Form.Control>
           </Form.Group>
         </Form.Row>
         <Form.Row>
