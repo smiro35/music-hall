@@ -34,7 +34,8 @@ const Signup = props => {
             firstName: formData.firstNameInput,
             lastName: formData.lastNameInput,
             email: formData.emailInput,
-            password: formData.passwordInput
+            password: formData.passwordInput,
+            verified: false
         }
         if (validateUserInput(newUser)) {
             postNewUser(newUser)

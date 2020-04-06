@@ -13,11 +13,13 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 // Sequelize User Model. If the user is created successfully, proceed
 //  to log the user in, otherwise send back an error
 router.post('/signup', (req, res) => {
-  console.log("HERE!!!")
+  console.log(req)
   db.User.create(req.body)
     .then((dbResponse) => {
-      console.log(dbResponse)
+      // console.log(dbResponse)
       res.json(dbResponse);
+      console.log(dbResponse.email);
+      // VerifyEmail.sendverification(dbResponse.email, verification_token, permalink);
     })
     .catch((err) => {
       console.log(err.message)
